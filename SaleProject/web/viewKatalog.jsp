@@ -1,8 +1,9 @@
 <%-- 
     Document   : viewKatalog
-    Created on : Nov 6, 2016, 8:19:42 PM
+    Created on : Nov 7, 2016, 10:21:25 AM
     Author     : Asus
 --%>
+
 <%@ page import="java.io.*,java.util.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,6 +22,11 @@
             session.removeAttribute("message");
          %>
          
+          <% 
+          if (request.getAttribute("servletName") != null)  {
+            out.print(request.getAttribute("servletName").toString());
+          }
+        %>
          <c:out value="${sessionScope.message}" />
         <c:remove var="message" scope="session" />
         <div id="wrapper">
@@ -42,3 +48,4 @@
         </div>
     </body>
 </html>
+

@@ -16,10 +16,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
+       <% 
+          if (request.getAttribute("servletName") != null)  {
+            out.print(request.getAttribute("servletName").toString());
+          }
+        %>
        <div class="heading">
            <img src="img/logo.png" width= ="60" height="60">
        </div>
-       <form action= "http://localhost:8080/SaleProject/rest" method="POST" id="login" name="login" onsubmit="return validateForm()">
+       <form action= "/saleProject/identityService" method="POST" id="login" name="login" onsubmit="return validateForm()">
             <div class="content">
             <div class="bold">Please Login</div>
             <hr></hr>
@@ -38,6 +43,6 @@
        </form>
             
        <br>
-       <div class="register">Don't have account yet? Register <a href="Register.php">here</a></div>
+       <div class="register">Don't have account yet? Register <a href="register.jsp">here</a></div>
     </body>
 </html>
