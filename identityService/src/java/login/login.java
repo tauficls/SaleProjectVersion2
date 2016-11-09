@@ -7,12 +7,11 @@ package login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -31,19 +30,7 @@ public class login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        doPost(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -73,31 +60,22 @@ public class login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //response.setContentType("text/html;charset=UTF-8");
-        /*
-        try (PrintWriter out = response.getWriter()) {
-            String user = request.getParameter("username");
-            String pass = request.getParameter("password");
-            access connect = new access (user, pass);
+        JSONObject js = new JSONObject();
+        String user = request.getParameter("username");
+        String pass = request.getParameter("password");
+        access connect = new access (user, pass);
             
-            //if request is not from HttpServletRequest, you should do a typecast before
-            HttpSession session = request.getSession();
-                
-            if (connect.isAuthenticate()) {
-                //save message in session
-                session.setAttribute("message", "Hello world");
-                
-                request.setAttribute("servletName", "pisang");
-                out.println("pisan");
-                //RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("http://localhost:8080/saleProject/viewKatalog.jsp");
-                //dispatcher.forward(request,response);
-                //response.sendRedirect("0/saleProject/viewKatalog.jsp");
-            }
-            else {
-                session.setAttribute("message", "error");
-                response.sendRedirect("/saleProject/IdentityService");
-            }
-        }*/
-
+        if (connect.isAuthenticate()) {
+            js.put("status", "ok");
+            js.put("token", connect.getToken());
+        }
+        else {
+            js.put("status", "error");
+        }
+        response.setContentType("application/json");
+        PrintWriter out = response.getWriter();
+        out.print(js);
+        out.close();
     }
 
     /**

@@ -24,7 +24,7 @@
        <div class="heading">
            <img src="img/logo.png" width= ="60" height="60">
        </div>
-       <form action= "/saleProject/identityService" method="POST" id="login" name="login" onsubmit="return validateForm()">
+       <form action= "/saleProject/login" method="POST" id="login" name="login" onsubmit="return validateForm()">
             <div class="content">
             <div class="bold">Please Login</div>
             <hr></hr>

@@ -1,24 +1,29 @@
+package IdentityService;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package IdentityService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 /**
  *
  * @author Asus
  */
-public class identityService extends HttpServlet {
+public class login extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,28 +36,18 @@ public class identityService extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String user = request.getParameter("username");
-            String pass = request.getParameter("password");
-            access connect = new access (user, pass);
-            
-            //if request is not from HttpServletRequest, you should do a typecast before
-            HttpSession session = request.getSession();
-                
-            if (connect.isAuthenticate()) {
-                //save message in session
-                session.setAttribute("message", "Hello world");
-                
-                request.setAttribute("servletName", "pisang");
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/saleProject/viewKatalog.jsp");
-                dispatcher.forward(request,response);
-                //response.sendRedirect("/saleProject/index.jsp");
-            }
-            else {
-                session.setAttribute("message", "error");
-                response.sendRedirect("/saleProject/index.jsp");
-            }
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet login</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -82,7 +77,20 @@ public class identityService extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        loginConnector loginRequest = new loginConnector("login");
+        JSONObject receive = new JSONObject();
+        try {
+            loginRequest.validateLogin(request.getParameter("username"), request.getParameter("password"));
+            receive = loginRequest.getData();
+            String status = (String) receive.get("status");
+            String token = (String) receive.get("token");
+            HttpSession session = request.getSession();
+            session.setAttribute("message", status);  
+            session.setAttribute("token", status);  
+            response.sendRedirect("/saleProject/viewKatalog.jsp");
+        } catch (ParseException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
