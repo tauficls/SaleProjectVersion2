@@ -18,6 +18,7 @@ public class access {
     private String username;
     private String password;
     private String token;
+    private int idUser;
     
     public access (String user, String pass) {
         username = user;
@@ -49,6 +50,7 @@ public class access {
             ResultSet rs=stmt.executeQuery(query);  
             if(rs.next()) {
                 authenticate = true;
+                idUser = rs.getInt("idUser");
             }
             con.close();  
         }
@@ -57,6 +59,10 @@ public class access {
         }
         
         return authenticate;
+    }
+    
+    public int getIdUser() {
+        return idUser;
     }
 }
 

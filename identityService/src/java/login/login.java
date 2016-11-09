@@ -66,8 +66,12 @@ public class login extends HttpServlet {
         access connect = new access (user, pass);
             
         if (connect.isAuthenticate()) {
+            String token = connect.getToken();
             js.put("status", "ok");
-            js.put("token", connect.getToken());
+            js.put("idUser", connect.getIdUser());
+            js.put("token", token);
+            updateTable update = new updateTable();
+            update.updateToken(connect.getIdUser(), token);
         }
         else {
             js.put("status", "error");
