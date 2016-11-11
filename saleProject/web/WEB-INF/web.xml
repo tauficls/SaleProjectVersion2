@@ -12,6 +12,10 @@
         <servlet-name>register</servlet-name>
         <servlet-class>register.register</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>IdentityService.logout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>identityService</servlet-name>
         <url-pattern>/identityService</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

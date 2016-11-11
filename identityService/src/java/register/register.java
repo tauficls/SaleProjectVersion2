@@ -51,6 +51,7 @@ public class register extends HttpServlet {
             receive.put("status", "ok");
             receive.put("idUser", addNew.getIdUser());
             receive.put("token", token);
+            receive.put("username", addNew.getUsername());
             System.out.println("ok");
         }
         else {

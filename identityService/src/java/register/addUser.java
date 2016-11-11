@@ -74,4 +74,8 @@ public class addUser {
     public int getIdUser() {
         return idUser;
     }
+    
+    public String getUsername() {
+        return user;
+    }
 }

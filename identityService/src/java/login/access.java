@@ -85,5 +85,9 @@ public class access {
     public int getIdUser() {
         return idUser;
     }
+    
+    public String getUsername() {
+        return username;
+    }
 }
 

@@ -17,15 +17,8 @@
     <script type="text/javascript" src="viewKatalog.js"></script>
 </head>
     <body>
-        <%
-            out.println(session.getAttribute("message"));
-            out.println(session.getAttribute("idUser"));
-            out.println(session.getAttribute("token"));
-         %>
-         <c:out value="${sessionScope.message}" />
-        <c:remove var="message" scope="session" />
         <div id="wrapper">
-            <?php require 'header.php'; ?>
+            <jsp:include page="header.jsp" />
             <h1>Please Confirm your Purchase</h1>
             <hr />
             <form  method="post" id="formFilter" enctype="multipart/form-data">

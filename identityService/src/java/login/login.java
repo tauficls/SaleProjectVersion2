@@ -69,6 +69,7 @@ public class login extends HttpServlet {
             String token = connect.getToken();
             js.put("status", "ok");
             js.put("idUser", connect.getIdUser());
+            js.put("username", connect.getUsername());
             js.put("token", token);
             updateTable update = new updateTable();
             update.updateToken(connect.getIdUser(), token);

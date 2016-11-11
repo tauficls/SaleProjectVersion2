@@ -84,12 +84,14 @@ public class login extends HttpServlet {
             receive = loginRequest.getData();
             HttpSession session = request.getSession();
             String status = (String) receive.get("status");
+            String username = (String) receive.get("username");
             if ("ok".equals(status)) {
                 String token = (String) receive.get("token");
                 long idUser = (long) receive.get("idUser");
                 session.setAttribute("message", status);  
                 session.setAttribute("token", token);  
                 session.setAttribute("idUser", idUser);  
+                session.setAttribute("username", username);
                 response.sendRedirect("/saleProject/viewKatalog.jsp");
             }
             else {

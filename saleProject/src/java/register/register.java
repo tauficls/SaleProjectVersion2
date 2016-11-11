@@ -58,12 +58,12 @@ public class register extends HttpServlet {
             session.setAttribute("message", status);  
             session.setAttribute("token", token);  
             session.setAttribute("idUser", idUser);  
+            session.setAttribute("username", user);
             System.out.println("pisang monyet");
             response.sendRedirect("/saleProject/viewKatalog.jsp");
         }
         else {
             session.setAttribute("message", status);  
-            System.out.println("sungguh mederita");
             response.sendRedirect("/saleProject/register.jsp");
         }
     }
