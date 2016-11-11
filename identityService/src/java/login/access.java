@@ -5,6 +5,7 @@
  */
 package login;
 
+import ConnectDB.ConnectDB;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Random;
@@ -44,10 +45,10 @@ public class access {
         Boolean authenticate = false;
         String query = "select * from user where username = \"" + username + "\" and password = \"" + password + "\"";
         try{  
-            Class.forName("com.mysql.jdbc.Driver");  
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/saleProject_user","root","malvin");  
-            Statement stmt=con.createStatement();  
-            ResultSet rs=stmt.executeQuery(query);  
+            ConnectDB connectdb = new ConnectDB();
+            Connection con = connectdb.getConnection();
+            Statement stmt = con.createStatement();  
+            ResultSet rs = stmt.executeQuery(query);  
             if(rs.next()) {
                 authenticate = true;
                 idUser = rs.getInt("idUser");

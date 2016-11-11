@@ -5,6 +5,7 @@
  */
 package login;
 
+import ConnectDB.ConnectDB;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -30,14 +31,14 @@ public class updateTable {
 
         String query = "update user set token = \"" + token + "\", expire_date = \"" + expdate_format.format(expire_date) + "\" where idUser = \"" + idUser + "\"";
         try{  
-            Class.forName("com.mysql.jdbc.Driver");  
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/saleProject_user","root","malvin");  
+            ConnectDB connectdb = new ConnectDB();
+            Connection con = connectdb.getConnection();
             Statement stmt=con.createStatement();  
             stmt.executeUpdate(query);  
       
             con.close();  
         }
-        catch(ClassNotFoundException | SQLException e){ 
+        catch(SQLException e){ 
             System.out.println(e);
         }
     }

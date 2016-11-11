@@ -5,6 +5,7 @@
  */
 package register;
 
+import ConnectDB.ConnectDB;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -45,9 +46,8 @@ public class addUser {
     
     public void addNewUser () {
         try{  
-            Class.forName("com.mysql.jdbc.Driver");  
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/saleProject_user","root","malvin");  
-            PreparedStatement statement = con.prepareStatement("INSERT INTO user (namaLengkap, email, password, alamat_user, kodepos_user, noTelp_user, username) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            ConnectDB connectdb = new ConnectDB();
+            Connection con = connectdb.getConnection();PreparedStatement statement = con.prepareStatement("INSERT INTO user (namaLengkap, email, password, alamat_user, kodepos_user, noTelp_user, username) VALUES (?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, full);
             statement.setString(2, email);
             statement.setString(3, pass);
@@ -66,7 +66,7 @@ public class addUser {
             
             con.close();
         }
-        catch(ClassNotFoundException | SQLException e){ 
+        catch(SQLException e){ 
             System.out.println(e);
         }
     }
