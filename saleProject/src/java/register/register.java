@@ -1,16 +1,16 @@
-package IdentityService;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package register;
 
+import IdentityService.access;
+import IdentityService.loginConnector;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +23,7 @@ import org.json.simple.parser.ParseException;
  *
  * @author Asus
  */
-public class login extends HttpServlet {
+public class register extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,19 +35,36 @@ public class login extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            throws ServletException, IOException, ParseException {
+        String full = request.getParameter("fullname");
+        String email = request.getParameter("email");
+        String pass = request.getParameter("password");
+        String address = request.getParameter("address");
+        String postal = request.getParameter("postal");
+        String number = request.getParameter("number");
+        String user = request.getParameter("username");
+        JSONObject receive = new JSONObject();
+        
+        loginConnector loginRequest = new loginConnector("register");
+        loginRequest.validateRegister(full,email,pass,address,postal,number,user);
+        receive = loginRequest.getData();
+        
+        String status = (String) receive.get("status");
+        HttpSession session = request.getSession();
+        
+        if ("ok".equals(status)) {
+            long idUser = (long) receive.get("idUser");
+            String token = (String) receive.get("token");
+            session.setAttribute("message", status);  
+            session.setAttribute("token", token);  
+            session.setAttribute("idUser", idUser);  
+            System.out.println("pisang monyet");
+            response.sendRedirect("/saleProject/viewKatalog.jsp");
+        }
+        else {
+            session.setAttribute("message", status);  
+            System.out.println("sungguh mederita");
+            response.sendRedirect("/saleProject/register.jsp");
         }
     }
 
@@ -63,7 +80,11 @@ public class login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -77,28 +98,10 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        loginConnector loginRequest = new loginConnector("login");
-        JSONObject receive = new JSONObject();
         try {
-            loginRequest.validateLogin(request.getParameter("username"), request.getParameter("password"));
-            receive = loginRequest.getData();
-            HttpSession session = request.getSession();
-            String status = (String) receive.get("status");
-            if ("ok".equals(status)) {
-                String token = (String) receive.get("token");
-                long idUser = (long) receive.get("idUser");
-                session.setAttribute("message", status);  
-                session.setAttribute("token", token);  
-                session.setAttribute("idUser", idUser);  
-                response.sendRedirect("/saleProject/viewKatalog.jsp");
-            }
-            else {
-                session.setAttribute("message", status); 
-                response.sendRedirect("/saleProject/index.jsp");
-                
-            }
+            processRequest(request, response);
         } catch (ParseException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

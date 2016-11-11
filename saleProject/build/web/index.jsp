@@ -16,11 +16,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-       <% 
-          if (request.getAttribute("servletName") != null)  {
-            out.print(request.getAttribute("servletName").toString());
-          }
-        %>
        <div class="heading">
            <img src="img/logo.png" width= ="60" height="60">
        </div>
@@ -36,7 +31,16 @@
             <div class="space"></div>
             <label for="username">Password</label>
             <div class="input-list style-1 clearfix"><input type="password" name="password" id="password" placeholder="Type your password" onblur="return validatePassword()"></div>
-            <div id = "alertPassword" class="red"></div>
+            <div id = "alertPassword" class="red">
+                <% 
+                    if (session.getAttribute("message") != null) {
+                        if ("error".equals(session.getAttribute("message").toString())) {
+                            out.print("username or password wrong");
+                            session.invalidate();
+                        }
+                    }
+                %>
+            </div>
             <%-- do password validation here --%>
             <button class="btnSubmit" type="submit" value="send">LOGIN</button>
             </div>

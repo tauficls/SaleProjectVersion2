@@ -101,6 +101,19 @@ public class loginConnector {
         sendData();
     }
     
+    public void validateRegister (String fullname, String email, String password, String address, String postal, String number, String username) throws IOException, ParseException {
+        String utf8 = java.nio.charset.StandardCharsets.UTF_8.name();
+        String query = "";
+
+        try {
+            query = String.format("fullname=%s&email=%s&password=%s&address=%s&postal=%s&number=%s&username=%s", URLEncoder.encode(fullname, utf8), URLEncoder.encode(email, utf8), URLEncoder.encode(password, utf8), URLEncoder.encode(address, utf8), URLEncoder.encode(postal, utf8), URLEncoder.encode(number, utf8), URLEncoder.encode(username, utf8));
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(loginConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        data = query.getBytes();
+        sendData();
+    }
+    
     public JSONObject getData() {
         return processData;
     }

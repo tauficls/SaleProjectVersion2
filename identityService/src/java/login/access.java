@@ -61,6 +61,27 @@ public class access {
         return authenticate;
     }
     
+    public Boolean isAuthenticateUser () {
+        Boolean authenticate = false;
+        String query = "select * from user where username = \"" + username + "\"";
+        try{  
+            Class.forName("com.mysql.jdbc.Driver");  
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/saleProject_user","root","malvin");  
+            Statement stmt=con.createStatement();  
+            ResultSet rs=stmt.executeQuery(query);  
+            if(rs.next()) {
+                authenticate = true;
+                idUser = rs.getInt("idUser");
+            }
+            con.close();  
+        }
+        catch(Exception e){ 
+            System.out.println(e);
+        }
+        
+        return authenticate;
+    }
+    
     public int getIdUser() {
         return idUser;
     }

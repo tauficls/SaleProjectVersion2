@@ -20,7 +20,7 @@
 	<div class = "content">
 		<div class="bold">Please Register</div>
 		<hr />
-		<form id = "Register" name="Registers" onsubmit="return ValidationForm()" method ="post" action="\saleProject\identityService">
+		<form id = "Register" name="Registers" onsubmit="return ValidationForm()" method ="post" action="\saleProject\register">
 			<div class="input-list style-1 clearfix">
 				Full Name
 				<input type = "text" name = "fullname" onblur="return ValidationFullName()"><div id = "alertFullName" class="red"></div>
@@ -53,7 +53,16 @@
 				Phone Number
 				<input type = "text" name = "number" onblur="return ValidationNumber();" onkeypress="return keyPressAlphabetLock(event);" onkeydown="return LimitationText(13, this.form.number);"><div id = "alertNumber" class="red"></div>
 				<br>
-
+                                <div id = "alertPassword" class="red">
+                                    <% 
+                                        if (session.getAttribute("message") != null) {
+                                            if ("error".equals(session.getAttribute("message").toString())) {
+                                                out.print("username already taken");
+                                                session.invalidate();
+                                            }
+                                        }
+                                    %>
+                                </div>
 				<button type = "submit" form="Register" value="Register" class="btnSubmit">
 					Register
 				</button>
