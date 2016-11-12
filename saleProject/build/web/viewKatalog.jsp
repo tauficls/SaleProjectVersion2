@@ -55,6 +55,7 @@
                     //out.println(result.get(i).getUsernama() + "<br>" + result.get(i).getImgpath());
                     out.println("<div>");
                     out.println("<b>" + result.get(i).getUsernama() + "</b> <br>");
+                    //out.println("added this on ")
                     out.println("</div>");
                     out.println("<hr>");
                     out.println("<div class=\"content\">");
@@ -63,6 +64,7 @@
                     out.println("</div>");
                     out.println("<div class=\"description\">");
                     out.println("<div class=\"head\"><b>" + result.get(i).getNamabarang() + " </b><br></div>");
+                    
                     out.println("IDR " + result.get(i).getHargabarang() + "");
                     out.println("<p>" + result.get(i).getDeskripsi() + "</p>");
                     out.println("</div>");
@@ -79,7 +81,7 @@
             } catch (Exception ex) {
                 // TODO handle custom exceptions here
             }
-                %>
+            %>
 
             
 
