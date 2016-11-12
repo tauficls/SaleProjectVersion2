@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://MarketplaceService/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://MarketplaceService/">
+
+<xs:element name="beli" type="tns:beli"/>
+
+<xs:element name="beliResponse" type="tns:beliResponse"/>
+
+<xs:element name="produkmu" type="tns:produkmu"/>
+
+<xs:element name="produkmuResponse" type="tns:produkmuResponse"/>
+
+<xs:element name="sale" type="tns:sale"/>
+
+<xs:element name="saleResponse" type="tns:saleResponse"/>
+
+<xs:element name="viewproduct" type="tns:viewproduct"/>
+
+<xs:element name="viewproductResponse" type="tns:viewproductResponse"/>
+
+<xs:complexType name="produkmu">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="produkmuResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:yourproduct" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="yourproduct">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="viewproduct">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="viewproductResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:produk" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="produk">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="beli">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="beliResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:buy" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="buy">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="sale">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="saleResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:sales" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sales">
+<xs:sequence/>
+</xs:complexType>
+</xs:schema>

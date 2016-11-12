@@ -5,6 +5,7 @@
  */
 package validate;
 
+import ConnectDB.ConnectDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -50,9 +51,9 @@ public class validateToken extends HttpServlet {
         //Connect Databases
         String query = "select * from user where idUser = \"" + idUser + "\" and token = \"" + token + "\"";
         try{  
-            Class.forName("com.mysql.jdbc.Driver");  
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/saleProject_user","root","malvin");  
-            Statement stmt=con.createStatement();  
+            ConnectDB connectdb = new ConnectDB();
+            Connection con = connectdb.getConnection();
+            Statement stmt = con.createStatement();
             ResultSet rs=stmt.executeQuery(query);  
             if(rs.next()) {
                 authenticate = true;

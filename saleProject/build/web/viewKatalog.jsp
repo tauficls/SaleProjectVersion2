@@ -4,7 +4,7 @@
     Author     : Asus
 --%>
 
-<%@ page import="java.io.*,java.util.*" %>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,9 +17,9 @@
     <script type="text/javascript" src="viewKatalog.js"></script>
 </head>
     <body>
-        <div id="wrapper">
+        
             <jsp:include page="header.jsp" />
-            <h1>Please Confirm your Purchase</h1>
+            <h1>What are you going to sell today?</h1>
             <hr />
             <form  method="post" id="formFilter" enctype="multipart/form-data">
                     <div class="input-list style-1">
@@ -33,7 +33,24 @@
                             <input type="radio" name="filter" value="store">store<br>
                     </div>
             </form>
-        </div>
+            
+            <%
+            try {
+                marketplaceservice.MarketplacceService service = new marketplaceservice.MarketplacceService();
+                marketplaceservice.MarketplaceService port = service.getMarketplaceServicePort();
+                 // TODO initialize WS operation arguments here
+                java.lang.String username = "";
+                java.lang.String password = "";
+                // TODO process result here
+                java.util.List<marketplaceservice.Produk> result = port.viewproduct(username, password);
+                out.println("Result = "+ result);
+            } catch (Exception ex) {
+                // TODO handle custom exceptions here
+            }
+            %>
+
+
+        
     </body>
 </html>
 
