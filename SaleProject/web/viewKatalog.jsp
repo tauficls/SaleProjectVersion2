@@ -21,7 +21,7 @@
             <jsp:include page="header.jsp" />
             <h1>What are you going to sell today?</h1>
             <hr />
-            <form  method="post" id="formFilter" enctype="multipart/form-data">
+            <form  method="get" action="" id="formFilter" enctype="multipart/form-data">
                     <div class="input-list style-1">
                             <input type="text"	name="search" placeholder="Search Catalog ...">
                             <button class="btnSubmit" type="submit" form="formFilter" value ="submit">Go</button> <br>
@@ -41,8 +41,17 @@
                  // TODO initialize WS operation arguments here
                 java.lang.String username = "";
                 java.lang.String password = "";
+                java.lang.String search = "";
+                java.lang.String filter = "";
+                
+                if (request.getParameter("search") != null){
+                    
+                    search = request.getParameter("search");
+                    filter = request.getParameter("filter");
+                }
+                
                 // TODO process result here
-                java.util.List<marketplaceservice.Product> result = port.viewproduct(username, password);
+                java.util.List<marketplaceservice.Product> result = port.viewproduct(username, password,search,filter);
                 String usernama;
                 String img_path;
                 String nama_barang;
@@ -55,7 +64,6 @@
                     //out.println(result.get(i).getUsernama() + "<br>" + result.get(i).getImgpath());
                     out.println("<div>");
                     out.println("<b>" + result.get(i).getUsernama() + "</b> <br>");
-                    //out.println("added this on ")
                     out.println("</div>");
                     out.println("<hr>");
                     out.println("<div class=\"content\">");
@@ -64,7 +72,6 @@
                     out.println("</div>");
                     out.println("<div class=\"description\">");
                     out.println("<div class=\"head\"><b>" + result.get(i).getNamabarang() + " </b><br></div>");
-                    
                     out.println("IDR " + result.get(i).getHargabarang() + "");
                     out.println("<p>" + result.get(i).getDeskripsi() + "</p>");
                     out.println("</div>");
@@ -81,7 +88,7 @@
             } catch (Exception ex) {
                 // TODO handle custom exceptions here
             }
-            %>
+                    %>
 
             
 
