@@ -34,9 +34,16 @@ public class MarketplaceService {
     @WebMethod(operationName = "viewproduct")
     public ArrayList<product> viewproduct(
             @WebParam(name = "username") String username,
-            @WebParam(name = "password") String password) {
-
-        String query = "select * from katalog NATURAL JOIN user ORDER BY date_add DESC";
+            @WebParam(name = "password") String password,
+            @WebParam(name = "search") String search,
+            @WebParam(name = "filter") String filter) {
+        String query;
+        if(filter.equals("product"))
+            query = "select * from katalog NATURAL JOIN user WHERE nama_barang like '%"+search+"%' ORDER BY date_add DESC";
+        else if(filter.equals("store"))
+            query = "select * from katalog NATURAL JOIN user WHERE namaLike like '%"+search+"%' ORDER BY date_add DESC";
+        else
+            query = "select * from katalog NATURAL JOIN user ORDER BY date_add DESC";
         
         ArrayList<product> view = new ArrayList<>();
         

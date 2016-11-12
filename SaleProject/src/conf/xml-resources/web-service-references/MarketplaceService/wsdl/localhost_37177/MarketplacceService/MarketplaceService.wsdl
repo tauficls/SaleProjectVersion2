@@ -10,11 +10,11 @@
 <message name="productmuResponse">
 <part name="parameters" element="tns:productmuResponse"/>
 </message>
-<message name="viewproduct">
-<part name="parameters" element="tns:viewproduct"/>
+<message name="sale">
+<part name="parameters" element="tns:sale"/>
 </message>
-<message name="viewproductResponse">
-<part name="parameters" element="tns:viewproductResponse"/>
+<message name="saleResponse">
+<part name="parameters" element="tns:saleResponse"/>
 </message>
 <message name="beli">
 <part name="parameters" element="tns:beli"/>
@@ -22,28 +22,28 @@
 <message name="beliResponse">
 <part name="parameters" element="tns:beliResponse"/>
 </message>
-<message name="sale">
-<part name="parameters" element="tns:sale"/>
+<message name="viewproduct">
+<part name="parameters" element="tns:viewproduct"/>
 </message>
-<message name="saleResponse">
-<part name="parameters" element="tns:saleResponse"/>
+<message name="viewproductResponse">
+<part name="parameters" element="tns:viewproductResponse"/>
 </message>
 <portType name="MarketplaceService">
 <operation name="productmu">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/productmuRequest" message="tns:productmu"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/productmuResponse" message="tns:productmuResponse"/>
 </operation>
-<operation name="viewproduct">
-<input wsam:Action="http://MarketplaceService/MarketplaceService/viewproductRequest" message="tns:viewproduct"/>
-<output wsam:Action="http://MarketplaceService/MarketplaceService/viewproductResponse" message="tns:viewproductResponse"/>
+<operation name="sale">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/saleRequest" message="tns:sale"/>
+<output wsam:Action="http://MarketplaceService/MarketplaceService/saleResponse" message="tns:saleResponse"/>
 </operation>
 <operation name="beli">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/beliRequest" message="tns:beli"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/beliResponse" message="tns:beliResponse"/>
 </operation>
-<operation name="sale">
-<input wsam:Action="http://MarketplaceService/MarketplaceService/saleRequest" message="tns:sale"/>
-<output wsam:Action="http://MarketplaceService/MarketplaceService/saleResponse" message="tns:saleResponse"/>
+<operation name="viewproduct">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/viewproductRequest" message="tns:viewproduct"/>
+<output wsam:Action="http://MarketplaceService/MarketplaceService/viewproductResponse" message="tns:viewproductResponse"/>
 </operation>
 </portType>
 <binding name="MarketplaceServicePortBinding" type="tns:MarketplaceService">
@@ -57,7 +57,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="viewproduct">
+<operation name="sale">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -75,7 +75,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="sale">
+<operation name="viewproduct">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

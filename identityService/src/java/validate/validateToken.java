@@ -43,7 +43,7 @@ public class validateToken extends HttpServlet {
             throws ServletException, IOException {
         String token = request.getParameter("token");
         String idUser = request.getParameter("idUser");
-        System.out.println("pisang" + idUser);
+        //System.out.println("pisang" + idUser);
         String dateTime = "";
         Boolean authenticate = false;
         JSONObject response_data = new JSONObject();

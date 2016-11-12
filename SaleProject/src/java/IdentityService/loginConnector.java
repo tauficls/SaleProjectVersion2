@@ -34,7 +34,7 @@ public class loginConnector {
     }
     
     public void sendData () throws IOException, ParseException {
-        String urlName = "http://localhost:8080/identityService/" + serviceName;
+        String urlName = "http://localhost:6765/identityService/" + serviceName;
         URL url;
         HttpURLConnection connection = null;  
         

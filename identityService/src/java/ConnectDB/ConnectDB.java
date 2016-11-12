@@ -19,7 +19,7 @@ public class ConnectDB {
         try {  
             Class.forName("com.mysql.jdbc.Driver");  
             con = DriverManager.getConnection("jdbc:mysql://"
-                    + "localhost:3306/saleProject","root","13514022");
+                    + "localhost:3306/saleProject","root","");
         }
         catch(Exception e){ 
             System.out.println(e);
