@@ -55,10 +55,10 @@
                 String usernama;
                 String img_path;
                 String nama_barang;
-                double harga_barang;
+                long harga_barang;
                 String deskripsi;
-                int jumlah_like;
-                int jumlah_beli;
+                long jumlah_like;
+                long jumlah_beli;
 
                 for (int i = 0; i < result.size(); i++) {
                     //out.println(result.get(i).getUsernama() + "<br>" + result.get(i).getImgpath());

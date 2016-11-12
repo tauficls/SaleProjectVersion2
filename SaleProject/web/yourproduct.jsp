@@ -16,73 +16,50 @@
     </head>
     <body>
         <div id="wrapper">
-            
+            <jsp:include page="header.jsp" />
             <h1>What are you going to sell today?</h1>
             <hr />
             <br><br>
-                <%-- start web service invocation --%><hr/>
-    <%
-    try {
-	marketplaceservice.MarketplacceService service = new marketplaceservice.MarketplacceService();
-	marketplaceservice.MarketplaceService port = service.getMarketplaceServicePort();
-	 // TODO initialize WS operation arguments here
-	java.lang.String username = "";
-	java.lang.String password = "";
-	// TODO process result here
-	java.util.List<marketplaceservice.Yourproduct> result = port.productmu(username, password);
-	out.println("Result = "+result);
-        for (int i = 0; i < result.size(); i++) {
-            int idKatalog;
-            String namabarang;
-            double hargabarang;
-            String deskripsi;
-            int jumlahlike;
-            int jumlahbeli;
-            Date date;
-            Time time;
-            out.println("<div>");
-                                                        <b> ".date('l, j F Y', strtotime($date))." </b> <br>
-                                                        at ".date("H:i", strtotime($time))."
-            out.println("</div>");
-            out.println("<hr>")                                    <hr>
-                                                <div class=\"content\">
-                                                        <div class=\"image\">
-                                                                <img src=\"".$image_path."\" />
-                                                        </div>
-
-                                                        <div class=\"description\">
-                                                                <div class=\"head\"><b>".$nama_barang." </b><br></div>
-                                                                        IDR ". number_format($harga_barang, 0)."
-                                                                <p>".$deskripsi." </p>
-
-                                                        </div>
-
-                                                        <div class =\"interaction\">
-                                                                <br>
-                                                                ".$jumlah_like." likes <br>
-                                                                ".$jumlah_beli." purchases <br> <br>
-                                                                <a class=\"three\" href=\"EditProduct.php?idUser=".$idUser_int."&idKatalog=".$idKatalog."\">EDIT</a> &nbsp;&nbsp;&nbsp; 
-                                                                <a onclick='return AreYouSure()' class=\"four\" href=\"YourProduct.php?idKatalog=".$idKatalog."&idUser=".$idUser_int."\">DELETE</a>
-                                                        </div>
-                                                        <div style = \"clear:both\"></div>
-                                                        <hr>
-                                                        <br>
-                                                </div>
-                                                 ";
-
-
-                                }
-
-                        }
-                ?>
-
-
-
-    } catch (Exception ex) {
-	// TODO handle custom exceptions here
-    }
-    %>
-    <%-- end web service invocation --%><hr/>
+            <%
+            try {
+                marketplaceservice.MarketplacceService service = new marketplaceservice.MarketplacceService();
+                marketplaceservice.MarketplaceService port = service.getMarketplaceServicePort();
+                 // TODO initialize WS operation arguments here
+                
+                String idUser = session.getAttribute("idUser").toString();
+                // TODO process result here
+                java.util.List<marketplaceservice.Yourproduct> result = port.productmu(idUser);
+                for (int i = 0; i < result.size(); i++) {
+                    out.println("<div>");
+                    out.println("<b> " + result.get(i).getDate() + " </b> <br>");
+                    out.println("at " + result.get(i).getTime());
+                    out.println("</div>");
+                    out.println("<hr>");
+                    out.println("<div class =\"content\">");
+                    out.println("<div class=\"image\">");
+                    out.println("<img src=\""+ result.get(i).getImagepath() + "\" />");
+                    out.println("</div>");
+                    out.println("<div class=\"description\">");
+                    out.println("<div class=\"head\"><b>"+ result.get(i).getNamabarang() +" </b><br></div>");
+                    out.println("IDR " + result.get(i).getHargabarang());
+                    out.println("<p>"+ result.get(i).getDeskripsi() +" </p>");
+                    out.println("</div>");
+                    out.println("<div class =\"interaction\">");
+                    out.println("<br>");
+                    out.println(result.get(i).getJumlahlike() + "likes <br>");
+                    out.println(result.get(i).getJumlahbeli() +" purchases <br> <br>");
+                    out.println("<a class=\"three\" href=\"editproduct.jsp" + result.get(i).getIdKatalog() + "\">EDIT</a> &nbsp;&nbsp;&nbsp; ");
+                    out.println("<a onclick='return AreYouSure()' class=\"four\" href=\"\">DELETE</a>");
+                    out.println("</div>");
+                    out.println("<div style = \"clear:both\"></div>");
+                    out.println("<hr>");
+                    out.println("<br>");
+                    out.println("</div>");
+                }
+            } catch (Exception ex) {
+                // TODO handle custom exceptions here
+            }
+            %>
 
 
         </div>
