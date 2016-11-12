@@ -6,10 +6,6 @@
 package MarketplaceService;
 
 import ConnectDB.ConnectDB;
-import Product.Produk;
-import Product.buy;
-import Product.sales;
-import Product.yourproduct;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -36,13 +32,13 @@ public class MarketplaceService {
      * This is a sample web service operation
      */
     @WebMethod(operationName = "viewproduct")
-    public ArrayList<Produk> viewproduct(
+    public ArrayList<product> viewproduct(
             @WebParam(name = "username") String username,
             @WebParam(name = "password") String password) {
 
         String query = "select * from katalog NATURAL JOIN user ORDER BY date_add DESC";
         
-        ArrayList<Produk> view = new ArrayList<>();
+        ArrayList<product> view = new ArrayList<>();
         
         ConnectDB connectdb = new ConnectDB();
         String hasil = "";
@@ -67,9 +63,9 @@ public class MarketplaceService {
                 jumlah_like = rs.getInt("jumlah_like");
                 jumlah_beli = rs.getInt("jumlah_beli");
                 
-                Produk product = new Produk(usernama, img_path, nama_barang,
+                product Product = new product(usernama, img_path, nama_barang,
                         harga_barang, deskripsi, jumlah_like, jumlah_beli);
-                view.add(product);
+                view.add(Product);
             }
         } catch (SQLException ex) {
             Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
@@ -81,7 +77,7 @@ public class MarketplaceService {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "produkmu")
+    @WebMethod(operationName = "productmu")
     public ArrayList<yourproduct> yourProduct(
             @WebParam(name = "username") String username,
             @WebParam(name = "password") String password) {

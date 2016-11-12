@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Product;
+package MarketplaceService;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -21,6 +21,38 @@ public class yourproduct {
     private int jumlahbeli;
     private Date date;
     private Time time;
+    public void setIdKatalog(int idKatalog) {
+        this.idKatalog = idKatalog;
+    }
+
+    public void setNamabarang(String namabarang) {
+        this.namabarang = namabarang;
+    }
+
+    public void setHargabarang(double hargabarang) {
+        this.hargabarang = hargabarang;
+    }
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
+
+    public void setJumlahlike(int jumlahlike) {
+        this.jumlahlike = jumlahlike;
+    }
+
+    public void setJumlahbeli(int jumlahbeli) {
+        this.jumlahbeli = jumlahbeli;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+    
 
     public int getIdKatalog() {
         return idKatalog;

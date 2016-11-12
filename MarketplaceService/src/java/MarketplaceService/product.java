@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Product;
+package MarketplaceService;
 
 /**
  *
  * @author taufic
  */
-public class Produk {
+public class product {
     private String usernama;
     private String imgpath;
     private String namabarang;
@@ -17,6 +17,34 @@ public class Produk {
     private String deskripsi;
     private int jumlahlike;
     private int jumlahbeli;
+
+    public void setUsernama(String usernama) {
+        this.usernama = usernama;
+    }
+
+    public void setImgpath(String imgpath) {
+        this.imgpath = imgpath;
+    }
+
+    public void setNamabarang(String namabarang) {
+        this.namabarang = namabarang;
+    }
+
+    public void setHargabarang(double hargabarang) {
+        this.hargabarang = hargabarang;
+    }
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
+
+    public void setJumlahlike(int jumlahlike) {
+        this.jumlahlike = jumlahlike;
+    }
+
+    public void setJumlahbeli(int jumlahbeli) {
+        this.jumlahbeli = jumlahbeli;
+    }
 
     public String getUsernama() {
         return usernama;
@@ -46,7 +74,7 @@ public class Produk {
         return jumlahbeli;
     }
 
-    public Produk(String usernama, String imgpath, String namabarang,
+    public product(String usernama, String imgpath, String namabarang,
             double hargabarang, String deskripsi, int jumlahlike,
             int jumlahbeli) {
         this.usernama = usernama;

@@ -4,9 +4,9 @@
 
 <xs:element name="beliResponse" type="tns:beliResponse"/>
 
-<xs:element name="produkmu" type="tns:produkmu"/>
+<xs:element name="productmu" type="tns:productmu"/>
 
-<xs:element name="produkmuResponse" type="tns:produkmuResponse"/>
+<xs:element name="productmuResponse" type="tns:productmuResponse"/>
 
 <xs:element name="sale" type="tns:sale"/>
 
@@ -16,20 +16,37 @@
 
 <xs:element name="viewproductResponse" type="tns:viewproductResponse"/>
 
-<xs:complexType name="produkmu">
+<xs:complexType name="productmu">
 <xs:sequence>
 <xs:element name="username" type="xs:string" minOccurs="0"/>
 <xs:element name="password" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="produkmuResponse">
+<xs:complexType name="productmuResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:yourproduct" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="yourproduct">
+<xs:sequence>
+<xs:element name="date" type="tns:date" minOccurs="0"/>
+<xs:element name="deskripsi" type="xs:string" minOccurs="0"/>
+<xs:element name="hargabarang" type="xs:double"/>
+<xs:element name="idKatalog" type="xs:int"/>
+<xs:element name="jumlahbeli" type="xs:int"/>
+<xs:element name="jumlahlike" type="xs:int"/>
+<xs:element name="namabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="time" type="tns:time" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="date">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="time">
 <xs:sequence/>
 </xs:complexType>
 
@@ -42,12 +59,20 @@
 
 <xs:complexType name="viewproductResponse">
 <xs:sequence>
-<xs:element name="return" type="tns:produk" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="return" type="tns:product" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="produk">
-<xs:sequence/>
+<xs:complexType name="product">
+<xs:sequence>
+<xs:element name="deskripsi" type="xs:string" minOccurs="0"/>
+<xs:element name="hargabarang" type="xs:double"/>
+<xs:element name="imgpath" type="xs:string" minOccurs="0"/>
+<xs:element name="jumlahbeli" type="xs:int"/>
+<xs:element name="jumlahlike" type="xs:int"/>
+<xs:element name="namabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="usernama" type="xs:string" minOccurs="0"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="beli">
@@ -64,7 +89,20 @@
 </xs:complexType>
 
 <xs:complexType name="buy">
-<xs:sequence/>
+<xs:sequence>
+<xs:element name="alamatpenerima" type="xs:string" minOccurs="0"/>
+<xs:element name="date" type="tns:date" minOccurs="0"/>
+<xs:element name="hargabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="idpenjual" type="xs:int"/>
+<xs:element name="imagepath" type="xs:string" minOccurs="0"/>
+<xs:element name="jumlahbeli" type="xs:int"/>
+<xs:element name="kodepos" type="xs:int"/>
+<xs:element name="namabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="namapenerima" type="xs:string" minOccurs="0"/>
+<xs:element name="notelp" type="xs:int"/>
+<xs:element name="time" type="tns:time" minOccurs="0"/>
+<xs:element name="totalharga" type="xs:double" minOccurs="0"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="sale">
@@ -81,6 +119,19 @@
 </xs:complexType>
 
 <xs:complexType name="sales">
-<xs:sequence/>
+<xs:sequence>
+<xs:element name="alamatpenerima" type="xs:string" minOccurs="0"/>
+<xs:element name="date" type="tns:date" minOccurs="0"/>
+<xs:element name="hargabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="iduser" type="xs:int"/>
+<xs:element name="imagepath" type="xs:string" minOccurs="0"/>
+<xs:element name="jumlahbeli" type="xs:int"/>
+<xs:element name="kodepos" type="xs:int"/>
+<xs:element name="namabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="namapenerima" type="xs:string" minOccurs="0"/>
+<xs:element name="notelp" type="xs:int"/>
+<xs:element name="time" type="tns:time" minOccurs="0"/>
+<xs:element name="totalharga" type="xs:double" minOccurs="0"/>
+</xs:sequence>
 </xs:complexType>
 </xs:schema>

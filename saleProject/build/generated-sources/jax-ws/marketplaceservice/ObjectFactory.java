@@ -26,8 +26,8 @@ public class ObjectFactory {
 
     private final static QName _Beli_QNAME = new QName("http://MarketplaceService/", "beli");
     private final static QName _BeliResponse_QNAME = new QName("http://MarketplaceService/", "beliResponse");
-    private final static QName _Produkmu_QNAME = new QName("http://MarketplaceService/", "produkmu");
-    private final static QName _ProdukmuResponse_QNAME = new QName("http://MarketplaceService/", "produkmuResponse");
+    private final static QName _Productmu_QNAME = new QName("http://MarketplaceService/", "productmu");
+    private final static QName _ProductmuResponse_QNAME = new QName("http://MarketplaceService/", "productmuResponse");
     private final static QName _Sale_QNAME = new QName("http://MarketplaceService/", "sale");
     private final static QName _SaleResponse_QNAME = new QName("http://MarketplaceService/", "saleResponse");
     private final static QName _Viewproduct_QNAME = new QName("http://MarketplaceService/", "viewproduct");
@@ -57,19 +57,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Produkmu }
+     * Create an instance of {@link Productmu }
      * 
      */
-    public Produkmu createProdukmu() {
-        return new Produkmu();
+    public Productmu createProductmu() {
+        return new Productmu();
     }
 
     /**
-     * Create an instance of {@link ProdukmuResponse }
+     * Create an instance of {@link ProductmuResponse }
      * 
      */
-    public ProdukmuResponse createProdukmuResponse() {
-        return new ProdukmuResponse();
+    public ProductmuResponse createProductmuResponse() {
+        return new ProductmuResponse();
     }
 
     /**
@@ -113,11 +113,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Produk }
+     * Create an instance of {@link Date }
      * 
      */
-    public Produk createProduk() {
-        return new Produk();
+    public Date createDate() {
+        return new Date();
+    }
+
+    /**
+     * Create an instance of {@link Time }
+     * 
+     */
+    public Time createTime() {
+        return new Time();
+    }
+
+    /**
+     * Create an instance of {@link Product }
+     * 
+     */
+    public Product createProduct() {
+        return new Product();
     }
 
     /**
@@ -155,21 +171,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Produkmu }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Productmu }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://MarketplaceService/", name = "produkmu")
-    public JAXBElement<Produkmu> createProdukmu(Produkmu value) {
-        return new JAXBElement<Produkmu>(_Produkmu_QNAME, Produkmu.class, null, value);
+    @XmlElementDecl(namespace = "http://MarketplaceService/", name = "productmu")
+    public JAXBElement<Productmu> createProductmu(Productmu value) {
+        return new JAXBElement<Productmu>(_Productmu_QNAME, Productmu.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ProdukmuResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ProductmuResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://MarketplaceService/", name = "produkmuResponse")
-    public JAXBElement<ProdukmuResponse> createProdukmuResponse(ProdukmuResponse value) {
-        return new JAXBElement<ProdukmuResponse>(_ProdukmuResponse_QNAME, ProdukmuResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://MarketplaceService/", name = "productmuResponse")
+    public JAXBElement<ProductmuResponse> createProductmuResponse(ProductmuResponse value) {
+        return new JAXBElement<ProductmuResponse>(_ProductmuResponse_QNAME, ProductmuResponse.class, null, value);
     }
 
     /**

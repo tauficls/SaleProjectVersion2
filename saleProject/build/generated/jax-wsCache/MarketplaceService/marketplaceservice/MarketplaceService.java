@@ -30,6 +30,42 @@ public interface MarketplaceService {
      * @param password
      * @param username
      * @return
+     *     returns java.util.List<marketplaceservice.Yourproduct>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "productmu", targetNamespace = "http://MarketplaceService/", className = "marketplaceservice.Productmu")
+    @ResponseWrapper(localName = "productmuResponse", targetNamespace = "http://MarketplaceService/", className = "marketplaceservice.ProductmuResponse")
+    @Action(input = "http://MarketplaceService/MarketplaceService/productmuRequest", output = "http://MarketplaceService/MarketplaceService/productmuResponse")
+    public List<Yourproduct> productmu(
+        @WebParam(name = "username", targetNamespace = "")
+        String username,
+        @WebParam(name = "password", targetNamespace = "")
+        String password);
+
+    /**
+     * 
+     * @param password
+     * @param username
+     * @return
+     *     returns java.util.List<marketplaceservice.Product>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "viewproduct", targetNamespace = "http://MarketplaceService/", className = "marketplaceservice.Viewproduct")
+    @ResponseWrapper(localName = "viewproductResponse", targetNamespace = "http://MarketplaceService/", className = "marketplaceservice.ViewproductResponse")
+    @Action(input = "http://MarketplaceService/MarketplaceService/viewproductRequest", output = "http://MarketplaceService/MarketplaceService/viewproductResponse")
+    public List<Product> viewproduct(
+        @WebParam(name = "username", targetNamespace = "")
+        String username,
+        @WebParam(name = "password", targetNamespace = "")
+        String password);
+
+    /**
+     * 
+     * @param password
+     * @param username
+     * @return
      *     returns java.util.List<marketplaceservice.Buy>
      */
     @WebMethod
@@ -48,24 +84,6 @@ public interface MarketplaceService {
      * @param password
      * @param username
      * @return
-     *     returns java.util.List<marketplaceservice.Yourproduct>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "produkmu", targetNamespace = "http://MarketplaceService/", className = "marketplaceservice.Produkmu")
-    @ResponseWrapper(localName = "produkmuResponse", targetNamespace = "http://MarketplaceService/", className = "marketplaceservice.ProdukmuResponse")
-    @Action(input = "http://MarketplaceService/MarketplaceService/produkmuRequest", output = "http://MarketplaceService/MarketplaceService/produkmuResponse")
-    public List<Yourproduct> produkmu(
-        @WebParam(name = "username", targetNamespace = "")
-        String username,
-        @WebParam(name = "password", targetNamespace = "")
-        String password);
-
-    /**
-     * 
-     * @param password
-     * @param username
-     * @return
      *     returns java.util.List<marketplaceservice.Sales>
      */
     @WebMethod
@@ -74,24 +92,6 @@ public interface MarketplaceService {
     @ResponseWrapper(localName = "saleResponse", targetNamespace = "http://MarketplaceService/", className = "marketplaceservice.SaleResponse")
     @Action(input = "http://MarketplaceService/MarketplaceService/saleRequest", output = "http://MarketplaceService/MarketplaceService/saleResponse")
     public List<Sales> sale(
-        @WebParam(name = "username", targetNamespace = "")
-        String username,
-        @WebParam(name = "password", targetNamespace = "")
-        String password);
-
-    /**
-     * 
-     * @param password
-     * @param username
-     * @return
-     *     returns java.util.List<marketplaceservice.Produk>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "viewproduct", targetNamespace = "http://MarketplaceService/", className = "marketplaceservice.Viewproduct")
-    @ResponseWrapper(localName = "viewproductResponse", targetNamespace = "http://MarketplaceService/", className = "marketplaceservice.ViewproductResponse")
-    @Action(input = "http://MarketplaceService/MarketplaceService/viewproductRequest", output = "http://MarketplaceService/MarketplaceService/viewproductResponse")
-    public List<Produk> viewproduct(
         @WebParam(name = "username", targetNamespace = "")
         String username,
         @WebParam(name = "password", targetNamespace = "")
