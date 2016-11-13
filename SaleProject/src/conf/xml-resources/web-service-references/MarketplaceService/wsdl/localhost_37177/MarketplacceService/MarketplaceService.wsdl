@@ -13,17 +13,29 @@
 <message name="confirmpurchaseResponse">
 <part name="parameters" element="tns:confirmpurchaseResponse"/>
 </message>
+<message name="addLiked">
+<part name="parameters" element="tns:addLiked"/>
+</message>
+<message name="addLikedResponse">
+<part name="parameters" element="tns:addLikedResponse"/>
+</message>
+<message name="addUnliked">
+<part name="parameters" element="tns:addUnliked"/>
+</message>
+<message name="addUnlikedResponse">
+<part name="parameters" element="tns:addUnlikedResponse"/>
+</message>
+<message name="deleteProduk">
+<part name="parameters" element="tns:deleteProduk"/>
+</message>
+<message name="deleteProdukResponse">
+<part name="parameters" element="tns:deleteProdukResponse"/>
+</message>
 <message name="AddProduct">
 <part name="parameters" element="tns:AddProduct"/>
 </message>
 <message name="AddProductResponse">
 <part name="parameters" element="tns:AddProductResponse"/>
-</message>
-<message name="EditProduct">
-<part name="parameters" element="tns:EditProduct"/>
-</message>
-<message name="EditProductResponse">
-<part name="parameters" element="tns:EditProductResponse"/>
 </message>
 <message name="viewproduct">
 <part name="parameters" element="tns:viewproduct"/>
@@ -57,13 +69,21 @@
 <input wsam:Action="http://MarketplaceService/MarketplaceService/confirmpurchaseRequest" message="tns:confirmpurchase"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/confirmpurchaseResponse" message="tns:confirmpurchaseResponse"/>
 </operation>
+<operation name="addLiked">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/addLikedRequest" message="tns:addLiked"/>
+<output wsam:Action="http://MarketplaceService/MarketplaceService/addLikedResponse" message="tns:addLikedResponse"/>
+</operation>
+<operation name="addUnliked">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/addUnlikedRequest" message="tns:addUnliked"/>
+<output wsam:Action="http://MarketplaceService/MarketplaceService/addUnlikedResponse" message="tns:addUnlikedResponse"/>
+</operation>
+<operation name="deleteProduk">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/deleteProdukRequest" message="tns:deleteProduk"/>
+<output wsam:Action="http://MarketplaceService/MarketplaceService/deleteProdukResponse" message="tns:deleteProdukResponse"/>
+</operation>
 <operation name="AddProduct">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/AddProductRequest" message="tns:AddProduct"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/AddProductResponse" message="tns:AddProductResponse"/>
-</operation>
-<operation name="EditProduct">
-<input wsam:Action="http://MarketplaceService/MarketplaceService/EditProductRequest" message="tns:EditProduct"/>
-<output wsam:Action="http://MarketplaceService/MarketplaceService/EditProductResponse" message="tns:EditProductResponse"/>
 </operation>
 <operation name="viewproduct">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/viewproductRequest" message="tns:viewproduct"/>
@@ -99,7 +119,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="AddProduct">
+<operation name="addLiked">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -108,7 +128,25 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="EditProduct">
+<operation name="addUnliked">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="deleteProduk">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="AddProduct">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

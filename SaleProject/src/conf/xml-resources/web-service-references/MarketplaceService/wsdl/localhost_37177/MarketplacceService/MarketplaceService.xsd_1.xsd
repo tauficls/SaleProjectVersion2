@@ -4,11 +4,15 @@
 
 <xs:element name="AddProductResponse" type="tns:AddProductResponse"/>
 
-<xs:element name="EditProduct" type="tns:EditProduct"/>
-
-<xs:element name="EditProductResponse" type="tns:EditProductResponse"/>
-
 <xs:element name="UpdateProduct" type="tns:UpdateProduct"/>
+
+<xs:element name="addLiked" type="tns:addLiked"/>
+
+<xs:element name="addLikedResponse" type="tns:addLikedResponse"/>
+
+<xs:element name="addUnliked" type="tns:addUnliked"/>
+
+<xs:element name="addUnlikedResponse" type="tns:addUnlikedResponse"/>
 
 <xs:element name="beli" type="tns:beli"/>
 
@@ -17,6 +21,10 @@
 <xs:element name="confirmpurchase" type="tns:confirmpurchase"/>
 
 <xs:element name="confirmpurchaseResponse" type="tns:confirmpurchaseResponse"/>
+
+<xs:element name="deleteProduk" type="tns:deleteProduk"/>
+
+<xs:element name="deleteProdukResponse" type="tns:deleteProdukResponse"/>
 
 <xs:element name="productmu" type="tns:productmu"/>
 
@@ -29,6 +37,32 @@
 <xs:element name="viewproduct" type="tns:viewproduct"/>
 
 <xs:element name="viewproductResponse" type="tns:viewproductResponse"/>
+
+<xs:complexType name="addLiked">
+<xs:sequence>
+<xs:element name="idKatalog" type="xs:string" minOccurs="0"/>
+<xs:element name="idUser" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addLikedResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addUnliked">
+<xs:sequence>
+<xs:element name="idKatalog" type="xs:string" minOccurs="0"/>
+<xs:element name="idUser" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addUnlikedResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
 
 <xs:complexType name="productmu">
 <xs:sequence>
@@ -56,6 +90,19 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="deleteProduk">
+<xs:sequence>
+<xs:element name="idUser" type="xs:string" minOccurs="0"/>
+<xs:element name="idKatalog" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteProdukResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="AddProduct">
 <xs:sequence>
 <xs:element name="nama_barang" type="xs:string" minOccurs="0"/>
@@ -76,6 +123,7 @@
 <xs:element name="password" type="xs:string" minOccurs="0"/>
 <xs:element name="search" type="xs:string" minOccurs="0"/>
 <xs:element name="filter" type="xs:string" minOccurs="0"/>
+<xs:element name="idPengguna" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -90,7 +138,9 @@
 <xs:element name="date" type="xs:string" minOccurs="0"/>
 <xs:element name="deskripsi" type="xs:string" minOccurs="0"/>
 <xs:element name="hargabarang" type="xs:long"/>
+<xs:element name="idKatalog" type="xs:long"/>
 <xs:element name="imgpath" type="xs:string" minOccurs="0"/>
+<xs:element name="isLiked" type="xs:boolean" minOccurs="0"/>
 <xs:element name="jumlahbeli" type="xs:long"/>
 <xs:element name="jumlahlike" type="xs:long"/>
 <xs:element name="namabarang" type="xs:string" minOccurs="0"/>
@@ -186,19 +236,6 @@
 <xs:element name="notelp" type="xs:long"/>
 <xs:element name="time" type="xs:string" minOccurs="0"/>
 <xs:element name="totalharga" type="xs:long"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="EditProduct">
-<xs:sequence>
-<xs:element name="idUser" type="xs:int"/>
-<xs:element name="idKatalog" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="EditProductResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:yourproduct" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

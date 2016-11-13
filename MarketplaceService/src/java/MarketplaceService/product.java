@@ -19,6 +19,24 @@ public class product {
     private long jumlahbeli;
     private String date;
     private String time;
+    private Boolean isLiked;
+    private long idKatalog;
+
+    public long getIdKatalog() {
+        return idKatalog;
+    }
+
+    public void setIdKatalog(long idKatalog) {
+        this.idKatalog = idKatalog;
+    }
+
+    public Boolean getIsLiked() {
+        return isLiked;
+    }
+
+    public void setIsLiked(Boolean isLiked) {
+        this.isLiked = isLiked;
+    }
     public String getDate() {
         return date;
     }
@@ -92,7 +110,7 @@ public class product {
 
     public product(String usernama, String imgpath, String namabarang,
             long hargabarang, String deskripsi, long jumlahlike,
-            long jumlahbeli, String date, String time) {
+            long jumlahbeli, String date, String time, long idKatalog, Boolean isLiked ) {
         this.usernama = usernama;
         this.imgpath = imgpath;
         this.namabarang = namabarang;
@@ -102,6 +120,8 @@ public class product {
         this.jumlahbeli = jumlahbeli;
         this.date = date;
         this.time = time;
+        this.isLiked = isLiked;
+        this.idKatalog = idKatalog;
     }
     
     
