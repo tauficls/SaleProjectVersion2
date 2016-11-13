@@ -5,32 +5,30 @@
  */
 package MarketplaceService;
 
-import java.sql.Date;
-import java.sql.Time;
 
 /**
  *
  * @author taufic
  */
 public class buy {
-    private Date date;
-    private Time time;
+    private String date;
+    private String time;
     private String imagepath;
     private String namabarang;
     private String hargabarang;
-    private Double totalharga;
-    private int jumlahbeli;
+    private long totalharga;
+    private long jumlahbeli;
     private String namapenerima;
     private String alamatpenerima;
-    private int kodepos;
-    private int notelp;
-    private int idpenjual;
+    private long kodepos;
+    private long notelp;
+    private String namapenjual;
     
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -46,11 +44,11 @@ public class buy {
         this.hargabarang = hargabarang;
     }
 
-    public void setTotalharga(Double totalharga) {
+    public void setTotalharga(long totalharga) {
         this.totalharga = totalharga;
     }
 
-    public void setJumlahbeli(int jumlahbeli) {
+    public void setJumlahbeli(long jumlahbeli) {
         this.jumlahbeli = jumlahbeli;
     }
 
@@ -62,24 +60,24 @@ public class buy {
         this.alamatpenerima = alamatpenerima;
     }
 
-    public void setKodepos(int kodepos) {
+    public void setKodepos(long kodepos) {
         this.kodepos = kodepos;
     }
 
-    public void setNotelp(int notelp) {
+    public void setNotelp(long notelp) {
         this.notelp = notelp;
     }
 
-    public void setIdpenjual(int idpenjual) {
-        this.idpenjual = idpenjual;
+    public void setNamapenjual(String namapenjual) {
+        this.namapenjual = namapenjual;
     }
     
     
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
@@ -95,11 +93,11 @@ public class buy {
         return hargabarang;
     }
 
-    public Double getTotalharga() {
+    public long getTotalharga() {
         return totalharga;
     }
 
-    public int getJumlahbeli() {
+    public long getJumlahbeli() {
         return jumlahbeli;
     }
 
@@ -111,19 +109,22 @@ public class buy {
         return alamatpenerima;
     }
 
-    public int getKodepos() {
+    public long getKodepos() {
         return kodepos;
     }
 
-    public int getNotelp() {
+    public long getNotelp() {
         return notelp;
     }
 
-    public int getIdpenjual() {
-        return idpenjual;
+    public String getNamapenjual() {
+        return namapenjual;
     }
 
-    public buy(Date date, Time time, String imagepath, String namabarang, String hargabarang, Double totalharga, int jumlahbeli, String namapenerima, String alamatpenerima, int kodepos, int notelp, int idpenjual) {
+    public buy(String date, String time, String imagepath, String namabarang,
+            String hargabarang, long totalharga, long jumlahbeli,
+            String namapenerima, String alamatpenerima, long kodepos,
+            long notelp, String namapenjual) {
         this.date = date;
         this.time = time;
         this.imagepath = imagepath;
@@ -135,6 +136,6 @@ public class buy {
         this.alamatpenerima = alamatpenerima;
         this.kodepos = kodepos;
         this.notelp = notelp;
-        this.idpenjual = idpenjual;
+        this.namapenjual = namapenjual;
     }
 }

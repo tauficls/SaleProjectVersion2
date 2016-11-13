@@ -59,21 +59,26 @@ public class MarketplaceService {
             String usernama;
             String img_path;
             String nama_barang;
-            double harga_barang;
+            long harga_barang;
             String deskripsi;
-            int jumlah_like;
-            int jumlah_beli;
+            long jumlah_like;
+            long jumlah_beli;
+            String date;
+            DateFormat df = new SimpleDateFormat("EEEE, d MMMM yyyy");
+            String time;
+            DateFormat df1 = new SimpleDateFormat("HH:mm");
             while(rs.next()) {
                 usernama = rs.getString("namaLengkap");
                 img_path = rs.getString("image");
                 nama_barang = rs.getString("nama_barang");
-                harga_barang = rs.getDouble("harga_barang");
+                harga_barang = rs.getLong("harga_barang");
                 deskripsi = rs.getString("deskripsi");
-                jumlah_like = rs.getInt("jumlah_like");
-                jumlah_beli = rs.getInt("jumlah_beli");
-                
+                jumlah_like = rs.getLong("jumlah_like");
+                jumlah_beli = rs.getLong("jumlah_beli");
+                date = df.format(rs.getDate("date_add"));
+                time = df1.format(rs.getTime("time_add"));
                 product Product = new product(usernama, img_path, nama_barang,
-                        harga_barang, deskripsi, jumlah_like, jumlah_beli);
+                        harga_barang, deskripsi, jumlah_like, jumlah_beli,date,time);
                 view.add(Product);
             }
         } catch (SQLException ex) {
@@ -88,10 +93,9 @@ public class MarketplaceService {
      */
     @WebMethod(operationName = "productmu")
     public ArrayList<yourproduct> yourProduct(
-            @WebParam(name = "username") String username,
-            @WebParam(name = "password") String password) {
+        @WebParam(name = "iduser") String iduser) {
         
-        String query = "select * from katalog WHERE idUser = " + username;
+        String query = "select * from katalog WHERE idUser = " + iduser;
         
         ArrayList<yourproduct> view = new ArrayList<>();
         
@@ -105,26 +109,30 @@ public class MarketplaceService {
                 Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
             }
             ResultSet rs = stmt.executeQuery(query);
-            int idKatalog;
+            long idKatalog;
+            String imagepath;
             String nama_barang;
-            double harga_barang;
+            long harga_barang;
             String deskripsi;
-            int jumlah_like;
-            int jumlah_beli;
-            Date date;
-            Time time;
+            long jumlah_like;
+            long jumlah_beli;
+            String date;
+            DateFormat df = new SimpleDateFormat("EEEE, d MMMM yyyy");
+            String time;
+            DateFormat df1 = new SimpleDateFormat("HH:mm");
             while(rs.next()) {
                 idKatalog = rs.getInt("idKatalog");
+                imagepath = rs.getString("image");
                 nama_barang = rs.getString("nama_barang");
-                harga_barang = rs.getDouble("harga_barang");
+                harga_barang = rs.getLong("harga_barang");
                 deskripsi = rs.getString("deskripsi");
                 jumlah_like = rs.getInt("jumlah_like");
                 jumlah_beli = rs.getInt("jumlah_beli");
-                date = rs.getDate("date_add");
-                time = rs.getTime("time_add");
+                date = df.format(rs.getDate("date_add"));
+                time = df1.format(rs.getTime("time_add"));
                 
                 yourproduct product = new yourproduct(idKatalog, nama_barang,
-                harga_barang, deskripsi, jumlah_like, jumlah_beli, date, time);
+                harga_barang, deskripsi, jumlah_like, jumlah_beli, date, time, imagepath);
                 view.add(product);
             }
             con.close();
@@ -140,10 +148,9 @@ public class MarketplaceService {
      */
     @WebMethod(operationName = "sale")
     public ArrayList<sales> Sales(
-            @WebParam(name = "username") String username,
-            @WebParam(name = "password") String password) {
+            @WebParam(name = "idpembeli") String iduser) {
         //TODO write your implementation code here:
-        String query = "select * from katalog WHERE idUser = " + username;
+        String query = "select * from purchase where purchase.idPenjual =" + iduser;
         
         ArrayList<sales> view = new ArrayList<>();
         
@@ -157,34 +164,45 @@ public class MarketplaceService {
                 Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
             }
             ResultSet rs = stmt.executeQuery(query);
-            Date date;
-            Time time;
+            String date;
+            DateFormat df = new SimpleDateFormat("EEEE, d MMMM yyyy");
+            String time;
+            DateFormat df1 = new SimpleDateFormat("HH:mm");
             String imagepath;
             String namabarang;
             String hargabarang;
-            Double totalharga;
-            int jumlahbeli;
+            long totalharga;
+            long jumlahbeli;
             String namapenerima;
             String alamatpenerima;
-            int kodepos;
-            int notelp;
-            int iduser;
+            long kodepos;
+            long notelp;
+            long idbuyer;
+            String query2;
+            String namapembeli;
+            Statement stmt2 = null;
+            ResultSet rs2;
             while(rs.next()) {
-                date = rs.getDate("date_add");
-                time = rs.getTime("time_add");
+                date = df.format(rs.getDate("date_add"));
+                time = df1.format(rs.getTime("time_add"));
                 imagepath = rs.getString("image");
                 namabarang = rs.getString("namaBarang_beli");
                 hargabarang = rs.getString("hargaBarang_beli");
-                totalharga = rs.getDouble("total_harga");
-                jumlahbeli = rs.getInt("jumlah_beli");
+                totalharga = rs.getLong("total_harga");
+                jumlahbeli = rs.getLong("jumlah_beli");
                 namapenerima = rs.getString("nama_penerima");
                 alamatpenerima = rs.getString("alamat_penerima");
-                kodepos = rs.getInt("kodepos_penerima");
-                notelp = rs.getInt("noTelp_penerima");
-                iduser = rs.getInt("idUser");
+                kodepos = rs.getLong("kodepos_penerima");
+                notelp = rs.getLong("noTelp_penerima");
+                idbuyer = rs.getLong("idUser");
+                query2 = "select namaLengkap from user where idUser =" + idbuyer;
+                stmt2 = con.createStatement();
+                rs2 = stmt2.executeQuery(query2);
+                rs2.next();
+                namapembeli = rs2.getString("namaLengkap");
                 sales sales = new sales(date, time, imagepath, namabarang, hargabarang,
                 totalharga, jumlahbeli, namapenerima, alamatpenerima, kodepos,
-                notelp, iduser);
+                notelp, namapembeli);
                 
                 view.add(sales);
             }
@@ -200,9 +218,10 @@ public class MarketplaceService {
      * Web service operation
      */
     @WebMethod(operationName = "beli")
-    public ArrayList<buy> Buy(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
+    public ArrayList<buy> Buy(
+        @WebParam(name = "idpenjual") String iduser) {
         //TODO write your implementation code here:
-        String query = "select * from katalog WHERE idUser = " + username;
+        String query = "SELECT * FROM purchase where purchase.idUser=" +iduser;
         
         ArrayList<buy> view = new ArrayList<>();
         
@@ -216,34 +235,45 @@ public class MarketplaceService {
                 Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
             }
             ResultSet rs = stmt.executeQuery(query);
-            Date date;
-            Time time;
+            String date;
+            DateFormat df = new SimpleDateFormat("EEEE, d MMMM yyyy");
+            String time;
+            DateFormat df1 = new SimpleDateFormat("HH:mm");
             String imagepath;
             String namabarang;
             String hargabarang;
-            Double totalharga;
-            int jumlahbeli;
+            long totalharga;
+            long jumlahbeli;
             String namapenerima;
             String alamatpenerima;
-            int kodepos;
-            int notelp;
-            int idpenjual;
+            long kodepos;
+            long notelp;
+            long idpenjual;
+            String query2;
+            String namapenjual;
+            Statement stmt2 = null;
+            ResultSet rs2;
             while(rs.next()) {
-                date = rs.getDate("date_add");
-                time = rs.getTime("time_add");
+                date = df.format(rs.getDate("date_add"));
+                time = df1.format(rs.getTime("time_add"));
                 imagepath = rs.getString("image");
                 namabarang = rs.getString("namaBarang_beli");
                 hargabarang = rs.getString("hargaBarang_beli");
-                totalharga = rs.getDouble("total_harga");
-                jumlahbeli = rs.getInt("jumlah_beli");
+                totalharga = rs.getLong("total_harga");
+                jumlahbeli = rs.getLong("jumlah_beli");
                 namapenerima = rs.getString("nama_penerima");
                 alamatpenerima = rs.getString("alamat_penerima");
-                kodepos = rs.getInt("kodepos_penerima");
-                notelp = rs.getInt("noTelp_penerima");
-                idpenjual = rs.getInt("idPenjual");
+                kodepos = rs.getLong("kodepos_penerima");
+                notelp = rs.getLong("noTelp_penerima");
+                idpenjual = rs.getLong("idPenjual");
+                query2 = "select namaLengkap from user where idUser =" + idpenjual;
+                stmt2 = con.createStatement();
+                rs2 = stmt2.executeQuery(query2);
+                rs2.next();
+                namapenjual = rs2.getString("namaLengkap");
                 buy buy = new buy(date, time, imagepath, namabarang, hargabarang,
                 totalharga, jumlahbeli, namapenerima, alamatpenerima, kodepos,
-                notelp, idpenjual);
+                notelp, namapenjual);
                 
                 view.add(buy);
             }
@@ -313,16 +343,18 @@ public class MarketplaceService {
             
             ResultSet rs = stmt.executeQuery(query);
             rs.next();
+            DateFormat df = new SimpleDateFormat("EEEE, d MMMM yyyy");
+            DateFormat df1 = new SimpleDateFormat("HH:mm");
             String nama_barang = rs.getString("nama_barang");
-            Double harga_barang = rs.getDouble("harga_barang");
+            long harga_barang = rs.getLong("harga_barang");
             String deskripsi = rs.getString("deskripsi");
             int jumlah_like = rs.getInt("jumlah_like");
             int jumlah_beli = rs.getInt("jumlah_beli");
-            Date date = rs.getDate("date_add");
-            Time time = rs.getTime("time_add");
-
+            String date = df.format(rs.getDate("date_add"));
+            String time = df1.format(rs.getTime("time_add"));
+            
             yourproduct product = new yourproduct(idKatalog, nama_barang,
-            harga_barang, deskripsi, jumlah_like, jumlah_beli, date, time);
+            harga_barang, deskripsi, jumlah_like, jumlah_beli, date, time,"");
             view = product;
         } catch (SQLException ex) {
             Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);

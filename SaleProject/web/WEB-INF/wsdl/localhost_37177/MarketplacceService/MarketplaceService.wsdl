@@ -4,29 +4,17 @@
 <xsd:import namespace="http://MarketplaceService/" schemaLocation="http://localhost:37177/MarketplacceService/MarketplaceService?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="AddProduct">
+<part name="parameters" element="tns:AddProduct"/>
+</message>
+<message name="AddProductResponse">
+<part name="parameters" element="tns:AddProductResponse"/>
+</message>
 <message name="EditProduct">
 <part name="parameters" element="tns:EditProduct"/>
 </message>
 <message name="EditProductResponse">
 <part name="parameters" element="tns:EditProductResponse"/>
-</message>
-<message name="beli">
-<part name="parameters" element="tns:beli"/>
-</message>
-<message name="beliResponse">
-<part name="parameters" element="tns:beliResponse"/>
-</message>
-<message name="sale">
-<part name="parameters" element="tns:sale"/>
-</message>
-<message name="saleResponse">
-<part name="parameters" element="tns:saleResponse"/>
-</message>
-<message name="productmu">
-<part name="parameters" element="tns:productmu"/>
-</message>
-<message name="productmuResponse">
-<part name="parameters" element="tns:productmuResponse"/>
 </message>
 <message name="viewproduct">
 <part name="parameters" element="tns:viewproduct"/>
@@ -34,68 +22,62 @@
 <message name="viewproductResponse">
 <part name="parameters" element="tns:viewproductResponse"/>
 </message>
-<message name="AddProduct">
-<part name="parameters" element="tns:AddProduct"/>
+<message name="beli">
+<part name="parameters" element="tns:beli"/>
 </message>
-<message name="AddProductResponse">
-<part name="parameters" element="tns:AddProductResponse"/>
+<message name="beliResponse">
+<part name="parameters" element="tns:beliResponse"/>
+</message>
+<message name="productmu">
+<part name="parameters" element="tns:productmu"/>
+</message>
+<message name="productmuResponse">
+<part name="parameters" element="tns:productmuResponse"/>
+</message>
+<message name="sale">
+<part name="parameters" element="tns:sale"/>
+</message>
+<message name="saleResponse">
+<part name="parameters" element="tns:saleResponse"/>
 </message>
 <portType name="MarketplaceService">
+<operation name="AddProduct">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/AddProductRequest" message="tns:AddProduct"/>
+<output wsam:Action="http://MarketplaceService/MarketplaceService/AddProductResponse" message="tns:AddProductResponse"/>
+</operation>
 <operation name="EditProduct">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/EditProductRequest" message="tns:EditProduct"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/EditProductResponse" message="tns:EditProductResponse"/>
-</operation>
-<operation name="beli">
-<input wsam:Action="http://MarketplaceService/MarketplaceService/beliRequest" message="tns:beli"/>
-<output wsam:Action="http://MarketplaceService/MarketplaceService/beliResponse" message="tns:beliResponse"/>
-</operation>
-<operation name="sale">
-<input wsam:Action="http://MarketplaceService/MarketplaceService/saleRequest" message="tns:sale"/>
-<output wsam:Action="http://MarketplaceService/MarketplaceService/saleResponse" message="tns:saleResponse"/>
-</operation>
-<operation name="productmu">
-<input wsam:Action="http://MarketplaceService/MarketplaceService/productmuRequest" message="tns:productmu"/>
-<output wsam:Action="http://MarketplaceService/MarketplaceService/productmuResponse" message="tns:productmuResponse"/>
 </operation>
 <operation name="viewproduct">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/viewproductRequest" message="tns:viewproduct"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/viewproductResponse" message="tns:viewproductResponse"/>
 </operation>
-<operation name="AddProduct">
-<input wsam:Action="http://MarketplaceService/MarketplaceService/AddProductRequest" message="tns:AddProduct"/>
-<output wsam:Action="http://MarketplaceService/MarketplaceService/AddProductResponse" message="tns:AddProductResponse"/>
+<operation name="beli">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/beliRequest" message="tns:beli"/>
+<output wsam:Action="http://MarketplaceService/MarketplaceService/beliResponse" message="tns:beliResponse"/>
+</operation>
+<operation name="productmu">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/productmuRequest" message="tns:productmu"/>
+<output wsam:Action="http://MarketplaceService/MarketplaceService/productmuResponse" message="tns:productmuResponse"/>
+</operation>
+<operation name="sale">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/saleRequest" message="tns:sale"/>
+<output wsam:Action="http://MarketplaceService/MarketplaceService/saleResponse" message="tns:saleResponse"/>
 </operation>
 </portType>
 <binding name="MarketplaceServicePortBinding" type="tns:MarketplaceService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="AddProduct">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="EditProduct">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="beli">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="sale">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="productmu">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -113,7 +95,25 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="AddProduct">
+<operation name="beli">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="productmu">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="sale">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

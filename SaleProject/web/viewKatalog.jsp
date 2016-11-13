@@ -55,15 +55,16 @@
                 String usernama;
                 String img_path;
                 String nama_barang;
-                double harga_barang;
+                long harga_barang;
                 String deskripsi;
-                int jumlah_like;
-                int jumlah_beli;
+                long jumlah_like;
+                long jumlah_beli;
 
                 for (int i = 0; i < result.size(); i++) {
                     //out.println(result.get(i).getUsernama() + "<br>" + result.get(i).getImgpath());
                     out.println("<div>");
                     out.println("<b>" + result.get(i).getUsernama() + "</b> <br>");
+                    out.println("added this on " + result.get(i).getDate() + "at" + result.get(i).getTime() );
                     out.println("</div>");
                     out.println("<hr>");
                     out.println("<div class=\"content\">");

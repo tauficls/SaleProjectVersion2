@@ -20,7 +20,7 @@
             </p>
         </form>
 	<div id="nav">
-		<a href="viewkatalog.jsp" >
+		<a href="viewKatalog.jsp" >
 				<div <?php if ($page=="ViewKatalog") echo 'id ="currentPage"';?>><p class = "center">Catalog</p></div>
 		</a>
 		<a href="yourproduct.jsp" >

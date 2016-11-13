@@ -5,31 +5,40 @@
  */
 package MarketplaceService;
 
-import java.sql.Date;
-import java.sql.Time;
 
 /**
  *
  * @author taufic
  */
 public class yourproduct {
-    private int idKatalog;
+    private long idKatalog;
+    private String imagepath;
     private String namabarang;
-    private double hargabarang;
+    private long hargabarang;
     private String deskripsi;
-    private int jumlahlike;
-    private int jumlahbeli;
-    private Date date;
-    private Time time;
-    public void setIdKatalog(int idKatalog) {
+    private long jumlahlike;
+    private long jumlahbeli;
+    private String date;
+    private String time;
+
+
+    public void setIdKatalog(long idKatalog) {
         this.idKatalog = idKatalog;
+    }
+
+    public String getImagepath() {
+        return imagepath;
+    }
+
+    public void setImagepath(String imagepath) {
+        this.imagepath = imagepath;
     }
 
     public void setNamabarang(String namabarang) {
         this.namabarang = namabarang;
     }
 
-    public void setHargabarang(double hargabarang) {
+    public void setHargabarang(long hargabarang) {
         this.hargabarang = hargabarang;
     }
 
@@ -37,24 +46,24 @@ public class yourproduct {
         this.deskripsi = deskripsi;
     }
 
-    public void setJumlahlike(int jumlahlike) {
+    public void setJumlahlike(long jumlahlike) {
         this.jumlahlike = jumlahlike;
     }
 
-    public void setJumlahbeli(int jumlahbeli) {
+    public void setJumlahbeli(long jumlahbeli) {
         this.jumlahbeli = jumlahbeli;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
     
 
-    public int getIdKatalog() {
+    public long getIdKatalog() {
         return idKatalog;
     }
 
@@ -62,7 +71,7 @@ public class yourproduct {
         return namabarang;
     }
 
-    public double getHargabarang() {
+    public long getHargabarang() {
         return hargabarang;
     }
 
@@ -70,25 +79,25 @@ public class yourproduct {
         return deskripsi;
     }
 
-    public int getJumlahlike() {
+    public long getJumlahlike() {
         return jumlahlike;
     }
 
-    public int getJumlahbeli() {
+    public long getJumlahbeli() {
         return jumlahbeli;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
     
-    public yourproduct(int idKatolog, String namabarang, double hargabarang,
-            String deskripsi, int jumlahlike, int jumlahbeli, Date date,
-            Time time) {
+    public yourproduct(long idKatolog, String namabarang, long hargabarang,
+            String deskripsi, long jumlahlike, long jumlahbeli, String date,
+            String time, String image) {
         this.idKatalog = idKatalog;
         this.namabarang = namabarang;
         this.hargabarang = hargabarang;
@@ -97,5 +106,6 @@ public class yourproduct {
         this.jumlahlike = jumlahlike;
         this.date = date;
         this.time = time;
+        this.imagepath = image;
     }
 }

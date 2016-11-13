@@ -13,11 +13,27 @@ public class product {
     private String usernama;
     private String imgpath;
     private String namabarang;
-    private double hargabarang;
+    private long hargabarang;
     private String deskripsi;
-    private int jumlahlike;
-    private int jumlahbeli;
+    private long jumlahlike;
+    private long jumlahbeli;
+    private String date;
+    private String time;
+    public String getDate() {
+        return date;
+    }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
     public void setUsernama(String usernama) {
         this.usernama = usernama;
     }
@@ -30,7 +46,7 @@ public class product {
         this.namabarang = namabarang;
     }
 
-    public void setHargabarang(double hargabarang) {
+    public void setHargabarang(long hargabarang) {
         this.hargabarang = hargabarang;
     }
 
@@ -38,11 +54,11 @@ public class product {
         this.deskripsi = deskripsi;
     }
 
-    public void setJumlahlike(int jumlahlike) {
+    public void setJumlahlike(long jumlahlike) {
         this.jumlahlike = jumlahlike;
     }
 
-    public void setJumlahbeli(int jumlahbeli) {
+    public void setJumlahbeli(long jumlahbeli) {
         this.jumlahbeli = jumlahbeli;
     }
 
@@ -58,7 +74,7 @@ public class product {
         return namabarang;
     }
 
-    public double getHargabarang() {
+    public long getHargabarang() {
         return hargabarang;
     }
 
@@ -66,17 +82,17 @@ public class product {
         return deskripsi;
     }
 
-    public int getJumlahlike() {
+    public long getJumlahlike() {
         return jumlahlike;
     }
 
-    public int getJumlahbeli() {
+    public long getJumlahbeli() {
         return jumlahbeli;
     }
 
     public product(String usernama, String imgpath, String namabarang,
-            double hargabarang, String deskripsi, int jumlahlike,
-            int jumlahbeli) {
+            long hargabarang, String deskripsi, long jumlahlike,
+            long jumlahbeli, String date, String time) {
         this.usernama = usernama;
         this.imgpath = imgpath;
         this.namabarang = namabarang;
@@ -84,6 +100,8 @@ public class product {
         this.hargabarang = hargabarang;
         this.jumlahbeli = jumlahlike;
         this.jumlahbeli = jumlahbeli;
+        this.date = date;
+        this.time = time;
     }
     
     
