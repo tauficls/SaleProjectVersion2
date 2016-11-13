@@ -26,7 +26,7 @@
 		<a href="yourproduct.jsp" >
 				<div <?php if ($page=="YourProduct") echo 'id ="currentPage"';?>><p class = "center">Your Products</p></div>
 		</a>
-		<a href="AddProduct.php">
+		<a href="addproduct.jsp">
 				<div <?php if ($page=="AddProduct") echo 'id ="currentPage"';?>><p class = "center">Add Products</p></div>
 		</a>
 		<a href="sales.jsp" >
