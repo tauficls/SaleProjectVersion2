@@ -17,8 +17,12 @@
         <servlet-class>IdentityService.logout</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Upload</servlet-name>
-        <servlet-class>Upload</servlet-class>
+        <servlet-name>like</servlet-name>
+        <servlet-class>likeUnlike.like</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteProduct</servlet-name>
+        <servlet-class>delete.deleteProduct</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>identityService</servlet-name>
@@ -37,12 +41,16 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Upload</servlet-name>
-        <url-pattern>/Upload</url-pattern>
+        <servlet-name>like</servlet-name>
+        <url-pattern>/like</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteProduct</servlet-name>
+        <url-pattern>/deleteProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
-            600
+            30
         </session-timeout>
     </session-config>
 </web-app>

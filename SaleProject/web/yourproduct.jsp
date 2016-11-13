@@ -1,3 +1,8 @@
+<%-- 
+    Document   : yourproduct
+    Created on : Nov 12, 2016, 4:04:48 PM
+    Author     : taufic
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,12 +18,12 @@
             <h1>What are you going to sell today?</h1>
             <hr />
             <br><br>
-
-
-             <%
-                try{
+            <%
+            try {
                 marketplaceservice.MarketplacceService service = new marketplaceservice.MarketplacceService();
                 marketplaceservice.MarketplaceService port = service.getMarketplaceServicePort();
+                 // TODO initialize WS operation arguments here
+                
                 String idUser = session.getAttribute("idUser").toString();
                 // TODO process result here
                 java.util.List<marketplaceservice.Yourproduct> result = port.productmu(idUser);
@@ -30,7 +35,7 @@
                     out.println("<hr>");
                     out.println("<div class =\"content\">");
                     out.println("<div class=\"image\">");
-                    out.println("<img src=\"img\\"+ result.get(i).getImagepath() + "\" />");
+                    out.println("<img src=\""+ result.get(i).getImagepath() + "\" />");
                     out.println("</div>");
                     out.println("<div class=\"description\">");
                     out.println("<div class=\"head\"><b>"+ result.get(i).getNamabarang() +" </b><br></div>");
@@ -42,7 +47,7 @@
                     out.println(result.get(i).getJumlahlike() + "likes <br>");
                     out.println(result.get(i).getJumlahbeli() +" purchases <br> <br>");
                     out.println("<a class=\"three\" href=\"editproduct.jsp" + result.get(i).getIdKatalog() + "\">EDIT</a> &nbsp;&nbsp;&nbsp; ");
-                    out.println("<a onclick='return AreYouSure()' class=\"four\" href=\"\">DELETE</a>");
+                    out.println("<a onclick='return AreYouSure()' class=\"four\" href=\"deleteProduct?idKatalog=" + result.get(i).getIdKatalog() +"&idUser=" + session.getAttribute("idUser").toString() + "\">DELETE</a>");
                     out.println("</div>");
                     out.println("<div style = \"clear:both\"></div>");
                     out.println("<hr>");
