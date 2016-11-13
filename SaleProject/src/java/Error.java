@@ -6,23 +6,16 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.WebServiceRef;
-import marketplaceservice.InvalidTokenException;
-import marketplaceservice.MarketplacceService;
 
 /**
  *
  * @author Innocent
  */
-public class UpdateProduct extends HttpServlet {
-
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_37177/MarketplacceService/MarketplaceService.wsdl")
-    private MarketplacceService service;
+public class Error extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,7 +28,19 @@ public class UpdateProduct extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Error</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Error at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,19 +69,7 @@ public class UpdateProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-            
-            String nama_barang = request.getParameter("NamaBarang");
-            int harga_barang = Integer.parseInt(request.getParameter("HargaBarang"));
-            String deskripsi = request.getParameter("Deskripsi");
-            int idKatalog = Integer.parseInt(request.getParameter("idKatalog"));
-            try{
-                updateProduct(nama_barang, harga_barang,deskripsi, idKatalog);
-            } catch(Exception e){
-                String nextJSP = "/index.jsp";
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-                dispatcher.forward(request,response);
-            }
+        processRequest(request, response);
     }
 
     /**
@@ -88,22 +81,5 @@ public class UpdateProduct extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private void updateProduct(java.lang.String namaBarang, int hargaBarang, java.lang.String deskripsi, int idKatalog)
-    throws Exception {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        marketplaceservice.MarketplaceService port = service.getMarketplaceServicePort();
-        try{
-            port.updateProduct(namaBarang, hargaBarang, deskripsi, idKatalog);
-        }
-        catch(Exception e){
-            System.out.println("HAHAHAHAHAHAHHAHAHAHAHIHIHIHIHIHIHIHIHIHI");
-            if(e.getMessage().equals("Invalid Token")){
-                throw e;
-            }
-        }
-        
-    }
 
 }

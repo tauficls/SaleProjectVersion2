@@ -4,7 +4,15 @@
 
 <xs:element name="AddProductResponse" type="tns:AddProductResponse"/>
 
+<xs:element name="EditProduct" type="tns:EditProduct"/>
+
+<xs:element name="EditProductResponse" type="tns:EditProductResponse"/>
+
+<xs:element name="InvalidTokenException" type="tns:InvalidTokenException"/>
+
 <xs:element name="UpdateProduct" type="tns:UpdateProduct"/>
+
+<xs:element name="UpdateProductResponse" type="tns:UpdateProductResponse"/>
 
 <xs:element name="addLiked" type="tns:addLiked"/>
 
@@ -210,6 +218,16 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="UpdateProductResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="InvalidTokenException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="sale">
 <xs:sequence>
 <xs:element name="idpembeli" type="xs:string" minOccurs="0"/>
@@ -236,6 +254,19 @@
 <xs:element name="notelp" type="xs:long"/>
 <xs:element name="time" type="xs:string" minOccurs="0"/>
 <xs:element name="totalharga" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EditProduct">
+<xs:sequence>
+<xs:element name="idUser" type="xs:int"/>
+<xs:element name="idKatalog" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EditProductResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:yourproduct" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

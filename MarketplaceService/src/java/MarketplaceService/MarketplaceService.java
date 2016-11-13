@@ -428,13 +428,17 @@ public class MarketplaceService {
      * Web service operation
      */
     @WebMethod(operationName = "UpdateProduct")
-    @Oneway
     public void UpdateProduct(
             @WebParam(name = "nama_barang")  String nama_barang,
             @WebParam(name = "harga_barang") int harga_barang,
             @WebParam(name = "deskripsi")    String deskripsi,
             @WebParam(name = "id_katalog")   int id_katalog) 
+    throws InvalidTokenException
     {
+        if(1 == 1 ){
+            Throwable t = new IllegalArgumentException("Empty name");
+            throw new InvalidTokenException("Invalid Token", t);
+        }
         String query ="UPDATE katalog "
                 + "SET nama_Barang = '"+nama_barang+"', harga_barang = '"+harga_barang+"', deskripsi='"+deskripsi+ "' WHERE idKatalog='"+id_katalog+"';  ";
         System.out.println("QUERY : "+query);
@@ -512,5 +516,47 @@ public class MarketplaceService {
             }
                 
     }
+    
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "EditProduct")
+    public yourproduct EditProduct(@WebParam(name = "idUser") final int idUser, @WebParam(name = "idKatalog") final int idKatalog) {
+        
+        String query = "select * from katalog WHERE idUser = " + idUser + " AND idKatalog = " + idKatalog + ";";
+        System.out.println(query);
+        
+        yourproduct view = null;
+        
+        ConnectDB connectdb = new ConnectDB();
+        String hasil = "";
+        try (Connection con = connectdb.getConnection()) {
+            Statement stmt = null;
+            stmt = con.createStatement();
+            
+            ResultSet rs = stmt.executeQuery(query);
+            rs.next();
+            DateFormat df = new SimpleDateFormat("EEEE, d MMMM yyyy");
+            DateFormat df1 = new SimpleDateFormat("HH:mm");
+            String nama_barang = rs.getString("nama_barang");
+            long harga_barang = rs.getLong("harga_barang");
+            String deskripsi = rs.getString("deskripsi");
+            int jumlah_like = rs.getInt("jumlah_like");
+            int jumlah_beli = rs.getInt("jumlah_beli");
+            String date = df.format(rs.getDate("date_add"));
+            String time = df1.format(rs.getTime("time_add"));
+            
+            yourproduct product = new yourproduct(idKatalog, nama_barang,
+            harga_barang, deskripsi, jumlah_like, jumlah_beli, date, time,"");
+            view = product;
+        } catch (SQLException ex) {
+            Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        return view;
+    }
+    
 
 }

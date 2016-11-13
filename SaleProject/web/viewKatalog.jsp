@@ -17,7 +17,7 @@
     <script type="text/javascript" src="viewKatalog.js"></script>
 </head>
     <body>
-        
+    <div id=""wrapper">
             <jsp:include page="header.jsp" />
             <h1>What are you going to sell today?</h1>
             <hr />
@@ -70,7 +70,7 @@
                     out.println("<hr>");
                     out.println("<div class=\"content\">");
                     out.println("<div class=\"image\">");
-                    out.println("<img src=\"" + result.get(i).getImgpath()+"\" />");
+                    out.println("<img src=\"img\" + result.get(i).getImgpath()+"\" />");
                     out.println("</div>");
                     out.println("<div class=\"description\">");
                     out.println("<div class=\"head\"><b>" + result.get(i).getNamabarang() + " </b><br></div>");
@@ -82,10 +82,10 @@
                     out.println("<span id=\"like$idKatalog\">" + result.get(i).getJumlahlike() +"</span> likes <br>");
                     out.println(result.get(i).getJumlahbeli() + " purchases <br> <br>");
                     if(result.get(i).isIsLiked()) {
-                        out.println("<a class=\"two\" href=\"unlike?idKatalog=" + result.get(i).getIdkatalog() +"&idUser=" + session.getAttribute("idUser").toString() + "\">DISLIKE</a>");
+                        out.println("<a class=\"two\" href=\"unlike?idKatalog=" + result.get(i).getIdKatalog() +"&idUser=" + session.getAttribute("idUser").toString() + "\">DISLIKE</a>");
                     }
                     else {
-                        out.println("<a class=\"one\" href=\"like?idKatalog=" + result.get(i).getIdkatalog() +"&idUser=" + session.getAttribute("idUser").toString() + "\">LIKE</a>");
+                        out.println("<a class=\"one\" href=\"like?idKatalog=" + result.get(i).getIdKatalog() +"&idUser=" + session.getAttribute("idUser").toString() + "\">LIKE</a>");
                     }
                     out.println("</div>");
                     out.println("<div style = \"clear:both\"></div>");
@@ -97,7 +97,7 @@
                 // TODO handle custom exceptions here
             }
             %>
-
+    </div>
            
     </body>
 </html>
