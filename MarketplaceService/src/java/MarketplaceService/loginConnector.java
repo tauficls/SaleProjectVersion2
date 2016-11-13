@@ -1,4 +1,4 @@
-package IdentityService;
+package MarketplaceService;
 
 import java.io.BufferedReader;
 import java.io.IOException;

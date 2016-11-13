@@ -1,0 +1,241 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://MarketplaceService/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://MarketplaceService/">
+
+<xs:element name="AddProduct" type="tns:AddProduct"/>
+
+<xs:element name="AddProductResponse" type="tns:AddProductResponse"/>
+
+<xs:element name="UpdateProduct" type="tns:UpdateProduct"/>
+
+<xs:element name="addLiked" type="tns:addLiked"/>
+
+<xs:element name="addLikedResponse" type="tns:addLikedResponse"/>
+
+<xs:element name="addUnliked" type="tns:addUnliked"/>
+
+<xs:element name="addUnlikedResponse" type="tns:addUnlikedResponse"/>
+
+<xs:element name="beli" type="tns:beli"/>
+
+<xs:element name="beliResponse" type="tns:beliResponse"/>
+
+<xs:element name="confirmpurchase" type="tns:confirmpurchase"/>
+
+<xs:element name="confirmpurchaseResponse" type="tns:confirmpurchaseResponse"/>
+
+<xs:element name="deleteProduk" type="tns:deleteProduk"/>
+
+<xs:element name="deleteProdukResponse" type="tns:deleteProdukResponse"/>
+
+<xs:element name="productmu" type="tns:productmu"/>
+
+<xs:element name="productmuResponse" type="tns:productmuResponse"/>
+
+<xs:element name="sale" type="tns:sale"/>
+
+<xs:element name="saleResponse" type="tns:saleResponse"/>
+
+<xs:element name="viewproduct" type="tns:viewproduct"/>
+
+<xs:element name="viewproductResponse" type="tns:viewproductResponse"/>
+
+<xs:complexType name="addLiked">
+<xs:sequence>
+<xs:element name="idKatalog" type="xs:string" minOccurs="0"/>
+<xs:element name="idUser" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addLikedResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addUnliked">
+<xs:sequence>
+<xs:element name="idKatalog" type="xs:string" minOccurs="0"/>
+<xs:element name="idUser" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addUnlikedResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="productmu">
+<xs:sequence>
+<xs:element name="iduser" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="productmuResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:yourproduct" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="yourproduct">
+<xs:sequence>
+<xs:element name="date" type="xs:string" minOccurs="0"/>
+<xs:element name="deskripsi" type="xs:string" minOccurs="0"/>
+<xs:element name="hargabarang" type="xs:long"/>
+<xs:element name="idKatalog" type="xs:long"/>
+<xs:element name="imagepath" type="xs:string" minOccurs="0"/>
+<xs:element name="jumlahbeli" type="xs:long"/>
+<xs:element name="jumlahlike" type="xs:long"/>
+<xs:element name="namabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="time" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteProduk">
+<xs:sequence>
+<xs:element name="idUser" type="xs:string" minOccurs="0"/>
+<xs:element name="idKatalog" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteProdukResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AddProduct">
+<xs:sequence>
+<xs:element name="nama_barang" type="xs:string" minOccurs="0"/>
+<xs:element name="harga_barang" type="xs:int"/>
+<xs:element name="deskripsi" type="xs:string" minOccurs="0"/>
+<xs:element name="id_user" type="xs:int"/>
+<xs:element name="image" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AddProductResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="viewproduct">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="search" type="xs:string" minOccurs="0"/>
+<xs:element name="filter" type="xs:string" minOccurs="0"/>
+<xs:element name="idPengguna" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="viewproductResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:product" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="product">
+<xs:sequence>
+<xs:element name="date" type="xs:string" minOccurs="0"/>
+<xs:element name="deskripsi" type="xs:string" minOccurs="0"/>
+<xs:element name="hargabarang" type="xs:long"/>
+<xs:element name="idKatalog" type="xs:long"/>
+<xs:element name="imgpath" type="xs:string" minOccurs="0"/>
+<xs:element name="isLiked" type="xs:boolean" minOccurs="0"/>
+<xs:element name="jumlahbeli" type="xs:long"/>
+<xs:element name="jumlahlike" type="xs:long"/>
+<xs:element name="namabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="time" type="xs:string" minOccurs="0"/>
+<xs:element name="usernama" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="confirmpurchase">
+<xs:sequence>
+<xs:element name="idKatalog" type="xs:string" minOccurs="0"/>
+<xs:element name="iduser" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="confirmpurchaseResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:confirm" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="confirm">
+<xs:sequence>
+<xs:element name="alamat" type="xs:string" minOccurs="0"/>
+<xs:element name="hargabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="kodepos" type="xs:string" minOccurs="0"/>
+<xs:element name="namabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="namalengkap" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="beli">
+<xs:sequence>
+<xs:element name="idpenjual" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="beliResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:buy" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="buy">
+<xs:sequence>
+<xs:element name="alamatpenerima" type="xs:string" minOccurs="0"/>
+<xs:element name="date" type="xs:string" minOccurs="0"/>
+<xs:element name="hargabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="imagepath" type="xs:string" minOccurs="0"/>
+<xs:element name="jumlahbeli" type="xs:long"/>
+<xs:element name="kodepos" type="xs:long"/>
+<xs:element name="namabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="namapenerima" type="xs:string" minOccurs="0"/>
+<xs:element name="namapenjual" type="xs:string" minOccurs="0"/>
+<xs:element name="notelp" type="xs:long"/>
+<xs:element name="time" type="xs:string" minOccurs="0"/>
+<xs:element name="totalharga" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UpdateProduct">
+<xs:sequence>
+<xs:element name="nama_barang" type="xs:string" minOccurs="0"/>
+<xs:element name="harga_barang" type="xs:int"/>
+<xs:element name="deskripsi" type="xs:string" minOccurs="0"/>
+<xs:element name="id_katalog" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sale">
+<xs:sequence>
+<xs:element name="idpembeli" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="saleResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:sales" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sales">
+<xs:sequence>
+<xs:element name="alamatpenerima" type="xs:string" minOccurs="0"/>
+<xs:element name="date" type="xs:string" minOccurs="0"/>
+<xs:element name="hargabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="imagepath" type="xs:string" minOccurs="0"/>
+<xs:element name="jumlahbeli" type="xs:long"/>
+<xs:element name="kodepos" type="xs:long"/>
+<xs:element name="namabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="namapembeli" type="xs:string" minOccurs="0"/>
+<xs:element name="namapenerima" type="xs:string" minOccurs="0"/>
+<xs:element name="notelp" type="xs:long"/>
+<xs:element name="time" type="xs:string" minOccurs="0"/>
+<xs:element name="totalharga" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

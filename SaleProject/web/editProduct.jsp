@@ -28,7 +28,10 @@
             idKatalog = Integer.parseInt(request.getParameter("idKatalog"));
             System.out.println(idUser + " " +idKatalog);
             // TODO process hasil here
-            hasil = port.editProduct(idUser, idKatalog);
+            java.lang.String idUserValidate = session.getAttribute("idUser").toString();
+            java.lang.String token = session.getAttribute("token").toString();
+                
+            hasil = port.editProduct(idUser, idKatalog, idUserValidate, token);
             
         } catch (Exception ex) {
             // TODO handle custom exceptions here
@@ -61,7 +64,7 @@
                 
                 <div style="clear: both;"></div>	
                 <div class="top"></div>
-                <button class="btnCancel" type="reset" form="formBarang" onclick="window.location.replace('YourProduct.php?idUser=<?php echo $idUser_int?>')" value="reset">Cancel</button> 			
+                			
                 <button class="btnSubmit" type="submit" form="formBarang" value="Submit">Update</button>	
         </form>
         </div>
