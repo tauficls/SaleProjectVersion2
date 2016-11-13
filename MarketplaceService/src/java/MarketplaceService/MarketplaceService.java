@@ -21,6 +21,7 @@ import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.ejb.Stateless;
+import javax.jws.Oneway;
 
 /**
  *
@@ -121,7 +122,8 @@ public class MarketplaceService {
             String time;
             DateFormat df1 = new SimpleDateFormat("HH:mm");
             while(rs.next()) {
-                idKatalog = rs.getInt("idKatalog");
+                idKatalog = rs.getLong("idKatalog");
+                System.out.println("IDKATALOG : "+idKatalog);
                 imagepath = rs.getString("image");
                 nama_barang = rs.getString("nama_barang");
                 harga_barang = rs.getLong("harga_barang");
@@ -316,7 +318,7 @@ public class MarketplaceService {
                 Statement stmt;
                 stmt = con.createStatement();
 
-                stmt.executeUpdate(query);
+                stmt.executeQuery(query);
                 
             } catch (SQLException ex) {
                 Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
@@ -363,6 +365,88 @@ public class MarketplaceService {
         
         
         return view;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "confirmpurchase")
+    public ArrayList<confirm> confirmpurchase(
+            @WebParam(name = "idKatalog") String idKatalog,
+            @WebParam(name = "iduser") String iduser) {
+        /*
+        try {
+            String query, query1, query2;
+            query = "select * from user where idUser =" + iduser;
+            ConnectDB connectdb = new ConnectDB();
+            Connection con = connectdb.getConnection();
+            Statement stmt = null;
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            rs.next();
+            String namaLengkap = rs.getString("namaLengkap");
+            //String email = rs.getString("email");
+            String kodepos = rs.getString("kodepos_user");
+            String noTelp = rs.getString("noTelp_user");
+            String alamat = rs.getString("alamat_user");
+            query1 = "select * from katalog where idKatalog =" + idKatalog;
+            stmt = null;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(query1);
+            rs.next();
+            String namaBarang = rs.getString("nama_barang");
+            long hargaBarang = rs.getLong("harga_barang");
+            long idPenjual = rs.getLong("idUser");
+            String image = rs.getString("image");
+            long jumlah_purchase = rs.getLong("jumlah_beli");
+            long jumlah_beli = rs.getLong("quantity");
+            String nama_penerima = rs.getString("consignee");
+            String alamat_penerima = rs.getString("fullAddrress");
+            long kodepos_penerima = rs.getLong("postalCode");
+            String noTelp_penerima = rs.getString("phoneNumber");
+            String kartuKredit = rs.getString("numCard");
+            String kodeValidasi = rs.getString("valCard");
+            long jumlah_purchase = jumlah_purchase + jumlah_beli;
+            long total_harga = jumlah_beli * hargaBarang;
+            query2 = "INSERT INTO Purchase(idUser, jumlah_beli, idKatalog, "
+                    + "total_harga, nama_penerima, alamat_penerima, kodepos_penerima,"
+                    + " noTelp_penerima, kartuKredit, kodeValidasi, date_add,"
+                    + " time_add, namaBarang_beli, hargaBarang_beli, idPenjual, image)"
+                    + "VALUES("+ iduser + ',' + jumlah_beli + ',' + idKatalog + ',' + total_harga + ","
+                    + nama_penerima + ',' + alamat_penerima + ',' + kodepos_penerima + ',' + noTelp_penerima + ', ' + kartu
+                    + Kredit + ', ' + kodeValidasi + ', CURDATE(), CURTIME(), '+ namaBarang
+                    + ", " + hargaBarang +', ' + idPenjual +', ' + image + '); 
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        */
+        return null;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "UpdateProduct")
+    @Oneway
+    public void UpdateProduct(
+            @WebParam(name = "nama_barang")  String nama_barang,
+            @WebParam(name = "harga_barang") int harga_barang,
+            @WebParam(name = "deskripsi")    String deskripsi,
+            @WebParam(name = "id_katalog")   int id_katalog) 
+    {
+        String query ="UPDATE katalog "
+                + "SET nama_Barang = '"+nama_barang+"', harga_barang = '"+harga_barang+"', deskripsi='"+deskripsi+ "' WHERE idKatalog='"+id_katalog+"';  ";
+        System.out.println("QUERY : "+query);
+        ConnectDB connectdb = new ConnectDB();
+        try (Connection con = connectdb.getConnection()) {
+            Statement stmt;
+            stmt = con.createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
     
     

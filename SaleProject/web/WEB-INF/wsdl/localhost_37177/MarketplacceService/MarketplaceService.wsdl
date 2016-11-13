@@ -4,6 +4,15 @@
 <xsd:import namespace="http://MarketplaceService/" schemaLocation="http://localhost:37177/MarketplacceService/MarketplaceService?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="UpdateProduct">
+<part name="parameters" element="tns:UpdateProduct"/>
+</message>
+<message name="confirmpurchase">
+<part name="parameters" element="tns:confirmpurchase"/>
+</message>
+<message name="confirmpurchaseResponse">
+<part name="parameters" element="tns:confirmpurchaseResponse"/>
+</message>
 <message name="AddProduct">
 <part name="parameters" element="tns:AddProduct"/>
 </message>
@@ -41,6 +50,13 @@
 <part name="parameters" element="tns:saleResponse"/>
 </message>
 <portType name="MarketplaceService">
+<operation name="UpdateProduct">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/UpdateProduct" message="tns:UpdateProduct"/>
+</operation>
+<operation name="confirmpurchase">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/confirmpurchaseRequest" message="tns:confirmpurchase"/>
+<output wsam:Action="http://MarketplaceService/MarketplaceService/confirmpurchaseResponse" message="tns:confirmpurchaseResponse"/>
+</operation>
 <operation name="AddProduct">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/AddProductRequest" message="tns:AddProduct"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/AddProductResponse" message="tns:AddProductResponse"/>
@@ -68,6 +84,21 @@
 </portType>
 <binding name="MarketplaceServicePortBinding" type="tns:MarketplaceService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="UpdateProduct">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+</operation>
+<operation name="confirmpurchase">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="AddProduct">
 <soap:operation soapAction=""/>
 <input>

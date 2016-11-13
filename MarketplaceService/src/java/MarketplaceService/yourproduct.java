@@ -95,7 +95,7 @@ public class yourproduct {
         return time;
     }
     
-    public yourproduct(long idKatolog, String namabarang, long hargabarang,
+    public yourproduct(long idKatalog, String namabarang, long hargabarang,
             String deskripsi, long jumlahlike, long jumlahbeli, String date,
             String time, String image) {
         this.idKatalog = idKatalog;

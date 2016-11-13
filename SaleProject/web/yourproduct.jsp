@@ -41,7 +41,7 @@
                     out.println("<br>");
                     out.println(result.get(i).getJumlahlike() + "likes <br>");
                     out.println(result.get(i).getJumlahbeli() +" purchases <br> <br>");
-                    out.println("<a class=\"three\" href=\"editproduct.jsp" + result.get(i).getIdKatalog() + "\">EDIT</a> &nbsp;&nbsp;&nbsp; ");
+                    out.println("<a class=\"three\" href=\"editProduct.jsp?idKatalog=" + result.get(i).getIdKatalog() + "\">EDIT</a> &nbsp;&nbsp;&nbsp; ");
                     out.println("<a onclick='return AreYouSure()' class=\"four\" href=\"\">DELETE</a>");
                     out.println("</div>");
                     out.println("<div style = \"clear:both\"></div>");

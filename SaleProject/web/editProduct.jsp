@@ -17,14 +17,15 @@
     </head>
     <body>    <%-- start web service invocation --%><hr/>
         <%
-        marketplaceservice.Product hasil = null;
+       int idKatalog = -1;
+        marketplaceservice.Yourproduct hasil = null;
         try {
             marketplaceservice.MarketplacceService service = new marketplaceservice.MarketplacceService();
             marketplaceservice.MarketplaceService port = service.getMarketplaceServicePort();
              // TODO initialize WS operation arguments here
             String temp = session.getAttribute("idUser").toString();
             int idUser = Integer.parseInt(temp);
-            int idKatalog = Integer.parseInt(request.getParameter("idKatalog"));
+            idKatalog = Integer.parseInt(request.getParameter("idKatalog"));
             System.out.println(idUser + " " +idKatalog);
             // TODO process hasil here
             hasil = port.editProduct(idUser, idKatalog);
@@ -35,12 +36,14 @@
         %>
 
         <div id="wrapper">
-        <form  name="AddProductForm" method="post" id="formBarang"  onsubmit="return ValidationFormTanpaImage()">
+        <form  name="AddProductForm" method="post" action="UpdateProduct" id="formBarang"  onsubmit="return ValidationFormTanpaImage()">
                 <label> Name </label>
                 <div style="clear: both;"></div>
                 <div class="input-list style-2 clearfix"><input type="text" name="NamaBarang" value="<%=hasil.getNamabarang()%>" onblur="return ValidationName(this.form.NamaBarang)">
                 <div id ="alertName"></div>
                 <br>
+                
+                <input type="hidden" name="idKatalog" value="<%=idKatalog%>">
                 <label> Deskripsi </label>
                 <div style="clear: both;"></div>
                 <div class="input-list style-3 clearfix"><textarea name="Deskripsi" cols="50" rows="4" style="resize: none;" onkeydown="return LimitationText(this.form.Deskripsi)"onblur="return ValidationDeskripsi(this.form.Deskripsi)"><%= hasil.getDeskripsi() %></textarea>
@@ -55,7 +58,7 @@
                 <div style="clear: both;"></div>
                 <div class="input-list style-2 clearfix"><input type="button" name="GambarBarang" id="GambarBarang" disabled value="Choose File">
                 <div id="alertFile"></div>
-
+                
                 <div style="clear: both;"></div>	
                 <div class="top"></div>
                 <button class="btnCancel" type="reset" form="formBarang" onclick="window.location.replace('YourProduct.php?idUser=<?php echo $idUser_int?>')" value="reset">Cancel</button> 			

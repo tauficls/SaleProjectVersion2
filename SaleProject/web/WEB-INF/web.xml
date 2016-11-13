@@ -20,6 +20,10 @@
         <servlet-name>Upload</servlet-name>
         <servlet-class>Upload</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateProduct</servlet-name>
+        <servlet-class>UpdateProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>identityService</servlet-name>
         <url-pattern>/identityService</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>Upload</servlet-name>
         <url-pattern>/Upload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProduct</servlet-name>
+        <url-pattern>/UpdateProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
