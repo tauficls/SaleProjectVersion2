@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -252,6 +254,85 @@ public class MarketplaceService {
         
         return view;
     }
+    
+    /**
+     *
+     * @param nama_barang
+     * @param harga_barang
+     * @param deskripsi
+     * @param id_user
+     * @param image
+     * @throws java.sql.SQLException
+     */
+    @WebMethod(operationName = "AddProduct")
+    public void AddBarang(
+            @WebParam(name = "nama_barang")  String nama_barang,
+            @WebParam(name = "harga_barang") int harga_barang,
+            @WebParam(name = "deskripsi")    String deskripsi,
+            @WebParam(name = "id_user")      int id_user,
+            @WebParam(name = "image")       String image) 
+            {
+            
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+	    java.util.Date  date = new java.util.Date();
+	    
+            String query = "INSERT INTO katalog(nama_barang, harga_barang, deskripsi,jumlah_like,jumlah_beli,date_add, idUser,image,time_add) "
+                           + "VALUES('"+ nama_barang + "','" + harga_barang + "','" + deskripsi + "','0','0','"+ dateFormat.format(date) +"',"+ id_user +",'"+image+"','" + timeFormat.format(date) + "');";
+                System.out.println("QUERY : " + query);
+                           
+            ConnectDB connectdb = new ConnectDB();
+            try (Connection con = connectdb.getConnection()) {
+                Statement stmt;
+                stmt = con.createStatement();
+
+                stmt.executeUpdate(query);
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "EditProduct")
+    public yourproduct EditProduct(@WebParam(name = "idUser") final int idUser, @WebParam(name = "idKatalog") final int idKatalog) {
+        
+        String query = "select * from katalog WHERE idUser = " + idUser + " AND idKatalog = " + idKatalog + ";";
+        System.out.println(query);
+        
+        yourproduct view = null;
+        
+        ConnectDB connectdb = new ConnectDB();
+        String hasil = "";
+        try (Connection con = connectdb.getConnection()) {
+            Statement stmt = null;
+            stmt = con.createStatement();
+            
+            ResultSet rs = stmt.executeQuery(query);
+            rs.next();
+            String nama_barang = rs.getString("nama_barang");
+            Double harga_barang = rs.getDouble("harga_barang");
+            String deskripsi = rs.getString("deskripsi");
+            int jumlah_like = rs.getInt("jumlah_like");
+            int jumlah_beli = rs.getInt("jumlah_beli");
+            Date date = rs.getDate("date_add");
+            Time time = rs.getTime("time_add");
+
+            yourproduct product = new yourproduct(idKatalog, nama_barang,
+            harga_barang, deskripsi, jumlah_like, jumlah_beli, date, time);
+            view = product;
+        } catch (SQLException ex) {
+            Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        return view;
+    }
+    
     
 
 }

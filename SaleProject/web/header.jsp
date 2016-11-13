@@ -20,19 +20,19 @@
             </p>
         </form>
 	<div id="nav">
-		<a href="viewkatalog.php" >
+		<a href="viewkatalog.jsp" >
 				<div <?php if ($page=="ViewKatalog") echo 'id ="currentPage"';?>><p class = "center">Catalog</p></div>
 		</a>
-		<a href="YourProduct.php" >
+		<a href="yourproduct.jsp" >
 				<div <?php if ($page=="YourProduct") echo 'id ="currentPage"';?>><p class = "center">Your Products</p></div>
 		</a>
-		<a href="AddProduct.php">
+		<a href="AddProduct.jsp">
 				<div <?php if ($page=="AddProduct") echo 'id ="currentPage"';?>><p class = "center">Add Products</p></div>
 		</a>
-		<a href="sales.php" >
+		<a href="sales.jsp" >
 				<div <?php if ($page=="Sales") echo 'id ="currentPage"';?>><p class = "center">Sales</p></div>
 		</a>
-		<a href="purchase.php" >
+		<a href="purchase.jsp" >
 			<div <?php if ($page=="Purchase") echo 'id ="currentPage"';?> ><p class = "center">Purchases</p></div>
 		</a>
 	</div>

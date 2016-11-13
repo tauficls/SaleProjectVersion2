@@ -68,7 +68,7 @@
                     out.println("<hr>");
                     out.println("<div class=\"content\">");
                     out.println("<div class=\"image\">");
-                    out.println("<img src=\"" + result.get(i).getImgpath()+"\" />");
+                    out.println("<img src='img\\" + result.get(i).getImgpath()+"' />");
                     out.println("</div>");
                     out.println("<div class=\"description\">");
                     out.println("<div class=\"head\"><b>" + result.get(i).getNamabarang() + " </b><br></div>");
@@ -88,7 +88,7 @@
             } catch (Exception ex) {
                 // TODO handle custom exceptions here
             }
-                    %>
+            %>
 
             
 

@@ -16,6 +16,10 @@
         <servlet-name>logout</servlet-name>
         <servlet-class>IdentityService.logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Upload</servlet-name>
+        <servlet-class>Upload</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>identityService</servlet-name>
         <url-pattern>/identityService</url-pattern>
@@ -32,9 +36,13 @@
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Upload</servlet-name>
+        <url-pattern>/Upload</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            600
         </session-timeout>
     </session-config>
 </web-app>
