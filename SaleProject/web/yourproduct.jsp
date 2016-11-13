@@ -4,8 +4,6 @@
     Author     : taufic
 --%>
 
-<%@page import="marketplaceservice.Time"%>
-<%@page import="marketplaceservice.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -49,7 +47,7 @@
                     out.println(result.get(i).getJumlahlike() + "likes <br>");
                     out.println(result.get(i).getJumlahbeli() +" purchases <br> <br>");
                     out.println("<a class=\"three\" href=\"editproduct.jsp" + result.get(i).getIdKatalog() + "\">EDIT</a> &nbsp;&nbsp;&nbsp; ");
-                    out.println("<a onclick='return AreYouSure()' class=\"four\" href=\"\">DELETE</a>");
+                    out.println("<a onclick='return AreYouSure()' class=\"four\" href=\"deleteProduct?idKatalog=" + result.get(i).getIdKatalog() +"&idUser=" + session.getAttribute("idUser").toString() + "\">DELETE</a>");
                     out.println("</div>");
                     out.println("<div style = \"clear:both\"></div>");
                     out.println("<hr>");

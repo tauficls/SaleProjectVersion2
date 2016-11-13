@@ -8,10 +8,13 @@ package MarketplaceService;
 import ConnectDB.ConnectDB;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,8 +39,13 @@ public class MarketplaceService {
             @WebParam(name = "username") String username,
             @WebParam(name = "password") String password,
             @WebParam(name = "search") String search,
-            @WebParam(name = "filter") String filter) {
+            @WebParam(name = "filter") String filter,
+            @WebParam(name = "idPengguna") String idUser) {
+        /*query*/
         String query;
+        String query2 = "SELECT * FROM `like` where idUser=\"" + idUser + "\"";
+        
+        /*select filter*/
         if(filter.equals("product"))
             query = "select * from katalog NATURAL JOIN user WHERE nama_barang like '%"+search+"%' ORDER BY date_add DESC";
         else if(filter.equals("store"))
@@ -45,9 +53,26 @@ public class MarketplaceService {
         else
             query = "select * from katalog NATURAL JOIN user ORDER BY date_add DESC";
         
+        /*array list*/
         ArrayList<product> view = new ArrayList<>();
-        
+        ArrayList<Long> itemLiked = new ArrayList<>();
+        /*connect query2*/
         ConnectDB connectdb = new ConnectDB();
+        
+        Connection con2 = connectdb.getConnection();
+        Statement stmt2 = null;
+        try {
+            stmt2 = con2.createStatement();
+            ResultSet rs = stmt2.executeQuery(query2);
+            System.out.println("pisang" + query2);
+            while (rs.next()) {
+                itemLiked.add(rs.getLong("idKatalog"));
+                System.out.println(rs.getLong("idKatalog"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+            
         String hasil = "";
         try (Connection con = connectdb.getConnection()) {
             Statement stmt = null;
@@ -59,13 +84,15 @@ public class MarketplaceService {
             String nama_barang;
             long harga_barang;
             String deskripsi;
-            int jumlah_like;
-            int jumlah_beli;
+            long jumlah_like;
+            long jumlah_beli;
             String date;
             DateFormat df = new SimpleDateFormat("EEEE, d MMMM yyyy");
             String time;
             DateFormat df1 = new SimpleDateFormat("HH:mm");
+            long idkatalog;
             while(rs.next()) {
+                idkatalog = rs.getLong("idKatalog");
                 usernama = rs.getString("namaLengkap");
                 img_path = rs.getString("image");
                 nama_barang = rs.getString("nama_barang");
@@ -75,8 +102,16 @@ public class MarketplaceService {
                 jumlah_beli = rs.getLong("jumlah_beli");
                 date = df.format(rs.getDate("date_add"));
                 time = df1.format(rs.getTime("time_add"));
+                Boolean isLiked = false;
+                for (int i=0;i<itemLiked.size();i++) {
+                    if (itemLiked.get(i) == idkatalog ) {
+                        System.out.println("true");
+                        isLiked = true;
+                        break;
+                    }
+                }
                 product Product = new product(usernama, img_path, nama_barang,
-                        harga_barang, deskripsi, jumlah_like, jumlah_beli);
+                        harga_barang, deskripsi, jumlah_like, jumlah_beli, date, time, idkatalog, isLiked);
                 view.add(Product);
             }
         } catch (SQLException ex) {
@@ -122,12 +157,12 @@ public class MarketplaceService {
                 idKatalog = rs.getInt("idKatalog");
                 imagepath = rs.getString("image");
                 nama_barang = rs.getString("nama_barang");
-                harga_barang = rs.getDouble("harga_barang");
+                harga_barang = rs.getLong("harga_barang");
                 deskripsi = rs.getString("deskripsi");
                 jumlah_like = rs.getInt("jumlah_like");
                 jumlah_beli = rs.getInt("jumlah_beli");
-                date = rs.getDate("date_add");
-                time = rs.getTime("time_add");
+                date = df.format(rs.getDate("date_add"));
+                time = df1.format(rs.getTime("time_add"));
                 
                 yourproduct product = new yourproduct(idKatalog, nama_barang,
                 harga_barang, deskripsi, jumlah_like, jumlah_beli, date, time, imagepath);
@@ -282,6 +317,75 @@ public class MarketplaceService {
         
         return view;
     }
-    
 
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "addLiked")
+    public String addLike(@WebParam(name = "idKatalog") String idKatalog, @WebParam(name = "idUser") String idUser) {
+        ConnectDB connectdb = new ConnectDB();
+        Connection con = connectdb.getConnection();
+        PreparedStatement statement;
+        String status = "error";
+        try {
+            statement = con.prepareStatement("INSERT INTO `like` values(?,?)");
+            statement.setString(1, idUser);
+            statement.setString(2, idKatalog);
+            statement.executeUpdate();
+            
+            status = "ok";
+        } catch (SQLException ex) {
+            Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return status;
+        
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "addUnliked")
+    public String addUnlike(@WebParam(name = "idKatalog") String idKatalog, @WebParam(name = "idUser") String idUser) {
+        ConnectDB connectdb = new ConnectDB();
+        Connection con = connectdb.getConnection();
+        PreparedStatement statement;
+        String status = "error";
+        try {
+            statement = con.prepareStatement("DELETE FROM `like` where idKatalog = ? and idUser = ?");
+            statement.setString(1, idKatalog);
+            statement.setString(2, idUser);
+            statement.executeUpdate();
+            
+            status = "ok";
+        } catch (SQLException ex) {
+            Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return status;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "deleteProduk")
+    public String deleteProduct(@WebParam(name = "idUser") String idUser, @WebParam(name = "idKatalog") String idKatalog) {
+        ConnectDB connectdb = new ConnectDB();
+        Connection con = connectdb.getConnection();
+        PreparedStatement statement;
+        String status = "error";
+        try {
+            statement = con.prepareStatement("DELETE FROM katalog where idKatalog = ? and idUser = ?");
+            statement.setString(1, idKatalog);
+            statement.setString(2, idUser);
+            statement.executeUpdate();
+            System.out.println(statement);
+            
+            status = "ok";
+        } catch (SQLException ex) {
+            Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return status;
+    }
 }

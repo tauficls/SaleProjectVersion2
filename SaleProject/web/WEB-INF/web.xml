@@ -16,6 +16,14 @@
         <servlet-name>logout</servlet-name>
         <servlet-class>IdentityService.logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>like</servlet-name>
+        <servlet-class>likeUnlike.like</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteProduct</servlet-name>
+        <servlet-class>delete.deleteProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>identityService</servlet-name>
         <url-pattern>/identityService</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>like</servlet-name>
+        <url-pattern>/like</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteProduct</servlet-name>
+        <url-pattern>/deleteProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

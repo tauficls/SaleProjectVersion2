@@ -20,15 +20,8 @@ public class yourproduct {
     private long jumlahbeli;
     private String date;
     private String time;
-    private String namapembeli;
 
-    public String getNamapembeli() {
-        return namapembeli;
-    }
 
-    public void setNamapembeli(String namapembeli) {
-        this.namapembeli = namapembeli;
-    }
     public void setIdKatalog(long idKatalog) {
         this.idKatalog = idKatalog;
     }
@@ -104,7 +97,7 @@ public class yourproduct {
     
     public yourproduct(long idKatolog, String namabarang, long hargabarang,
             String deskripsi, long jumlahlike, long jumlahbeli, String date,
-            String time, String namapembeli) {
+            String time, String image) {
         this.idKatalog = idKatalog;
         this.namabarang = namabarang;
         this.hargabarang = hargabarang;
@@ -113,6 +106,6 @@ public class yourproduct {
         this.jumlahlike = jumlahlike;
         this.date = date;
         this.time = time;
-        this.namapembeli = namapembeli;
+        this.imagepath = image;
     }
 }
