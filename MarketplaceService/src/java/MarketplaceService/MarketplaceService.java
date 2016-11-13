@@ -61,15 +61,20 @@ public class MarketplaceService {
             String deskripsi;
             int jumlah_like;
             int jumlah_beli;
+            String date;
+            DateFormat df = new SimpleDateFormat("EEEE, d MMMM yyyy");
+            String time;
+            DateFormat df1 = new SimpleDateFormat("HH:mm");
             while(rs.next()) {
                 usernama = rs.getString("namaLengkap");
                 img_path = rs.getString("image");
                 nama_barang = rs.getString("nama_barang");
-                harga_barang = rs.getDouble("harga_barang");
+                harga_barang = rs.getLong("harga_barang");
                 deskripsi = rs.getString("deskripsi");
-                jumlah_like = rs.getInt("jumlah_like");
-                jumlah_beli = rs.getInt("jumlah_beli");
-                
+                jumlah_like = rs.getLong("jumlah_like");
+                jumlah_beli = rs.getLong("jumlah_beli");
+                date = df.format(rs.getDate("date_add"));
+                time = df1.format(rs.getTime("time_add"));
                 product Product = new product(usernama, img_path, nama_barang,
                         harga_barang, deskripsi, jumlah_like, jumlah_beli);
                 view.add(Product);

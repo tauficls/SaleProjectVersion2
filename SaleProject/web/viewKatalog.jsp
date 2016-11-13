@@ -64,6 +64,7 @@
                     //out.println(result.get(i).getUsernama() + "<br>" + result.get(i).getImgpath());
                     out.println("<div>");
                     out.println("<b>" + result.get(i).getUsernama() + "</b> <br>");
+                    out.println("added this on " + result.get(i).getDate() + "at" + result.get(i).getTime() );
                     out.println("</div>");
                     out.println("<hr>");
                     out.println("<div class=\"content\">");

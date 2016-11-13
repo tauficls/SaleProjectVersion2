@@ -17,7 +17,23 @@ public class product {
     private String deskripsi;
     private long jumlahlike;
     private long jumlahbeli;
+    private String date;
+    private String time;
+    public String getDate() {
+        return date;
+    }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
     public void setUsernama(String usernama) {
         this.usernama = usernama;
     }
@@ -76,7 +92,7 @@ public class product {
 
     public product(String usernama, String imgpath, String namabarang,
             long hargabarang, String deskripsi, long jumlahlike,
-            long jumlahbeli) {
+            long jumlahbeli, String date, String time) {
         this.usernama = usernama;
         this.imgpath = imgpath;
         this.namabarang = namabarang;
@@ -84,6 +100,8 @@ public class product {
         this.hargabarang = hargabarang;
         this.jumlahbeli = jumlahlike;
         this.jumlahbeli = jumlahbeli;
+        this.date = date;
+        this.time = time;
     }
     
     
