@@ -13,7 +13,7 @@
 		<title>Add Product</title>
 		<link rel="stylesheet" type="text/css" href="style/katalog.css">
 		<link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
-		<script type = "text/javascript" src="EditProduct.js"></script> 
+		
     </head>
     <body>
 

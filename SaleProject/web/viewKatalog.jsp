@@ -14,7 +14,9 @@
     <title>View Katalog</title>
     <link rel="stylesheet" type="text/css" href="style/katalog.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet"> 
-    <script type="text/javascript" src="viewKatalog.js"></script>
+    <script>
+        <%@include file="script/viewKatalog.js"%>
+    </script>
 </head>
     <body>
     <div id="wrapper">
@@ -55,19 +57,12 @@
                 // TODO process result here
                 
                 java.util.List<marketplaceservice.Product> result = port.viewproduct(username, password, search, filter, idUser, idUser, token);
-                String usernama;
-                String img_path;
-                String nama_barang;
-                long harga_barang;
-                String deskripsi;
-                long jumlah_like;
-                long jumlah_beli;
 
                 for (int i = 0; i < result.size(); i++) {
                     //out.println(result.get(i).getUsernama() + "<br>" + result.get(i).getImgpath());
                     out.println("<div>");
                     out.println("<b>" + result.get(i).getUsernama() + "</b> <br>");
-                    out.println("added this on " + result.get(i).getDate() + "at" + result.get(i).getTime() );
+                    out.println("added this on " + result.get(i).getDate() + " at " + result.get(i).getTime() );
                     out.println("</div>");
                     out.println("<hr>");
                     out.println("<div class=\"content\">");

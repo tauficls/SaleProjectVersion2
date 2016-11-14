@@ -9,7 +9,8 @@
 <html>
 <head>
 	<title>Register</title>
-	<script type = "text/javascript" src="Register.js"></script>
+	<script><%@include file="script/Register.js"%></script>
+        
 	<link rel="stylesheet" type="text/css" href="style/style.css">
 </head>
 

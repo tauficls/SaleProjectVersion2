@@ -11,7 +11,7 @@
         <meta content="width=device-width,initial-scale=1.0" name="viewport">
         <title>Login Page</title>
         <link href="style/style.css" rel="stylesheet" type="text/css"/>
-        <script type = "text/javascript" src="index.js"></script>
+        <script><%@include file="script/index.js"%></script>
         <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet"> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>

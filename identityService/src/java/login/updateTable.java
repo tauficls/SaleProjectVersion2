@@ -26,7 +26,7 @@ public class updateTable {
         Calendar calendar = Calendar.getInstance();
 
         long t = calendar.getTimeInMillis();
-        Date expire_date = new Date (t + 600000);
+        Date expire_date = new Date (t + 30000);
         DateFormat expdate_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 
         String query = "update user set token = \"" + token + "\", expire_date = \"" + expdate_format.format(expire_date) + "\" where idUser = \"" + idUser + "\"";

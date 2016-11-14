@@ -40,7 +40,6 @@
                             out.println("<b> " + result.get(i).getDate() + "</b> <br>");
                             out.println("at" + result.get(i).getTime());
                             out.println("</div>");
-                            out.println("</div>");
                             out.println("<hr>");
                             out.println("<div class=\"content\">");                                
                             out.println("<div class=\"image\">");                                        

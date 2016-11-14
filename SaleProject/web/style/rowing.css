@@ -1,0 +1,24 @@
+* {
+	box-sizing: border-box;
+}
+
+.row::after {
+	content: "";
+	clear: both;
+	display: block;
+}
+
+[class*="col-"] {
+	float: left;
+	padding: 15px;
+}
+
+.col-1 { 
+	width: 25%;
+	
+}
+.col-2 {
+	width: 50%;
+	
+}
+

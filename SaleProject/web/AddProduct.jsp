@@ -6,7 +6,7 @@
 		<title>Add Product</title>
 		<link rel="stylesheet" type="text/css" href="style/katalog.css">
 		<link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
-		<script type = "text/javascript" src="AddProduct.js"></script> 
+		<script><%@include file="script/AddProduct.js"%></script>
 	</head>
 
 	<body>
@@ -46,7 +46,7 @@
 				
 				<button class="btnSubmit" type="submit" form="formBarang" value="Submit" >ADD</button>
                                 
-                                <b><%=session.getAttribute("message")%> </b>
+                                
 		</div>
 	</body>
 </html>
