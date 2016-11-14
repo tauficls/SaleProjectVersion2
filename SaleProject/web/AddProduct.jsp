@@ -10,11 +10,8 @@
 	</head>
 
 	<body>
-		<div id="wrapper">
-
-                    
-                        
-
+		<div id="wrapper">           
+			<jsp:include page="header.jsp" />
 			<h1> Please add your product here</h1>
 				<hr />
 				<br><br>
@@ -46,7 +43,7 @@
 				</form>
 				
 				<div class="top"></div>
-				<button class="btnCancel" type="reset" form="formBarang" value="reset" onclick="window.location.replace('YourProduct.php')">CANCEL</button>
+				
 				<button class="btnSubmit" type="submit" form="formBarang" value="Submit" >ADD</button>
                                 
                                 <b><%=session.getAttribute("message")%> </b>

@@ -1,29 +1,28 @@
+package confirm;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package likeUnlike;
 
+import ConnectDB.ConnectDB;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.xml.ws.WebServiceRef;
-import marketplaceservice.MarketplacceService;
+import org.json.simple.JSONObject;
 
 /**
  *
  * @author taufic
  */
-public class like extends HttpServlet {
-
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_23132/MarketplacceService/MarketplaceService.wsdl")
-    private MarketplacceService service;
+public class confirm extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,22 +35,30 @@ public class like extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String status = "";
-        HttpSession session = request.getSession();
-        java.lang.String idUserValidate = session.getAttribute("idUser").toString();
-        java.lang.String token = session.getAttribute("token").toString();
-        try{
-            status = addLiked(request.getParameter("idKatalog"), session.getAttribute("idUser").toString(), idUserValidate, token);
-        } catch(Exception e){
-            String nextJSP = "/logout";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-            dispatcher.forward(request,response);
-            System.out.println("ERROR : " + e.getMessage());
+        String query = "select * from user where idUser = \"" + request.getParameter("idUser") + "\"";
+        JSONObject js = new JSONObject();
+        
+        try{  
+            ConnectDB connectdb = new ConnectDB();
+            Connection con = connectdb.getConnection();
+            Statement stmt = con.createStatement();  
+            ResultSet rs = stmt.executeQuery(query);  
+            if(rs.next()) {
+                js.put("namaLengkap", rs.getString("namaLengkap"));
+                js.put("kodepos",rs.getString("kodepos_user"));
+                js.put("noTelp",rs.getString("noTelp_user"));
+                js.put("alamat", rs.getString("alamat_user"));
+            }
+            con.close();  
+        }
+        catch(Exception e){ 
+            System.out.println(e);
         }
         
-        if("ok".equals(status)){
-            response.sendRedirect("/saleProject/viewKatalog.jsp");
-        }
+        response.setContentType("application/json");
+        PrintWriter out = response.getWriter();
+        out.print(js);
+        out.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -92,21 +99,5 @@ public class like extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private String addLiked(String idKatalog, String idUser, String idUserValidate, String token) throws Exception {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        marketplaceservice.MarketplaceService port = service.getMarketplaceServicePort();
-        try{
-            return port.addLiked(idKatalog, idUser, idUserValidate, token);
-        }
-        catch(Exception e){
-            if(e.getMessage().equals("Invalid Token")){
-                throw e;
-            }
-        }
-        return "";
-        
-    }
 
 }

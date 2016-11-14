@@ -4,7 +4,6 @@
 
 <xs:element name="AddProductResponse" type="tns:AddProductResponse"/>
 
-<<<<<<< HEAD
 <xs:element name="EditProduct" type="tns:EditProduct"/>
 
 <xs:element name="EditProductResponse" type="tns:EditProductResponse"/>
@@ -15,10 +14,6 @@
 
 <xs:element name="UpdateProductResponse" type="tns:UpdateProductResponse"/>
 
-=======
-<xs:element name="UpdateProduct" type="tns:UpdateProduct"/>
-
->>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 <xs:element name="addLiked" type="tns:addLiked"/>
 
 <xs:element name="addLikedResponse" type="tns:addLikedResponse"/>
@@ -39,6 +34,10 @@
 
 <xs:element name="deleteProdukResponse" type="tns:deleteProdukResponse"/>
 
+<xs:element name="preProcessConfirmPurchase" type="tns:preProcessConfirmPurchase"/>
+
+<xs:element name="preProcessConfirmPurchaseResponse" type="tns:preProcessConfirmPurchaseResponse"/>
+
 <xs:element name="productmu" type="tns:productmu"/>
 
 <xs:element name="productmuResponse" type="tns:productmuResponse"/>
@@ -55,11 +54,8 @@
 <xs:sequence>
 <xs:element name="idKatalog" type="xs:string" minOccurs="0"/>
 <xs:element name="idUser" type="xs:string" minOccurs="0"/>
-<<<<<<< HEAD
 <xs:element name="iduservalidate" type="xs:string" minOccurs="0"/>
 <xs:element name="token" type="xs:string" minOccurs="0"/>
-=======
->>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 </xs:sequence>
 </xs:complexType>
 
@@ -69,24 +65,18 @@
 </xs:sequence>
 </xs:complexType>
 
-<<<<<<< HEAD
 <xs:complexType name="InvalidTokenException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-=======
->>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 <xs:complexType name="addUnliked">
 <xs:sequence>
 <xs:element name="idKatalog" type="xs:string" minOccurs="0"/>
 <xs:element name="idUser" type="xs:string" minOccurs="0"/>
-<<<<<<< HEAD
 <xs:element name="iduservalidate" type="xs:string" minOccurs="0"/>
 <xs:element name="token" type="xs:string" minOccurs="0"/>
-=======
->>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 </xs:sequence>
 </xs:complexType>
 
@@ -99,11 +89,8 @@
 <xs:complexType name="productmu">
 <xs:sequence>
 <xs:element name="iduser" type="xs:string" minOccurs="0"/>
-<<<<<<< HEAD
 <xs:element name="iduservalidate" type="xs:string" minOccurs="0"/>
 <xs:element name="token" type="xs:string" minOccurs="0"/>
-=======
->>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 </xs:sequence>
 </xs:complexType>
 
@@ -131,17 +118,37 @@
 <xs:sequence>
 <xs:element name="idUser" type="xs:string" minOccurs="0"/>
 <xs:element name="idKatalog" type="xs:string" minOccurs="0"/>
-<<<<<<< HEAD
 <xs:element name="iduservalidate" type="xs:string" minOccurs="0"/>
 <xs:element name="token" type="xs:string" minOccurs="0"/>
-=======
->>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="deleteProdukResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="preProcessConfirmPurchase">
+<xs:sequence>
+<xs:element name="idUser" type="xs:string" minOccurs="0"/>
+<xs:element name="idKatalog" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="preProcessConfirmPurchaseResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:confirm" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="confirm">
+<xs:sequence>
+<xs:element name="alamat" type="xs:string" minOccurs="0"/>
+<xs:element name="hargabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="kodepos" type="xs:string" minOccurs="0"/>
+<xs:element name="namabarang" type="xs:string" minOccurs="0"/>
+<xs:element name="namalengkap" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -152,11 +159,8 @@
 <xs:element name="deskripsi" type="xs:string" minOccurs="0"/>
 <xs:element name="id_user" type="xs:int"/>
 <xs:element name="image" type="xs:string" minOccurs="0"/>
-<<<<<<< HEAD
 <xs:element name="iduservalidate" type="xs:string" minOccurs="0"/>
 <xs:element name="token" type="xs:string" minOccurs="0"/>
-=======
->>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 </xs:sequence>
 </xs:complexType>
 
@@ -170,13 +174,9 @@
 <xs:element name="password" type="xs:string" minOccurs="0"/>
 <xs:element name="search" type="xs:string" minOccurs="0"/>
 <xs:element name="filter" type="xs:string" minOccurs="0"/>
-<<<<<<< HEAD
 <xs:element name="idUser" type="xs:string" minOccurs="0"/>
 <xs:element name="iduservalidate" type="xs:string" minOccurs="0"/>
 <xs:element name="token" type="xs:string" minOccurs="0"/>
-=======
-<xs:element name="idPengguna" type="xs:string" minOccurs="0"/>
->>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 </xs:sequence>
 </xs:complexType>
 
@@ -206,11 +206,17 @@
 <xs:sequence>
 <xs:element name="idKatalog" type="xs:string" minOccurs="0"/>
 <xs:element name="iduser" type="xs:string" minOccurs="0"/>
-<<<<<<< HEAD
 <xs:element name="iduservalidate" type="xs:string" minOccurs="0"/>
 <xs:element name="token" type="xs:string" minOccurs="0"/>
-=======
->>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
+<xs:element name="jumlah_beli" type="xs:string" minOccurs="0"/>
+<xs:element name="nama_penerima" type="xs:string" minOccurs="0"/>
+<xs:element name="alamat_penerima" type="xs:string" minOccurs="0"/>
+<xs:element name="kodepos_penerima" type="xs:string" minOccurs="0"/>
+<xs:element name="noTelp_penerima" type="xs:string" minOccurs="0"/>
+<xs:element name="kartuKredit" type="xs:string" minOccurs="0"/>
+<xs:element name="kodeValidasi" type="xs:string" minOccurs="0"/>
+<xs:element name="hargaBarang" type="xs:string" minOccurs="0"/>
+<xs:element name="namaBarang" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -220,24 +226,11 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="confirm">
-<xs:sequence>
-<xs:element name="alamat" type="xs:string" minOccurs="0"/>
-<xs:element name="hargabarang" type="xs:string" minOccurs="0"/>
-<xs:element name="kodepos" type="xs:string" minOccurs="0"/>
-<xs:element name="namabarang" type="xs:string" minOccurs="0"/>
-<xs:element name="namalengkap" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="beli">
 <xs:sequence>
 <xs:element name="idpenjual" type="xs:string" minOccurs="0"/>
-<<<<<<< HEAD
 <xs:element name="iduservalidate" type="xs:string" minOccurs="0"/>
 <xs:element name="token" type="xs:string" minOccurs="0"/>
-=======
->>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 </xs:sequence>
 </xs:complexType>
 
@@ -270,7 +263,6 @@
 <xs:element name="harga_barang" type="xs:int"/>
 <xs:element name="deskripsi" type="xs:string" minOccurs="0"/>
 <xs:element name="id_katalog" type="xs:int"/>
-<<<<<<< HEAD
 <xs:element name="iduservalidate" type="xs:string" minOccurs="0"/>
 <xs:element name="token" type="xs:string" minOccurs="0"/>
 </xs:sequence>
@@ -285,14 +277,6 @@
 <xs:element name="idpembeli" type="xs:string" minOccurs="0"/>
 <xs:element name="iduservalidate" type="xs:string" minOccurs="0"/>
 <xs:element name="token" type="xs:string" minOccurs="0"/>
-=======
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="sale">
-<xs:sequence>
-<xs:element name="idpembeli" type="xs:string" minOccurs="0"/>
->>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 </xs:sequence>
 </xs:complexType>
 
@@ -318,7 +302,6 @@
 <xs:element name="totalharga" type="xs:long"/>
 </xs:sequence>
 </xs:complexType>
-<<<<<<< HEAD
 
 <xs:complexType name="EditProduct">
 <xs:sequence>
@@ -334,6 +317,4 @@
 <xs:element name="return" type="tns:yourproduct" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
-=======
->>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 </xs:schema>

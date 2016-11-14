@@ -117,7 +117,7 @@ public class sessionManagement implements Filter {
         
         
         //Checking session and validate it
-        if (session.getAttribute("token") != null) {
+        if (session.getAttribute("token") != null && session.getAttribute("idUser") != null) {
             String token = (String) session.getAttribute("token");
             String idUser = Long.toString((long) session.getAttribute("idUser"));
             

@@ -4,4 +4,6 @@
     <system systemId="http://localhost:23132/MarketplacceService/MarketplaceService?xsd=1" uri="wsdl/localhost_23132/MarketplacceService/MarketplaceService.xsd_1.xsd"/>
     <system systemId="http://localhost:37177/MarketplacceService/MarketplaceService?wsdl" uri="wsdl/localhost_37177/MarketplacceService/MarketplaceService.wsdl"/>
     <system systemId="http://localhost:37177/MarketplacceService/MarketplaceService?xsd=1" uri="wsdl/localhost_37177/MarketplacceService/MarketplaceService.xsd_1.xsd"/>
+    <system systemId="http://localhost:19399/MarketplacceService/MarketplaceService?wsdl" uri="wsdl/localhost_19399/MarketplacceService/MarketplaceService.wsdl"/>
+    <system systemId="http://localhost:19399/MarketplacceService/MarketplaceService?xsd=1" uri="wsdl/localhost_19399/MarketplacceService/MarketplaceService.xsd_1.xsd"/>
 </catalog>
