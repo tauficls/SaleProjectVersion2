@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link href="style/header.css" rel="stylesheet" type="text/css"/>
 <div class="heading">
-	<center><img src="img/logo.png" width= ="60" height="60"></center>
+	<center><img src="img/logo.png" height="60"></center>
 	<p id="user"> Hi, 
             <% 
                 if(session.getAttribute("username") != null) {

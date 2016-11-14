@@ -40,9 +40,9 @@
                 out.println("at" + result.get(i).getTime());
                 out.println("</div>");
                 out.println("<hr>");
-                out.println("<div class=\"mime_content_type(filename)t\">");                                
+                out.println("<div class=\"content\">");                                
                 out.println("<div class=\"image\">");                                        
-                out.println("<img src=\"" + result.get(i).getImagepath() + "\" />");                                                
+                out.println("<img src=\"img\\" + result.get(i).getImagepath() + "\" />");                                                
                 out.println("</div>");                                        
                 out.println("<div class=\"description\">");
                 out.println("<b>" + result.get(i).getNamabarang() + "</b><br>");                                        
@@ -53,7 +53,8 @@
                 out.println("</div>");                                        
                 out.println("<div class =\"interaction\">");
                 out.println("Delivery to <b>" + result.get(i).getNamapenerima() + "</b> <br>");      
-                //alamat belum                     
+                //alamat belum              
+                out.println(result.get(i).getAlamatpenerima());
                 out.println(result.get(i).getKodepos() + "<br>");
                 out.println(result.get(i).getNotelp() + "<br>");                    
                 out.println("</div>");

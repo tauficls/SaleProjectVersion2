@@ -43,7 +43,7 @@ public class access {
     
     public Boolean isAuthenticate () {
         Boolean authenticate = false;
-        String query = "select * from user where username = \"" + username + "\" and password = \"" + password + "\"";
+        String query = "select * from user where username = \"" + username + "\" or email = \"" + username + "\" and password = \"" + password + "\"";
         try{  
             ConnectDB connectdb = new ConnectDB();
             Connection con = connectdb.getConnection();
