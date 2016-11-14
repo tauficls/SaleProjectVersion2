@@ -1,35 +1,11 @@
-# Tugas 2 IF3110 Pengembangan Aplikasi Berbasis Web
-
-Melakukan *upgrade* Website Marketplace sederhana pada Tugas 1 dengan mengaplikasikan **arsitektur web service REST dan SOAP**.
+# Pop Web Service
+*A complicated one*
 
 **Luangkan waktu untuk membaca spek ini sampai selesai. Kerjakan hal yang perlu saja.**
 
-### Tujuan Pembuatan Tugas
-
-Diharapkan dengan tugas ini anda dapat mengerti:
-* Produce dan Consume REST API
-* Mengimplementasikan service Single Sign-On (SSO) sederhana
-* Produce dan Consume Web Services dengan protokol SOAP
-* Membuat web application dengan menggunakan JSP yang akan memanggil web services dengan SOAP dan REST.
-
-### Petunjuk Pengerjaan
 ## Anggota Tim
 
-Setiap kelompok beranggotakan **3 - 4 orang**. Daftar anggota kelompok terdapat pada link berikut: https://drive.google.com/open?id=1wpzU2VHZXvSVNR6TS4sxILVvHimQYhxQhorMr1nSelw
-
-## Petunjuk Pengerjaan
-
-1. Fork pada repository ini dengan organisasi yang telah dibuat pada Tugas Besar 1.
-2. Ubah hak akses repository hasil Fork anda menjadi **private**.
-3. [DELIVERABLE] Buat tugas sesuai spesifikasi dan silakan commit pada repository anda (hasil fork). Lakukan berberapa commit dengan pesan yang bermakna, contoh: `fix css`, `create post done`, jangan seperti `final`, `benerin dikit`. Disarankan untuk tidak melakukan commit dengan perubahan yang besar karena akan mempengaruhi penilaian (contoh: hanya melakukan satu commit kemudian dikumpulkan). Sebaiknya commit dilakukan setiap ada penambahan fitur. **Commit dari setiap anggota tim akan mempengaruhi penilaian individu.** Jadi, setiap anggota tim harus melakukan sejumlah commit yang berpengaruh terhadap proses pembuatan aplikasi.
-7. Hapus bagian yang tidak perlu dari *readme* ini.
-8. [DELIVERABLE] Berikan penjelasan mengenai hal di bawah ini pada bagian **Penjelasan** dari *readme* repository git Anda:
-    - Basis data dari sistem yang Anda buat.
-    - Konsep *shared session* dengan menggunakan REST.
-    - Pembangkitan token dan expire time pada sistem yang anda buat.
-    - Kelebihan dan kelemahan dari arsitektur aplikasi tugas ini, dibandingkan dengan aplikasi monolitik (login, CRUD DB, dll jadi dalam satu aplikasi)
-9. Pada *readme* terdapat penjelasan mengenai pembagian tugas masing-masing anggota (lihat formatnya pada bagian **pembagian tugas**).
-10. Merge request dari repository anda ke repository ini dengan format **Nama kelompok** - **NIM terkecil** - **Nama Lengkap dengan NIM terkecil** sebelum **Minggu, 13 November 2016 23.59**.
+Chalvin | Malvin | Taufic
 
 ### Arsitektur Umum Server
 ![Gambar Arsitektur Umum Server](http://gitlab.informatika.org/IF3110_WebBasedDevelopment_2016/TugasBesar2_JavaAndWebService/raw/3747ba2499396d04f742a589a024876964383159/arsitektur_umum.png)
@@ -95,38 +71,68 @@ Perhatikan pemanggilan pada contoh ini seperti melakukan remote procedure call.
 4. Untuk purchase product, like product, unlike product, edit product, delete product, get purchased products, get sold products kira-kira memiliki mekanisme yang sama dengan add product di atas.
 5. Silakan definisikan format object request dan response sesuai kebutuhan anda.
 
-#### Prosedur Demo
-Sebelum demo, asisten akan melakukan checkout ke hash commit terakhir yang dilakukan sebelum deadline. Hal ini digunakan untuk memastikan kode yang akan didemokan adalah kode yang terakhir disubmit sebelum deadline.
-
 #### Bonus
 Anda tidak dituntut untuk mengerjakan ini. Tetapi bila Anda cukup dewa (baca=tertantang) silakan selesaikan permasalahan berikut:
 - Mekanisme *auto-renew* access token yang tepat sehingga user tidak ter-logout secara paksa saat melakukan serangkaian aktivitas pada sistem dalam waktu yang cukup lama. Access token dapat di generate kembali ketika lifetime dari token tersebut habis. Cara implementasi dibebaskan.
 
 Fokus terlebih dahulu menyelesaikan semua spesifikasi yang ada sebelum memikirkan bonus.
 
-### Penjelasan
-Berikan penjelasan mengenai konsep diatas.
+## Penjelasan
+### Basis Data
 
-### Pembagian Tugas
-"Gaji buta dilarang dalam tugas ini. Bila tak mengerti, luangkan waktu belajar lebih banyak. Bila belum juga mengerti, belajarlah bersama-sama kelompokmu. Bila Anda sekelompok bingung, bertanyalah (bukan menyontek) ke teman seangkatanmu. Bila seangkatan bingung, bertanyalah pada asisten manapun."
+![](/db.PNG)
 
-*Harap semua anggota kelompok mengerjakan SOAP dan REST API kedua-duanya*. Tuliskan pembagian tugas seperti berikut ini.
+### Shared Session dengan REST
+Konsep dari shared session adalah sebagai developer web app, kita tidak lagi perlu memikirkan masalah session karena semua proses credential sudah diurus oleh domain SSO(single sign on). WebApp hanya menyimpan token yang nantinya digunakan untuk validasi keabsahan credential. 
+Selain tidak direpotkan lagi oleh masalah login, webapp juga menjadi lebih aman karena webapp tidak lagi menyimpan data crucial. 
+
+### Token dan expire_time
+Pada tugas ini kami menambah 2 kolom pada database user yaitu kolom token dan kolom expire_date atau expire timenya. 
+Ketika seorang user melakukan login halaman login atau register pada halaman register, idendity service akan me-generate token user dan expire_time tyang kemudian akan di-update pada **database user**. 
+Token akan expire setelah 10 menit.
+
+### Kelebihan dan Kekurangan
+#### Kelebihan
+1. Lebih aman karena permintaan di-request dari server berbeda
+2. Lebih mudah untuk dikembangkan karena tingaal memanggil servicenya
+3. Pengaturan session dan cookies lebih mudah
+
+#### Kekurangan
+1. Web service lebih susah dikembangkan
+2. Membutuhkan request ke berbagai server sehingga **response time** dari sebuah request lebih lama
+
+## Pembagian Tugas
 
 REST :
-1. Generate token : 135130XX
-2. Validasi token : 135130XX
-3. Fungsionaltiax X : 135130XX
-4. ...
+1. Generate token : 13513044
+2. Validasi token : 13514044, 13514032
+3. Login : 13513044
+4. Register : 13514075
+5. Confirm Purchase Information : 13514044
 
 SOAP :
-1. Add Produce : 135130xx
-2. Fungsionalitas Y : 135130xx
-3. ...
+1. Add Product : 13513032
+2. View Katalog : 13513075
+3. Search Katalog : 13514075
+4. Edit Product : 13514032
+5. Like/Dislike : 13514044
+6. Delete Product : 13514044
+7. Get your Product : 13514075
+7. Get Purchase : 13514075
+8. Get Sales : 13514075
+9. Purchase product : 13514032
+10. Request Validate Token : 13514032
 
 Web app (JSP) :
-1. Halaman Login : 
-2. Halaman X :
-3. ...
+1. Halaman Login : 13514044
+2. Halaman Register : 13514044
+3. Halaman ViewKatalog : 13514032
+4. Halaman EditProduct : 13514032
+5. Halaman AddProduct : 13514032
+6. Halaman YourProduct : 13514044
+7. Halaman YourPurchases : 13514075
+8. Halaman YourSales : 13514075
+9. Halaman Header : 13514075
 
 ## About
 
