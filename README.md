@@ -107,19 +107,19 @@ REST :
 1. Generate token : 13513044
 2. Validasi token : 13514044, 13514032
 3. Login : 13513044
-4. Register : 13514075
+4. Register : 13514022
 5. Confirm Purchase Information : 13514044
 
 SOAP :
 1. Add Product : 13513032
-2. View Katalog : 13513075
-3. Search Katalog : 13514075
+2. View Katalog : 13513022
+3. Search Katalog : 13514022
 4. Edit Product : 13514032
 5. Like/Dislike : 13514044
 6. Delete Product : 13514044
-7. Get your Product : 13514075
-7. Get Purchase : 13514075
-8. Get Sales : 13514075
+7. Get your Product : 13514022
+7. Get Purchase : 13514022
+8. Get Sales : 13514022
 9. Purchase product : 13514032
 10. Request Validate Token : 13514032
 
@@ -130,9 +130,9 @@ Web app (JSP) :
 4. Halaman EditProduct : 13514032
 5. Halaman AddProduct : 13514032
 6. Halaman YourProduct : 13514044
-7. Halaman YourPurchases : 13514075
-8. Halaman YourSales : 13514075
-9. Halaman Header : 13514075
+7. Halaman YourPurchases : 13514022
+8. Halaman YourSales : 13514022
+9. Halaman Header : 13514022
 
 ## About
 
