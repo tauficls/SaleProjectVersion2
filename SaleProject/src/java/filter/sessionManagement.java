@@ -114,7 +114,7 @@ public class sessionManagement implements Filter {
         
         JSONObject result_data;
         String page = sRequest.getServletPath();
-        
+        System.out.println(page);
         
         //Checking session and validate it
         if (session.getAttribute("token") != null && session.getAttribute("idUser") != null) {
@@ -154,6 +154,14 @@ public class sessionManagement implements Filter {
                 return;
             }
         }
+        else {
+            if ("/index.jsp".equals(page) == false && "/style/style.css".equals(page)==false && "/img/logo.png".equals(page) == false && "/login".equals(page)==false) {
+                System.out.println("Page : " + page);
+                sResponse.sendRedirect("/saleProject/index.jsp");
+                return;
+            }
+        }
+        
         chain.doFilter(request, response);
     }
 

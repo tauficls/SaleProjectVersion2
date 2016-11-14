@@ -10,7 +10,8 @@
 	</head>
 
 	<body>
-		<div id="wrapper">           
+		<div id="wrapper">
+                        <% session.setAttribute("currentpage", "addproduct");%>
 			<jsp:include page="header.jsp" />
 			<h1> Please add your product here</h1>
 				<hr />

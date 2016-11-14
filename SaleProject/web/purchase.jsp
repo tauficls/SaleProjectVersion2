@@ -40,6 +40,7 @@
                             out.println("<b> " + result.get(i).getDate() + "</b> <br>");
                             out.println("at" + result.get(i).getTime());
                             out.println("</div>");
+                            out.println("</div>");
                             out.println("<hr>");
                             out.println("<div class=\"content\">");                                
                             out.println("<div class=\"image\">");                                        
@@ -54,7 +55,7 @@
                             out.println("</div>");                                        
                             out.println("<div class =\"interaction\">");
                             out.println("Delivery to <b>" + result.get(i).getNamapenerima() + "</b> <br>");      
-                            //alamat belum                     
+                            out.println(result.get(i).getAlamatpenerima());                 
                             out.println(result.get(i).getKodepos() + "<br>");
                             out.println(result.get(i).getNotelp() + "<br>");                    
                             out.println("</div>");

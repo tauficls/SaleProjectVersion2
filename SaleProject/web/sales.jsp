@@ -27,12 +27,12 @@
 	 // TODO initialize WS operation arguments here
 	String idUser = session.getAttribute("idUser").toString();
 	// TODO process result here
-        
+        //out.println(idUser);
         java.lang.String idUserValidate = session.getAttribute("idUser").toString();
         java.lang.String token = session.getAttribute("token").toString();
 
 	java.util.List<marketplaceservice.Sales> result = port.sale(idUser,idUserValidate, token);
-        
+        //out.println(result.size());
         if (result.size() > 0) {
         for (int i = 0; i < result.size(); i++) {
                 out.println("<div>");
