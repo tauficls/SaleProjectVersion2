@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import login.updateTable;
 import org.json.simple.JSONObject;
 
 /**
@@ -74,6 +75,8 @@ public class validateToken extends HttpServlet {
                 expDate = date_format.parse(dateTime);
                 if(now.before(expDate)) {
                     response_data.put("is_expire", "false");
+                    updateTable update = new updateTable();
+                    update.updateToken(Integer.parseInt(idUser), token);
                 }
                 else {
                     response_data.put("is_expire", "true");
