@@ -4,6 +4,7 @@
 <xsd:import namespace="http://MarketplaceService/" schemaLocation="http://localhost:37177/MarketplacceService/MarketplaceService?xsd=1"/>
 </xsd:schema>
 </types>
+<<<<<<< HEAD
 <message name="productmu">
 <part name="parameters" element="tns:productmu"/>
 </message>
@@ -18,12 +19,16 @@
 </message>
 <message name="saleResponse">
 <part name="parameters" element="tns:saleResponse"/>
+=======
+<message name="UpdateProduct">
+<part name="parameters" element="tns:UpdateProduct"/>
+>>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 </message>
-<message name="viewproduct">
-<part name="parameters" element="tns:viewproduct"/>
+<message name="confirmpurchase">
+<part name="parameters" element="tns:confirmpurchase"/>
 </message>
-<message name="viewproductResponse">
-<part name="parameters" element="tns:viewproductResponse"/>
+<message name="confirmpurchaseResponse">
+<part name="parameters" element="tns:confirmpurchaseResponse"/>
 </message>
 <message name="addLiked">
 <part name="parameters" element="tns:addLiked"/>
@@ -37,11 +42,23 @@
 <message name="addUnlikedResponse">
 <part name="parameters" element="tns:addUnlikedResponse"/>
 </message>
+<message name="deleteProduk">
+<part name="parameters" element="tns:deleteProduk"/>
+</message>
+<message name="deleteProdukResponse">
+<part name="parameters" element="tns:deleteProdukResponse"/>
+</message>
 <message name="AddProduct">
 <part name="parameters" element="tns:AddProduct"/>
 </message>
 <message name="AddProductResponse">
 <part name="parameters" element="tns:AddProductResponse"/>
+</message>
+<message name="viewproduct">
+<part name="parameters" element="tns:viewproduct"/>
+</message>
+<message name="viewproductResponse">
+<part name="parameters" element="tns:viewproductResponse"/>
 </message>
 <message name="beli">
 <part name="parameters" element="tns:beli"/>
@@ -49,6 +66,7 @@
 <message name="beliResponse">
 <part name="parameters" element="tns:beliResponse"/>
 </message>
+<<<<<<< HEAD
 <message name="confirmpurchase">
 <part name="parameters" element="tns:confirmpurchase"/>
 </message>
@@ -63,17 +81,22 @@
 </message>
 <message name="deleteProduk">
 <part name="parameters" element="tns:deleteProduk"/>
+=======
+<message name="productmu">
+<part name="parameters" element="tns:productmu"/>
+>>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 </message>
-<message name="deleteProdukResponse">
-<part name="parameters" element="tns:deleteProdukResponse"/>
+<message name="productmuResponse">
+<part name="parameters" element="tns:productmuResponse"/>
 </message>
-<message name="EditProduct">
-<part name="parameters" element="tns:EditProduct"/>
+<message name="sale">
+<part name="parameters" element="tns:sale"/>
 </message>
-<message name="EditProductResponse">
-<part name="parameters" element="tns:EditProductResponse"/>
+<message name="saleResponse">
+<part name="parameters" element="tns:saleResponse"/>
 </message>
 <portType name="MarketplaceService">
+<<<<<<< HEAD
 <operation name="productmu">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/productmuRequest" message="tns:productmu"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/productmuResponse" message="tns:productmuResponse"/>
@@ -88,6 +111,14 @@
 <input wsam:Action="http://MarketplaceService/MarketplaceService/viewproductRequest" message="tns:viewproduct"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/viewproductResponse" message="tns:viewproductResponse"/>
 <fault message="tns:InvalidTokenException" name="InvalidTokenException" wsam:Action="http://MarketplaceService/MarketplaceService/viewproduct/Fault/InvalidTokenException"/>
+=======
+<operation name="UpdateProduct">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/UpdateProduct" message="tns:UpdateProduct"/>
+</operation>
+<operation name="confirmpurchase">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/confirmpurchaseRequest" message="tns:confirmpurchase"/>
+<output wsam:Action="http://MarketplaceService/MarketplaceService/confirmpurchaseResponse" message="tns:confirmpurchaseResponse"/>
+>>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 </operation>
 <operation name="addLiked">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/addLikedRequest" message="tns:addLiked"/>
@@ -99,16 +130,25 @@
 <output wsam:Action="http://MarketplaceService/MarketplaceService/addUnlikedResponse" message="tns:addUnlikedResponse"/>
 <fault message="tns:InvalidTokenException" name="InvalidTokenException" wsam:Action="http://MarketplaceService/MarketplaceService/addUnliked/Fault/InvalidTokenException"/>
 </operation>
+<operation name="deleteProduk">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/deleteProdukRequest" message="tns:deleteProduk"/>
+<output wsam:Action="http://MarketplaceService/MarketplaceService/deleteProdukResponse" message="tns:deleteProdukResponse"/>
+</operation>
 <operation name="AddProduct">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/AddProductRequest" message="tns:AddProduct"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/AddProductResponse" message="tns:AddProductResponse"/>
 <fault message="tns:InvalidTokenException" name="InvalidTokenException" wsam:Action="http://MarketplaceService/MarketplaceService/AddProduct/Fault/InvalidTokenException"/>
+</operation>
+<operation name="viewproduct">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/viewproductRequest" message="tns:viewproduct"/>
+<output wsam:Action="http://MarketplaceService/MarketplaceService/viewproductResponse" message="tns:viewproductResponse"/>
 </operation>
 <operation name="beli">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/beliRequest" message="tns:beli"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/beliResponse" message="tns:beliResponse"/>
 <fault message="tns:InvalidTokenException" name="InvalidTokenException" wsam:Action="http://MarketplaceService/MarketplaceService/beli/Fault/InvalidTokenException"/>
 </operation>
+<<<<<<< HEAD
 <operation name="confirmpurchase">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/confirmpurchaseRequest" message="tns:confirmpurchase"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/confirmpurchaseResponse" message="tns:confirmpurchaseResponse"/>
@@ -127,10 +167,20 @@
 <input wsam:Action="http://MarketplaceService/MarketplaceService/EditProductRequest" message="tns:EditProduct"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/EditProductResponse" message="tns:EditProductResponse"/>
 <fault message="tns:InvalidTokenException" name="InvalidTokenException" wsam:Action="http://MarketplaceService/MarketplaceService/EditProduct/Fault/InvalidTokenException"/>
+=======
+<operation name="productmu">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/productmuRequest" message="tns:productmu"/>
+<output wsam:Action="http://MarketplaceService/MarketplaceService/productmuResponse" message="tns:productmuResponse"/>
+</operation>
+<operation name="sale">
+<input wsam:Action="http://MarketplaceService/MarketplaceService/saleRequest" message="tns:sale"/>
+<output wsam:Action="http://MarketplaceService/MarketplaceService/saleResponse" message="tns:saleResponse"/>
+>>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 </operation>
 </portType>
 <binding name="MarketplaceServicePortBinding" type="tns:MarketplaceService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<<<<<<< HEAD
 <operation name="productmu">
 <soap:operation soapAction=""/>
 <input>
@@ -144,18 +194,24 @@
 </fault>
 </operation>
 <operation name="sale">
+=======
+<operation name="UpdateProduct">
+>>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
 </input>
+<<<<<<< HEAD
 <output>
 <soap:body use="literal"/>
 </output>
 <fault name="InvalidTokenException">
 <soap:fault name="InvalidTokenException" use="literal"/>
 </fault>
+=======
+>>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
 </operation>
-<operation name="viewproduct">
+<operation name="confirmpurchase">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -191,51 +247,6 @@
 <soap:fault name="InvalidTokenException" use="literal"/>
 </fault>
 </operation>
-<operation name="AddProduct">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="InvalidTokenException">
-<soap:fault name="InvalidTokenException" use="literal"/>
-</fault>
-</operation>
-<operation name="beli">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="InvalidTokenException">
-<soap:fault name="InvalidTokenException" use="literal"/>
-</fault>
-</operation>
-<operation name="confirmpurchase">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="UpdateProduct">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="InvalidTokenException">
-<soap:fault name="InvalidTokenException" use="literal"/>
-</fault>
-</operation>
 <operation name="deleteProduk">
 <soap:operation soapAction=""/>
 <input>
@@ -248,7 +259,49 @@
 <soap:fault name="InvalidTokenException" use="literal"/>
 </fault>
 </operation>
-<operation name="EditProduct">
+<operation name="AddProduct">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="InvalidTokenException">
+<soap:fault name="InvalidTokenException" use="literal"/>
+</fault>
+</operation>
+<operation name="viewproduct">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="beli">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="productmu">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="InvalidTokenException">
+<soap:fault name="InvalidTokenException" use="literal"/>
+</fault>
+</operation>
+<operation name="sale">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
