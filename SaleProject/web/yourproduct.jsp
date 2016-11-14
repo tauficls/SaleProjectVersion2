@@ -25,8 +25,11 @@
                  // TODO initialize WS operation arguments here
                 
                 String idUser = session.getAttribute("idUser").toString();
+                            java.lang.String idUserValidate = session.getAttribute("idUser").toString();
+            java.lang.String token = session.getAttribute("token").toString();
+
                 // TODO process result here
-                java.util.List<marketplaceservice.Yourproduct> result = port.productmu(idUser);
+                java.util.List<marketplaceservice.Yourproduct> result = port.productmu(idUser,idUserValidate,token);
                 for (int i = 0; i < result.size(); i++) {
                     out.println("<div>");
                     out.println("<b> " + result.get(i).getDate() + " </b> <br>");
@@ -35,7 +38,7 @@
                     out.println("<hr>");
                     out.println("<div class =\"content\">");
                     out.println("<div class=\"image\">");
-                    out.println("<img src=\"img\"+ result.get(i).getImagepath() + "\" />");
+                    out.println("<img src=\"img\\"+ result.get(i).getImagepath() + "\" />");
                     out.println("</div>");
                     out.println("<div class=\"description\">");
                     out.println("<div class=\"head\"><b>"+ result.get(i).getNamabarang() +" </b><br></div>");

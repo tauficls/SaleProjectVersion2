@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.ws.WebServiceRef;
 import marketplaceservice.InvalidTokenException;
 import marketplaceservice.MarketplacceService;
@@ -70,12 +71,15 @@ public class UpdateProduct extends HttpServlet {
             int harga_barang = Integer.parseInt(request.getParameter("HargaBarang"));
             String deskripsi = request.getParameter("Deskripsi");
             int idKatalog = Integer.parseInt(request.getParameter("idKatalog"));
+            
+            HttpSession session = request.getSession();
+            java.lang.String idUserValidate = session.getAttribute("idUser").toString();
+            java.lang.String token = session.getAttribute("token").toString();
             try{
-                updateProduct(nama_barang, harga_barang,deskripsi, idKatalog);
+                updateProduct(nama_barang, harga_barang,deskripsi, idKatalog, idUserValidate, token);
+                response.sendRedirect("/viewKatalog.jsp");
             } catch(Exception e){
-                String nextJSP = "/index.jsp";
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-                dispatcher.forward(request,response);
+               response.sendRedirect("/logout");
             }
     }
 
@@ -89,16 +93,15 @@ public class UpdateProduct extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void updateProduct(java.lang.String namaBarang, int hargaBarang, java.lang.String deskripsi, int idKatalog)
+    private void updateProduct(String namaBarang, int hargaBarang, String deskripsi, int idKatalog, String idUserValidate, String token)
     throws Exception {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         marketplaceservice.MarketplaceService port = service.getMarketplaceServicePort();
         try{
-            port.updateProduct(namaBarang, hargaBarang, deskripsi, idKatalog);
+            port.updateProduct(namaBarang, hargaBarang, deskripsi, idKatalog, idUserValidate, token);
         }
         catch(Exception e){
-            System.out.println("HAHAHAHAHAHAHHAHAHAHAHIHIHIHIHIHIHIHIHIHI");
             if(e.getMessage().equals("Invalid Token")){
                 throw e;
             }

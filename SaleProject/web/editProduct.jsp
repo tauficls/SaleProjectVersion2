@@ -28,7 +28,10 @@
             idKatalog = Integer.parseInt(request.getParameter("idKatalog"));
             System.out.println(idUser + " " +idKatalog);
             // TODO process hasil here
-            hasil = port.editProduct(idUser, idKatalog);
+            java.lang.String idUserValidate = session.getAttribute("idUser").toString();
+            java.lang.String token = session.getAttribute("token").toString();
+                
+            hasil = port.editProduct(idUser, idKatalog, idUserValidate, token);
             
         } catch (Exception ex) {
             // TODO handle custom exceptions here

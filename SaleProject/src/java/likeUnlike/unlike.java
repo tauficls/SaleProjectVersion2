@@ -7,11 +7,13 @@ package likeUnlike;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.ws.WebServiceRef;
 import marketplaceservice.MarketplacceService;
 
@@ -36,7 +38,18 @@ public class unlike extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String status = addUnliked(request.getParameter("idKatalog").toString(), request.getParameter("idUser").toString());
+        String status = "";
+        HttpSession session = request.getSession();
+        java.lang.String idUserValidate = session.getAttribute("idUser").toString();
+        java.lang.String token = session.getAttribute("token").toString();
+        try{
+            status = addUnliked(request.getParameter("idKatalog"), request.getParameter("idUser"), idUserValidate, token);
+        } catch(Exception e){
+            String nextJSP = "/logout";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+            dispatcher.forward(request,response);
+        }
+        
         
         if("ok".equals(status)){
             response.sendRedirect("/saleProject/viewKatalog.jsp");
@@ -82,11 +95,19 @@ public class unlike extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private String addUnliked(java.lang.String idKatalog, java.lang.String idUser) {
+    private String addUnliked(String idKatalog, String idUser, String idUserValidate, String token) throws Exception {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         marketplaceservice.MarketplaceService port = service.getMarketplaceServicePort();
-        return port.addUnliked(idKatalog, idUser);
+        try{
+            return port.addUnliked(idKatalog, idUser, idUserValidate, token);
+        }
+        catch(Exception e){
+            if(e.getMessage().equals("Invalid Token")){
+                throw e;
+            }
+        }
+        return "";
     }
 
 }

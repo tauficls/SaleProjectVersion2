@@ -10,6 +10,9 @@
 <message name="productmuResponse">
 <part name="parameters" element="tns:productmuResponse"/>
 </message>
+<message name="InvalidTokenException">
+<part name="fault" element="tns:InvalidTokenException"/>
+</message>
 <message name="sale">
 <part name="parameters" element="tns:sale"/>
 </message>
@@ -58,9 +61,6 @@
 <message name="UpdateProductResponse">
 <part name="parameters" element="tns:UpdateProductResponse"/>
 </message>
-<message name="InvalidTokenException">
-<part name="fault" element="tns:InvalidTokenException"/>
-</message>
 <message name="deleteProduk">
 <part name="parameters" element="tns:deleteProduk"/>
 </message>
@@ -77,30 +77,37 @@
 <operation name="productmu">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/productmuRequest" message="tns:productmu"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/productmuResponse" message="tns:productmuResponse"/>
+<fault message="tns:InvalidTokenException" name="InvalidTokenException" wsam:Action="http://MarketplaceService/MarketplaceService/productmu/Fault/InvalidTokenException"/>
 </operation>
 <operation name="sale">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/saleRequest" message="tns:sale"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/saleResponse" message="tns:saleResponse"/>
+<fault message="tns:InvalidTokenException" name="InvalidTokenException" wsam:Action="http://MarketplaceService/MarketplaceService/sale/Fault/InvalidTokenException"/>
 </operation>
 <operation name="viewproduct">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/viewproductRequest" message="tns:viewproduct"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/viewproductResponse" message="tns:viewproductResponse"/>
+<fault message="tns:InvalidTokenException" name="InvalidTokenException" wsam:Action="http://MarketplaceService/MarketplaceService/viewproduct/Fault/InvalidTokenException"/>
 </operation>
 <operation name="addLiked">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/addLikedRequest" message="tns:addLiked"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/addLikedResponse" message="tns:addLikedResponse"/>
+<fault message="tns:InvalidTokenException" name="InvalidTokenException" wsam:Action="http://MarketplaceService/MarketplaceService/addLiked/Fault/InvalidTokenException"/>
 </operation>
 <operation name="addUnliked">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/addUnlikedRequest" message="tns:addUnliked"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/addUnlikedResponse" message="tns:addUnlikedResponse"/>
+<fault message="tns:InvalidTokenException" name="InvalidTokenException" wsam:Action="http://MarketplaceService/MarketplaceService/addUnliked/Fault/InvalidTokenException"/>
 </operation>
 <operation name="AddProduct">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/AddProductRequest" message="tns:AddProduct"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/AddProductResponse" message="tns:AddProductResponse"/>
+<fault message="tns:InvalidTokenException" name="InvalidTokenException" wsam:Action="http://MarketplaceService/MarketplaceService/AddProduct/Fault/InvalidTokenException"/>
 </operation>
 <operation name="beli">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/beliRequest" message="tns:beli"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/beliResponse" message="tns:beliResponse"/>
+<fault message="tns:InvalidTokenException" name="InvalidTokenException" wsam:Action="http://MarketplaceService/MarketplaceService/beli/Fault/InvalidTokenException"/>
 </operation>
 <operation name="confirmpurchase">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/confirmpurchaseRequest" message="tns:confirmpurchase"/>
@@ -114,10 +121,12 @@
 <operation name="deleteProduk">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/deleteProdukRequest" message="tns:deleteProduk"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/deleteProdukResponse" message="tns:deleteProdukResponse"/>
+<fault message="tns:InvalidTokenException" name="InvalidTokenException" wsam:Action="http://MarketplaceService/MarketplaceService/deleteProduk/Fault/InvalidTokenException"/>
 </operation>
 <operation name="EditProduct">
 <input wsam:Action="http://MarketplaceService/MarketplaceService/EditProductRequest" message="tns:EditProduct"/>
 <output wsam:Action="http://MarketplaceService/MarketplaceService/EditProductResponse" message="tns:EditProductResponse"/>
+<fault message="tns:InvalidTokenException" name="InvalidTokenException" wsam:Action="http://MarketplaceService/MarketplaceService/EditProduct/Fault/InvalidTokenException"/>
 </operation>
 </portType>
 <binding name="MarketplaceServicePortBinding" type="tns:MarketplaceService">
@@ -130,6 +139,9 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="InvalidTokenException">
+<soap:fault name="InvalidTokenException" use="literal"/>
+</fault>
 </operation>
 <operation name="sale">
 <soap:operation soapAction=""/>
@@ -139,6 +151,9 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="InvalidTokenException">
+<soap:fault name="InvalidTokenException" use="literal"/>
+</fault>
 </operation>
 <operation name="viewproduct">
 <soap:operation soapAction=""/>
@@ -148,6 +163,9 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="InvalidTokenException">
+<soap:fault name="InvalidTokenException" use="literal"/>
+</fault>
 </operation>
 <operation name="addLiked">
 <soap:operation soapAction=""/>
@@ -157,6 +175,9 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="InvalidTokenException">
+<soap:fault name="InvalidTokenException" use="literal"/>
+</fault>
 </operation>
 <operation name="addUnliked">
 <soap:operation soapAction=""/>
@@ -166,6 +187,9 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="InvalidTokenException">
+<soap:fault name="InvalidTokenException" use="literal"/>
+</fault>
 </operation>
 <operation name="AddProduct">
 <soap:operation soapAction=""/>
@@ -175,6 +199,9 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="InvalidTokenException">
+<soap:fault name="InvalidTokenException" use="literal"/>
+</fault>
 </operation>
 <operation name="beli">
 <soap:operation soapAction=""/>
@@ -184,6 +211,9 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="InvalidTokenException">
+<soap:fault name="InvalidTokenException" use="literal"/>
+</fault>
 </operation>
 <operation name="confirmpurchase">
 <soap:operation soapAction=""/>
@@ -214,6 +244,9 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="InvalidTokenException">
+<soap:fault name="InvalidTokenException" use="literal"/>
+</fault>
 </operation>
 <operation name="EditProduct">
 <soap:operation soapAction=""/>
@@ -223,6 +256,9 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="InvalidTokenException">
+<soap:fault name="InvalidTokenException" use="literal"/>
+</fault>
 </operation>
 </binding>
 <service name="MarketplacceService">

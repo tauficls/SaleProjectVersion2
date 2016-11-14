@@ -23,6 +23,8 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.ejb.Stateless;
 import javax.jws.Oneway;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -41,7 +43,15 @@ public class MarketplaceService {
             @WebParam(name = "password") String password,
             @WebParam(name = "search") String search,
             @WebParam(name = "filter") String filter,
-            @WebParam(name = "idPengguna") String idUser) {
+            @WebParam(name = "idUser") String idUser,
+            @WebParam(name = "iduservalidate") String idUserVal,
+            @WebParam(name = "token") String token
+    ) throws InvalidTokenException {
+        try{
+            checktoken(idUserVal,token);
+        } catch(InvalidTokenException e){
+            throw e;
+        }
         /*query*/
         String query;
         String query2 = "SELECT * FROM `like` where idUser=\"" + idUser + "\"";
@@ -128,9 +138,16 @@ public class MarketplaceService {
      */
     @WebMethod(operationName = "productmu")
     public ArrayList<yourproduct> yourProduct(
-        @WebParam(name = "iduser") String iduser) {
-        
-        String query = "select * from katalog WHERE idUser = " + iduser;
+        @WebParam(name = "iduser") String idUser,
+        @WebParam(name = "iduservalidate") String idUserVal,
+        @WebParam(name = "token") String token) throws InvalidTokenException 
+    {
+        try{
+            checktoken(idUserVal,token);
+        } catch(InvalidTokenException e){
+            throw e;
+        }
+        String query = "select * from katalog WHERE idUser = " + idUser;
         
         ArrayList<yourproduct> view = new ArrayList<>();
         
@@ -184,8 +201,15 @@ public class MarketplaceService {
      */
     @WebMethod(operationName = "sale")
     public ArrayList<sales> Sales(
-            @WebParam(name = "idpembeli") String iduser) {
+            @WebParam(name = "idpembeli") String iduser,
+            @WebParam(name = "iduservalidate") String idUserVal,
+            @WebParam(name = "token") String token) throws InvalidTokenException {
         //TODO write your implementation code here:
+        try{
+            checktoken(idUserVal,token);
+        } catch(InvalidTokenException e){
+            throw e;
+        }
         String query = "select * from purchase where purchase.idPenjual =" + iduser;
         
         ArrayList<sales> view = new ArrayList<>();
@@ -255,8 +279,16 @@ public class MarketplaceService {
      */
     @WebMethod(operationName = "beli")
     public ArrayList<buy> Buy(
-        @WebParam(name = "idpenjual") String iduser) {
+        @WebParam(name = "idpenjual") String iduser,
+        @WebParam(name = "iduservalidate") String idUserVal,
+        @WebParam(name = "token") String token
+        ) throws InvalidTokenException {
         //TODO write your implementation code here:
+        try{
+            checktoken(idUserVal,token);
+        } catch(InvalidTokenException e){
+            throw e;
+        }
         String query = "SELECT * FROM purchase where purchase.idUser=" +iduser;
         
         ArrayList<buy> view = new ArrayList<>();
@@ -325,7 +357,16 @@ public class MarketplaceService {
      * Web service operation
      */
     @WebMethod(operationName = "addLiked")
-    public String addLike(@WebParam(name = "idKatalog") String idKatalog, @WebParam(name = "idUser") String idUser) {
+    public String addLike(
+            @WebParam(name = "idKatalog") String idKatalog, 
+            @WebParam(name = "idUser") String idUser,
+            @WebParam(name = "iduservalidate") String idUserVal,
+            @WebParam(name = "token") String token) throws InvalidTokenException {
+        try{
+            checktoken(idUserVal,token);
+        } catch(InvalidTokenException e){
+            throw e;
+        }
         ConnectDB connectdb = new ConnectDB();
         Connection con = connectdb.getConnection();
         PreparedStatement statement;
@@ -348,7 +389,16 @@ public class MarketplaceService {
      * Web service operation
      */
     @WebMethod(operationName = "addUnliked")
-    public String addUnlike(@WebParam(name = "idKatalog") String idKatalog, @WebParam(name = "idUser") String idUser) {
+    public String addUnlike(
+            @WebParam(name = "idKatalog") String idKatalog, 
+            @WebParam(name = "idUser") String idUser,
+            @WebParam(name = "iduservalidate") String idUserVal,
+            @WebParam(name = "token") String token) throws InvalidTokenException {
+        try{
+            checktoken(idUserVal,token);
+        } catch(InvalidTokenException e){
+            throw e;
+        }
         ConnectDB connectdb = new ConnectDB();
         Connection con = connectdb.getConnection();
         PreparedStatement statement;
@@ -373,7 +423,9 @@ public class MarketplaceService {
     @WebMethod(operationName = "confirmpurchase")
     public ArrayList<confirm> confirmpurchase(
             @WebParam(name = "idKatalog") String idKatalog,
-            @WebParam(name = "iduser") String iduser) {
+            @WebParam(name = "iduser") String iduser,
+            @WebParam(name = "iduservalidate") String idUserVal,
+            @WebParam(name = "token") String token) {
         /*
         try {
             String query, query1, query2;
@@ -432,12 +484,15 @@ public class MarketplaceService {
             @WebParam(name = "nama_barang")  String nama_barang,
             @WebParam(name = "harga_barang") int harga_barang,
             @WebParam(name = "deskripsi")    String deskripsi,
-            @WebParam(name = "id_katalog")   int id_katalog) 
+            @WebParam(name = "id_katalog")   int id_katalog,
+            @WebParam(name = "iduservalidate") String idUserVal,
+            @WebParam(name = "token") String token) 
     throws InvalidTokenException
     {
-        if(1 == 1 ){
-            Throwable t = new IllegalArgumentException("Empty name");
-            throw new InvalidTokenException("Invalid Token", t);
+        try{
+            checktoken(idUserVal,token);
+        } catch(InvalidTokenException e){
+            throw e;
         }
         String query ="UPDATE katalog "
                 + "SET nama_Barang = '"+nama_barang+"', harga_barang = '"+harga_barang+"', deskripsi='"+deskripsi+ "' WHERE idKatalog='"+id_katalog+"';  ";
@@ -459,7 +514,16 @@ public class MarketplaceService {
      * Web service operation
      */
     @WebMethod(operationName = "deleteProduk")
-    public String deleteProduct(@WebParam(name = "idUser") String idUser, @WebParam(name = "idKatalog") String idKatalog) {
+    public String deleteProduct(
+            @WebParam(name = "idUser") String idUser, 
+            @WebParam(name = "idKatalog") String idKatalog,
+            @WebParam(name = "iduservalidate") String idUserVal,
+            @WebParam(name = "token") String token) throws InvalidTokenException {
+        try{
+            checktoken(idUserVal,token);
+        } catch(InvalidTokenException e){
+            throw e;
+        }
         ConnectDB connectdb = new ConnectDB();
         Connection con = connectdb.getConnection();
         PreparedStatement statement;
@@ -493,9 +557,15 @@ public class MarketplaceService {
             @WebParam(name = "harga_barang") int harga_barang,
             @WebParam(name = "deskripsi")    String deskripsi,
             @WebParam(name = "id_user")      int id_user,
-            @WebParam(name = "image")       String image) 
+            @WebParam(name = "image")       String image,
+            @WebParam(name = "iduservalidate") String idUserVal,
+            @WebParam(name = "token") String token) throws InvalidTokenException 
             {
-            
+            try{
+                checktoken(idUserVal,token);
+            } catch(InvalidTokenException e){
+                throw e;
+            }
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
             DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 	    java.util.Date  date = new java.util.Date();
@@ -521,7 +591,16 @@ public class MarketplaceService {
      * Web service operation
      */
     @WebMethod(operationName = "EditProduct")
-    public yourproduct EditProduct(@WebParam(name = "idUser") final int idUser, @WebParam(name = "idKatalog") final int idKatalog) {
+    public yourproduct EditProduct(
+            @WebParam(name = "idUser") final int idUser, 
+            @WebParam(name = "idKatalog") final int idKatalog,
+            @WebParam(name = "iduservalidate") String idUserVal,
+            @WebParam(name = "token") String token) throws InvalidTokenException {
+        try{
+            checktoken(idUserVal,token);
+        } catch(InvalidTokenException e){
+            throw e;
+        }
         
         String query = "select * from katalog WHERE idUser = " + idUser + " AND idKatalog = " + idKatalog + ";";
         System.out.println(query);
@@ -556,6 +635,35 @@ public class MarketplaceService {
         
         
         return view;
+    }
+    
+    void checktoken(String idUser, String token)
+    throws InvalidTokenException
+    {
+        JSONObject result_data;
+        loginConnector filter = new loginConnector("validateToken");
+        try {
+            filter.validateToken(token, idUser);
+        } catch (Exception ex) {
+
+        }
+        result_data = filter.getData();
+
+            //Parse data from JSON
+        String str_token = (String) result_data.get("is_token");
+        String str_expire = (String) result_data.get("is_expire");
+            
+        //Validate token and Expire time
+        if ("true".equals(str_token)) {
+            if ("true".equals(str_expire)) {
+                Throwable t = new IllegalArgumentException("token");
+                throw new InvalidTokenException("Expired Token", t);
+            }
+        }
+        else {
+            Throwable t = new IllegalArgumentException("Empty name");
+            throw new InvalidTokenException("Invalid Token", t);
+        }
     }
     
 
