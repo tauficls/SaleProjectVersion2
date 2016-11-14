@@ -80,7 +80,7 @@ Fokus terlebih dahulu menyelesaikan semua spesifikasi yang ada sebelum memikirka
 ## Penjelasan
 ### Basis Data
 
-![](/db.PNG)
+![](/db.png)
 
 ### Shared Session dengan REST
 Konsep dari shared session adalah sebagai developer web app, kita tidak lagi perlu memikirkan masalah session karena semua proses credential sudah diurus oleh domain SSO(single sign on). WebApp hanya menyimpan token yang nantinya digunakan untuk validasi keabsahan credential. 
