@@ -6,6 +6,7 @@
 package register;
 
 import ConnectDB.ConnectDB;
+import ConnectDB.ConnectDB1;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -65,6 +66,13 @@ public class addUser {
                 idUser = rs.getInt("idUser");
             }
             
+            ConnectDB1 connectdb1 = new ConnectDB1();
+            Connection con1 = connectdb1.getConnection();
+            PreparedStatement statement1 = con1.prepareStatement("INSERT INTO user (idUser, namaLengkap, username) VALUES (?, ?, ?)");
+            statement1.setString(1, Integer.toString(idUser));
+            statement1.setString(2, full);
+            statement1.setString(3, email);
+            statement1.executeUpdate();
             con.close();
         }
         catch(SQLException e){ 

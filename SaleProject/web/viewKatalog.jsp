@@ -89,7 +89,7 @@
                     else {
                         out.println("<a class=\"one\" href=\"like?idKatalog=" + result.get(i).getIdKatalog() +"&idUser=" + session.getAttribute("idUser").toString() + "\">LIKE</a>");
                     }
-                    out.println("<a class=\"five\" href=\"confirmpurchase.jsp?idKatalog=" + result.get(i).getIdKatalog() + "\">Buy</a>");
+                    out.println("<a class=\"five\" href=\"confirmpurchase.jsp?idKatalog=" + result.get(i).getIdKatalog() + "\">BUY</a>");
                     out.println("</div>");
                     out.println("<div style = \"clear:both\"></div>");
                     out.println("<hr>");

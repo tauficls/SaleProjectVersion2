@@ -9,19 +9,21 @@
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="IdentityService.loginConnector"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<%
+    
+    <%
     JSONObject receive = new JSONObject();
     marketplaceservice.Confirm result = new marketplaceservice.Confirm();
     try {
-    marketplaceservice.MarketplacceService service = new marketplaceservice.MarketplacceService();
-    marketplaceservice.MarketplaceService port = service.getMarketplaceServicePort();
-     // TODO initialize WS operation arguments here
-    java.lang.String idUser = session.getAttribute("idUser").toString();
-    java.lang.String idKatalog = request.getParameter("idKatalog");
-    // TODO process result here
-    result = port.preProcessConfirmPurchase(idUser, idKatalog);
-    
+	marketplaceservice.MarketplacceService service = new marketplaceservice.MarketplacceService();
+	marketplaceservice.MarketplaceService port = service.getMarketplaceServicePort();
+        
+        java.lang.String idUser = session.getAttribute("idUser").toString();
+        java.lang.String idKatalog = request.getParameter("idKatalog");
+         
+	// TODO process result here
+	result = port.preProcessConfirm(idUser, idKatalog);
+	out.println("Result = "+result);
+        
         loginConnector loginRequest = new loginConnector("confirmPurchase");
         receive = new JSONObject();
         
@@ -33,9 +35,10 @@
         }
         
     } catch (Exception ex) {
-    // TODO handle custom exceptions here
+	// TODO handle custom exceptions here
     }
-%>
+    %>
+    
 <!DOCTYPE html>
 <html>    
     <head>

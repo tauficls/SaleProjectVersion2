@@ -20,9 +20,7 @@ import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.ejb.Stateless;
-import javax.jws.Oneway;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -73,10 +71,10 @@ public class MarketplaceService {
         try {
             stmt2 = con2.createStatement();
             ResultSet rs = stmt2.executeQuery(query2);
-            System.out.println("pisang" + query2);
+            //System.out.println("pisang" + query2);
             while (rs.next()) {
                 itemLiked.add(rs.getLong("idKatalog"));
-                System.out.println(rs.getLong("idKatalog"));
+                //System.out.println(rs.getLong("idKatalog"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
@@ -363,16 +361,13 @@ public class MarketplaceService {
         try{
             checktoken(idUserVal,token);
         } catch(InvalidTokenException e){
-            System.out.println("saaaaaaaaaaaaaafsafsafffffffffffffff");
-            System.out.println("saaaaaaaaaaaaaafsafsafffffffffffffff");
-            System.out.println("saaaaaaaaaaaaaafsafsafffffffffffffff");
             throw e;
         }
 
-            System.out.println("saaaaaaaaaaaaaafsafsaffffffffffbababaabaiif");
         ConnectDB connectdb = new ConnectDB();
         Connection con = connectdb.getConnection();
         PreparedStatement statement;
+        PreparedStatement statement2;
         String status = "error";
         try {
             statement = con.prepareStatement("INSERT INTO `like` values(?,?)");
@@ -383,7 +378,16 @@ public class MarketplaceService {
         } catch (SQLException ex) {
             Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("pisang monyet" + status);
+        
+        try {
+            statement2 = con.prepareStatement("UPDATE katalog set jumlah_like = jumlah_like + 1 where idKatalog = ?");
+            statement2.setString(1, idKatalog);
+            statement2.executeUpdate();
+            status = "ok";
+        } catch (SQLException ex) {
+            Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         return status;
         
     }
@@ -405,6 +409,7 @@ public class MarketplaceService {
         ConnectDB connectdb = new ConnectDB();
         Connection con = connectdb.getConnection();
         PreparedStatement statement;
+        PreparedStatement statement2;
         String status = "error";
         try {
             statement = con.prepareStatement("DELETE FROM `like` where idKatalog = ? and idUser = ?");
@@ -412,6 +417,15 @@ public class MarketplaceService {
             statement.setString(2, idUser);
             statement.executeUpdate();
             
+            status = "ok";
+        } catch (SQLException ex) {
+            Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            statement2 = con.prepareStatement("UPDATE katalog set jumlah_like = jumlah_like -1 where idKatalog = ?");
+            statement2.setString(1, idKatalog);
+            statement2.executeUpdate();
             status = "ok";
         } catch (SQLException ex) {
             Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
@@ -438,10 +452,12 @@ public class MarketplaceService {
             @WebParam(name = "kodeValidasi") String kodeValidasi,
             @WebParam(name = "hargaBarang") String hargaBarang,
             @WebParam(name = "namaBarang") String namaBarang)  {
-            try {
+        ConnectDB connectdb = new ConnectDB();
+        Connection con = connectdb.getConnection();    
+        
+        try {
                 String query1 = "select harga_barang, idUser, image from katalog where idKatalog= \"" + idKatalog + "\"";
-                ConnectDB connectdb = new ConnectDB();
-                Connection con = connectdb.getConnection();
+                
                 Statement stmt;
                 stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(query1);
@@ -483,6 +499,16 @@ public class MarketplaceService {
                 } catch (SQLException ex) {
                 Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            PreparedStatement statement2;
+            try {
+                statement2 = con.prepareStatement("UPDATE katalog set jumlah_beli = jumlah_beli -1 where idKatalog = ?");
+                statement2.setString(1, idKatalog);
+                statement2.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             return null;
     }
 
@@ -709,10 +735,4 @@ public class MarketplaceService {
         confirm konfirmasi = new confirm(namaBarang, harga);
         return konfirmasi;
     }
-    
-
-    
-
-    
-
 }

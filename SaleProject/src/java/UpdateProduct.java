@@ -77,7 +77,7 @@ public class UpdateProduct extends HttpServlet {
             java.lang.String token = session.getAttribute("token").toString();
             try{
                 updateProduct(nama_barang, harga_barang,deskripsi, idKatalog, idUserValidate, token);
-                response.sendRedirect("/viewKatalog.jsp");
+                response.sendRedirect("/saleProject/viewKatalog.jsp");
             } catch(Exception e){
                response.sendRedirect("/logout");
             }

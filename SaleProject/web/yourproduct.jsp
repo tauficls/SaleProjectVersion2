@@ -25,8 +25,8 @@
                  // TODO initialize WS operation arguments here
                 
                 String idUser = session.getAttribute("idUser").toString();
-                            java.lang.String idUserValidate = session.getAttribute("idUser").toString();
-            java.lang.String token = session.getAttribute("token").toString();
+                java.lang.String idUserValidate = session.getAttribute("idUser").toString();
+                java.lang.String token = session.getAttribute("token").toString();
 
                 // TODO process result here
                 java.util.List<marketplaceservice.Yourproduct> result = port.productmu(idUser,idUserValidate,token);

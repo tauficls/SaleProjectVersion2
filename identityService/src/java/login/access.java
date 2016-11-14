@@ -66,8 +66,8 @@ public class access {
         Boolean authenticate = false;
         String query = "select * from user where username = \"" + username + "\"";
         try{  
-            Class.forName("com.mysql.jdbc.Driver");  
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/saleProject_user","root","malvin");  
+            ConnectDB connect = new ConnectDB();
+            Connection con = connect.getConnection();
             Statement stmt=con.createStatement();  
             ResultSet rs=stmt.executeQuery(query);  
             if(rs.next()) {

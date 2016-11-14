@@ -116,7 +116,7 @@ public class product {
         this.namabarang = namabarang;
         this.deskripsi = deskripsi;
         this.hargabarang = hargabarang;
-        this.jumlahbeli = jumlahlike;
+        this.jumlahlike = jumlahlike;
         this.jumlahbeli = jumlahbeli;
         this.date = date;
         this.time = time;

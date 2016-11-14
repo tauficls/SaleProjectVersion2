@@ -42,7 +42,6 @@ public class like extends HttpServlet {
         java.lang.String idUserValidate = session.getAttribute("idUser").toString();
         java.lang.String token = session.getAttribute("token").toString();
         
-            System.out.println("saaaaaaaaaaaaaafsafsafsdsds");
         try{
             status = addLiked(request.getParameter("idKatalog"), session.getAttribute("idUser").toString(), idUserValidate, token);
         } catch(Exception e){
