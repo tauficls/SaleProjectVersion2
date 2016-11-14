@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.ws.WebServiceRef;
+import marketplaceservice.InvalidTokenException_Exception;
 import marketplaceservice.MarketplacceService;
 
 /**
@@ -22,7 +23,7 @@ import marketplaceservice.MarketplacceService;
  */
 public class like extends HttpServlet {
 
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_23132/MarketplacceService/MarketplaceService.wsdl")
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_37177/MarketplacceService/MarketplaceService.wsdl")
     private MarketplacceService service;
 
     /**
@@ -40,13 +41,12 @@ public class like extends HttpServlet {
         HttpSession session = request.getSession();
         java.lang.String idUserValidate = session.getAttribute("idUser").toString();
         java.lang.String token = session.getAttribute("token").toString();
+        
+            System.out.println("saaaaaaaaaaaaaafsafsafsdsds");
         try{
             status = addLiked(request.getParameter("idKatalog"), session.getAttribute("idUser").toString(), idUserValidate, token);
         } catch(Exception e){
-            String nextJSP = "/logout";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-            dispatcher.forward(request,response);
-            System.out.println("ERROR : " + e.getMessage());
+             System.out.println("ERROR : " + e.getMessage());
         }
         
         if("ok".equals(status)){
@@ -93,20 +93,13 @@ public class like extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private String addLiked(String idKatalog, String idUser, String idUserValidate, String token) throws Exception {
+    private String addLiked(java.lang.String idKatalog, java.lang.String idUser, java.lang.String iduservalidate, java.lang.String token) throws InvalidTokenException_Exception {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         marketplaceservice.MarketplaceService port = service.getMarketplaceServicePort();
-        try{
-            return port.addLiked(idKatalog, idUser, idUserValidate, token);
-        }
-        catch(Exception e){
-            if(e.getMessage().equals("Invalid Token")){
-                throw e;
-            }
-        }
-        return "";
-        
+        return port.addLiked(idKatalog, idUser, iduservalidate, token);
     }
+
+    
 
 }

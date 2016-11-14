@@ -22,14 +22,14 @@
     // TODO process result here
     result = port.preProcessConfirmPurchase(idUser, idKatalog);
     
-        loginConnector loginRequest = new loginConnector("confirm");
+        loginConnector loginRequest = new loginConnector("confirmPurchase");
         receive = new JSONObject();
         
          try {
             loginRequest.confirmPurchaseData(session.getAttribute("idUser").toString());
             receive = loginRequest.getData();
         } catch (ParseException ex) {
-            
+            out.println(ex.getMessage());
         }
         
     } catch (Exception ex) {
@@ -54,7 +54,7 @@
             <h1>Please Confirm your Purchase</h1>
             <hr />
             <br>
-            <form action="ConfirmPurchase" method="POST" id="formConfirm" onsubmit="return clicked()">
+            <form action="confirmationPurchase" method="POST" id="formConfirm" onsubmit="return clicked()">
                 <div class="left">
                     Product &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <% out.print(result.getNamabarang()); %><br>
                     <div class="left">Price</div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;<% out.print(result.getHargabarang()); %><br>

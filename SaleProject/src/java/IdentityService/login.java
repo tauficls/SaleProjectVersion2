@@ -92,6 +92,10 @@ public class login extends HttpServlet {
                 session.setAttribute("token", token);  
                 session.setAttribute("idUser", idUser);  
                 session.setAttribute("username", username);
+                System.out.println("STATUS : " + status);
+                System.out.println("STATUS : " + token);
+                System.out.println("STATUS : " + idUser);
+                System.out.println("STATUS : " + username);
                 response.sendRedirect("/saleProject/viewKatalog.jsp");
             }
             else {

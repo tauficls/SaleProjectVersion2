@@ -22,17 +22,6 @@
                     <file>${file.reference.json-simple-1.1.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
-                <library dirs="200">
-                    <file>${file.reference.commons-io-2.5.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-<<<<<<< HEAD
-=======
-                <library dirs="200">
-                    <file>${file.reference.json-simple-1.1.jar-1}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
->>>>>>> 7808baf0c0d3fd56a0a13441c5241463e1b0c3ee
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>

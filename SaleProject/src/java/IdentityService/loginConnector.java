@@ -114,6 +114,19 @@ public class loginConnector {
         sendData();
     }
     
+    public void confirmPurchaseData (String idUser) throws IOException, ParseException {
+        String utf8 = java.nio.charset.StandardCharsets.UTF_8.name();
+        String query = "";
+
+        try {
+            query = String.format("idUser=%s", URLEncoder.encode(idUser, utf8));
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(loginConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        data = query.getBytes();
+        sendData();
+    }
+    
     public JSONObject getData() {
         return processData;
     }

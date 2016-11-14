@@ -2,8 +2,8 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://localhost:23132/MarketplacceService/MarketplaceService?wsdl" uri="src/conf/xml-resources/web-service-references/MarketplaceService/wsdl/localhost_23132/MarketplacceService/MarketplaceService.wsdl"/>
     <system systemId="http://localhost:23132/MarketplacceService/MarketplaceService?xsd=1" uri="src/conf/xml-resources/web-service-references/MarketplaceService/wsdl/localhost_23132/MarketplacceService/MarketplaceService.xsd_1.xsd"/>
-    <system systemId="http://localhost:37177/MarketplacceService/MarketplaceService?wsdl" uri="src/conf/xml-resources/web-service-references/MarketplaceService/wsdl/localhost_37177/MarketplacceService/MarketplaceService.wsdl"/>
-    <system systemId="http://localhost:37177/MarketplacceService/MarketplaceService?xsd=1" uri="src/conf/xml-resources/web-service-references/MarketplaceService/wsdl/localhost_37177/MarketplacceService/MarketplaceService.xsd_1.xsd"/>
     <system systemId="http://localhost:19399/MarketplacceService/MarketplaceService?wsdl" uri="src/conf/xml-resources/web-service-references/MarketplaceService/wsdl/localhost_19399/MarketplacceService/MarketplaceService.wsdl"/>
     <system systemId="http://localhost:19399/MarketplacceService/MarketplaceService?xsd=1" uri="src/conf/xml-resources/web-service-references/MarketplaceService/wsdl/localhost_19399/MarketplacceService/MarketplaceService.xsd_1.xsd"/>
+    <system systemId="http://localhost:37177/MarketplacceService/MarketplaceService?wsdl" uri="src/conf/xml-resources/web-service-references/MarketplaceService/wsdl/localhost_37177/MarketplacceService/MarketplaceService.wsdl"/>
+    <system systemId="http://localhost:37177/MarketplacceService/MarketplaceService?xsd=1" uri="src/conf/xml-resources/web-service-references/MarketplaceService/wsdl/localhost_37177/MarketplacceService/MarketplaceService.xsd_1.xsd"/>
 </catalog>

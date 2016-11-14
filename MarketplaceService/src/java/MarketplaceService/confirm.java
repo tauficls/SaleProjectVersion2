@@ -12,16 +12,10 @@ package MarketplaceService;
 public class confirm {
     private String namabarang;
     private String hargabarang;
-    private String namalengkap;
-    private String alamat;
-    private String kodepos;
     
-    public confirm(String namabarang, String hargabarang, String namalengkap, String alamat, String kodepos) {
+    public confirm(String namabarang, String hargabarang) {
         this.namabarang = namabarang;
         this.hargabarang = hargabarang;
-        this.namalengkap = namalengkap;
-        this.alamat = alamat;
-        this.kodepos = kodepos;
     }
 
     public String getNamabarang() {
@@ -39,32 +33,4 @@ public class confirm {
     public void setHargabarang(String hargabarang) {
         this.hargabarang = hargabarang;
     }
-
-    public String getNamalengkap() {
-        return namalengkap;
-    }
-
-    public void setNamalengkap(String namalengkap) {
-        this.namalengkap = namalengkap;
-    }
-
-    public String getAlamat() {
-        return alamat;
-    }
-
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
-    }
-
-    public String getKodepos() {
-        return kodepos;
-    }
-
-    public void setKodepos(String kodepos) {
-        this.kodepos = kodepos;
-    }
-    
-    
-    
-    
 }

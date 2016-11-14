@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package likeUnlike;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,10 +16,9 @@ import marketplaceservice.MarketplacceService;
 
 /**
  *
- * @author taufic
+ * @author Innocent
  */
-@WebServlet(name = "unlike", urlPatterns = {"/unlike"})
-public class unlike extends HttpServlet {
+public class confirmationPurchase extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_37177/MarketplacceService/MarketplaceService.wsdl")
     private MarketplacceService service;
@@ -38,22 +34,20 @@ public class unlike extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String status = "";
         HttpSession session = request.getSession();
-        java.lang.String idUserValidate = session.getAttribute("idUser").toString();
-        java.lang.String token = session.getAttribute("token").toString();
-        try{
-            status = addUnliked(request.getParameter("idKatalog"), request.getParameter("idUser"), idUserValidate, token);
-        } catch(Exception e){
-            String nextJSP = "/logout";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-            dispatcher.forward(request,response);
-        }
+        String idKatalog = request.getParameter("idKatalog");
+        String idUser = session.getAttribute("idUser").toString();
+        java.lang.String jumlahbeli = request.getParameter("quantity");
+        java.lang.String namaPenerima = request.getParameter("consignee");
+        java.lang.String alamatPenerima  = request.getParameter("fullAddrress");
+        java.lang.String kodeposPenerima = request.getParameter("postalCode");
+        java.lang.String noTelpPenerima = request.getParameter("phoneNumber");
+        java.lang.String kartuKredit = request.getParameter("numCard");
+        java.lang.String kodeValidasi = request.getParameter("valCard");
         
+        confirmpurchase(idKatalog, idUser, idUser, session.getAttribute("token").toString(),  jumlahbeli, namaPenerima, alamatPenerima, kodeposPenerima, noTelpPenerima, kartuKredit, kodeValidasi, idKatalog, namaPenerima);
         
-        if("ok".equals(status)){
-            response.sendRedirect("/saleProject/viewKatalog.jsp");
-        }
+        response.sendRedirect("/saleProject/purchase.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -95,19 +89,11 @@ public class unlike extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private String addUnliked(String idKatalog, String idUser, String idUserValidate, String token) throws Exception {
+    private java.util.List<marketplaceservice.Confirm> confirmpurchase(java.lang.String idKatalog, java.lang.String iduser, java.lang.String iduservalidate, java.lang.String token, java.lang.String jumlahBeli, java.lang.String namaPenerima, java.lang.String alamatPenerima, java.lang.String kodeposPenerima, java.lang.String noTelpPenerima, java.lang.String kartuKredit, java.lang.String kodeValidasi, java.lang.String hargaBarang, java.lang.String namaBarang) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         marketplaceservice.MarketplaceService port = service.getMarketplaceServicePort();
-        try{
-            return port.addUnliked(idKatalog, idUser, idUserValidate, token);
-        }
-        catch(Exception e){
-            if(e.getMessage().equals("Invalid Token")){
-                throw e;
-            }
-        }
-        return "";
+        return port.confirmpurchase(idKatalog, iduser, iduservalidate, token, jumlahBeli, namaPenerima, alamatPenerima, kodeposPenerima, noTelpPenerima, kartuKredit, kodeValidasi, hargaBarang, namaBarang);
     }
 
 }

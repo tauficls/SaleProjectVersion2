@@ -363,8 +363,13 @@ public class MarketplaceService {
         try{
             checktoken(idUserVal,token);
         } catch(InvalidTokenException e){
+            System.out.println("saaaaaaaaaaaaaafsafsafffffffffffffff");
+            System.out.println("saaaaaaaaaaaaaafsafsafffffffffffffff");
+            System.out.println("saaaaaaaaaaaaaafsafsafffffffffffffff");
             throw e;
         }
+
+            System.out.println("saaaaaaaaaaaaaafsafsaffffffffffbababaabaiif");
         ConnectDB connectdb = new ConnectDB();
         Connection con = connectdb.getConnection();
         PreparedStatement statement;
@@ -378,7 +383,7 @@ public class MarketplaceService {
         } catch (SQLException ex) {
             Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        System.out.println("pisang monyet" + status);
         return status;
         
     }
@@ -670,18 +675,15 @@ public class MarketplaceService {
             throw new InvalidTokenException("Invalid Token", t);
         }
     }
-    
 
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "preProcessConfirmPurchase")
-    public confirm preProcessConfirm(
-         @WebParam(name = "idUser")  String idUser,
-         @WebParam(name = "idKatalog")  String idKatalog) {
+    @WebMethod(operationName = "preProcessConfirm")
+    public confirm preProcessConfirm(@WebParam(name = "idUser") String idUser, @WebParam(name = "idKatalog") String idKatalog) {
+        //TODO write your implementation code here:
         String namaBarang = "";
         String harga = "";
-        String alamat = "";
         
         try {
             String query1 = "select * from katalog where idKatalog =" + idKatalog;
@@ -698,14 +700,18 @@ public class MarketplaceService {
             if (rs.next()) {
                 namaBarang = rs.getString("nama_barang");
                 harga = rs.getString("harga_barang");
-                alamat = rs.getString("alamat_penerima");
             }
+            
+            System.out.println("pisang0" + namaBarang);
         } catch (SQLException ex) {
             Logger.getLogger(MarketplaceService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        confirm konfirmasi = new confirm(namaBarang, harga, namaBarang, alamat, idUser);
+        confirm konfirmasi = new confirm(namaBarang, harga);
         return konfirmasi;
     }
+    
+
+    
 
     
 

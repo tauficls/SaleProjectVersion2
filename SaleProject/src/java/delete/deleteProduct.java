@@ -22,7 +22,7 @@ import marketplaceservice.MarketplacceService;
  */
 public class deleteProduct extends HttpServlet {
 
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_23132/MarketplacceService/MarketplaceService.wsdl")
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_37177/MarketplacceService/MarketplaceService.wsdl")
     private MarketplacceService service;
 
     /**
@@ -42,16 +42,12 @@ public class deleteProduct extends HttpServlet {
         java.lang.String token = session.getAttribute("token").toString();
         try{
             status = deleteProduk(request.getParameter("idUser"), request.getParameter("idKatalog"), idUserValidate, token);
-            response.sendRedirect("/viewKatalog.jsp");
+            response.sendRedirect("/saleProject/yourproduct.jsp");
         } catch(Exception e){
-            String nextJSP = "/logout";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-            dispatcher.forward(request,response);
+            response.sendRedirect("/saleProject/logout");
         }
        
-        if("ok".equals(status)){
-            response.sendRedirect("/saleProject/yourproduct.jsp");
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
